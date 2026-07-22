@@ -36,11 +36,15 @@ function createStore(initialState) {
 // - allStations: 読み込んだ観測所マスタ全件
 // - visibleStations: 現在の絞り込み条件で表示すべき観測所
 // - selectedPrefectures: 地域選択UIで選ばれた都道府県の集合（空 = 絞り込みなし）
+// - selectedElements: 観測要素フィルタUIで選ばれた観測要素IDの集合（空 = 絞り込みなし）
+// - elementLogic: 観測要素フィルタの合成モード（"AND" | "OR"）
 // - status: "loading" | "ready" | "error"
 export const store = createStore({
   allStations: [],
   visibleStations: [],
   selectedPrefectures: new Set(),
+  selectedElements: new Set(),
+  elementLogic: "AND",
   status: "loading",
   errorMessage: "",
 });

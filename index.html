@@ -13,7 +13,7 @@
 
   <header class="site-header">
     <div class="site-header__inner">
-      <p class="site-header__eyebrow">Weather Station Finder — Prototype / Phase 1</p>
+      <p class="site-header__eyebrow">Weather Station Finder — Prototype / Phase 3</p>
       <h1 class="site-header__title">観測所ファインダー</h1>
       <p class="site-header__desc">
         気象庁の公開データをより効率よく取得するための非公式ツールです。
@@ -27,7 +27,7 @@
 
     <div class="status-bar">
       <span id="status-count" class="status-bar__count">読み込み中...</span>
-      <span class="mono" style="font-size: 12px; color: var(--color-ink-soft);">v0.1 (Phase 1)</span>
+      <span class="mono" style="font-size: 12px; color: var(--color-ink-soft);">v0.3 (Phase 3)</span>
     </div>
 
     <div class="filter-panels">
@@ -41,17 +41,13 @@
         </div>
       </section>
 
-      <!-- フェーズ3で観測要素フィルタのUIをここに実装予定 -->
       <section class="panel">
         <div class="panel__header">
           <h2 class="panel__title">観測要素で絞り込む</h2>
-          <p class="panel__note">気温・降水量・積雪などによるフィルタは次フェーズで実装予定です。</p>
+          <p class="panel__note">気温・降水量・積雪などで絞り込めます。複数選択時は「すべて含む(AND)」「いずれか含む(OR)」を切り替えられます。</p>
         </div>
         <div class="panel__body">
-          <div class="filter-placeholder">
-            フェーズ3: 観測要素による絞り込み<br />
-            （気温・降水量・積雪・風・湿度・日照時間、AND/OR切り替え対応）
-          </div>
+          <div id="element-filter-container"></div>
         </div>
       </section>
     </div>

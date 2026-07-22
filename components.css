@@ -1,0 +1,296 @@
+/* ===========================================================
+   components.css — 個別UI部品（テーブル・バッジ等）
+   =========================================================== */
+
+.station-table {
+  font-size: 13px;
+}
+
+.station-table thead th {
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-bg);
+  color: var(--color-ink-soft);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--color-border-strong);
+  white-space: nowrap;
+}
+
+.station-table tbody td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+.station-table tbody tr:hover {
+  background: var(--color-teal-soft);
+}
+
+.station-table__name {
+  font-weight: 700;
+  color: var(--color-slate);
+}
+
+.station-table__id {
+  color: var(--color-ink-soft);
+}
+
+.element-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  background: var(--color-teal-soft);
+  color: var(--color-teal);
+  border: 1px solid rgba(28, 124, 140, 0.25);
+  white-space: nowrap;
+}
+
+.tag--snow {
+  background: var(--color-amber-soft);
+  color: #9A6A1B;
+  border-color: rgba(232, 163, 61, 0.35);
+}
+
+.badge-type {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  background: var(--color-slate-soft);
+  color: #fff;
+}
+
+.empty-state {
+  padding: var(--space-6);
+  text-align: center;
+  color: var(--color-ink-soft);
+}
+
+.loading-state {
+  padding: var(--space-6);
+  text-align: center;
+  color: var(--color-ink-soft);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+/* ---------------------------------------------------------
+   region selector（フェーズ2）
+   --------------------------------------------------------- */
+
+.region-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.region-controls__label {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--color-slate);
+}
+
+.region-controls__clear {
+  margin-left: auto;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface);
+  color: var(--color-ink-soft);
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.region-controls__clear:hover {
+  border-color: var(--color-teal);
+  color: var(--color-teal);
+}
+
+.region-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+@media (max-width: 640px) {
+  .region-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.region-group {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+}
+
+.region-group__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+}
+
+.region-group__label {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-slate);
+  cursor: pointer;
+}
+
+.region-group__toggle {
+  border: none;
+  background: transparent;
+  color: var(--color-ink-soft);
+  width: 20px;
+  height: 20px;
+  line-height: 1;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+}
+
+.region-group__toggle:hover {
+  background: var(--color-teal-soft);
+  color: var(--color-teal);
+}
+
+.prefecture-list {
+  padding: 0 var(--space-3) var(--space-3) var(--space-6);
+}
+
+.prefecture-item {
+  padding: 2px 0;
+}
+
+.prefecture-item__label {
+  font-size: 12px;
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+/* checkbox は共通で少し大きめ・アクセントカラーに */
+.region-controls__checkbox,
+.region-group__checkbox,
+.prefecture-item__checkbox {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--color-teal);
+  cursor: pointer;
+}
+
+/* フェーズ3以降で使う予定のフィルターパネルの土台
+   （現在は使用箇所なし。将来のプレースホルダー用に残置） */
+.filter-placeholder {
+  padding: var(--space-4);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--color-ink-soft);
+  font-size: 12px;
+  background: var(--color-bg);
+}
+
+/* ---------------------------------------------------------
+   element filter（フェーズ3・観測要素絞り込み）
+   --------------------------------------------------------- */
+
+.element-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.element-controls__mode {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.element-controls__mode-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-slate);
+  cursor: pointer;
+  margin-right: var(--space-2);
+}
+
+.element-controls__mode-radio {
+  accent-color: var(--color-teal);
+  cursor: pointer;
+  margin-right: 2px;
+}
+
+.element-controls__clear {
+  margin-left: auto;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface);
+  color: var(--color-ink-soft);
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.element-controls__clear:hover {
+  border-color: var(--color-teal);
+  color: var(--color-teal);
+}
+
+.element-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2) var(--space-3);
+}
+
+@media (max-width: 640px) {
+  .element-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.element-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--color-ink);
+  transition: background 0.15s ease;
+}
+
+.element-item:hover {
+  background: var(--color-teal-soft);
+}
+
+.element-item__checkbox {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--color-teal);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.element-item__label {
+  flex: 1;
+}

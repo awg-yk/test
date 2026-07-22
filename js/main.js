@@ -3,34 +3,34 @@
  * ------------------------------------------------------------
  *   1. data/stations.json を読み込む
  *   2. store（状態管理）に格納する
- *   3. regionSelector を初期化し、地域選択の変化を store に反映する
+ *   3. regionSelector / elementFilter を初期化し、変化を store に反映する
  *   4. filterEngine で visibleStations を再計算する（applyFilters）
  *   5. stationList モジュールで一覧をテーブル描画する
  *   6. ステータスバーに件数を表示する
- *
- * フェーズ3では、ここに initElementFilter() を追加し、
- * applyFilters() に selectedElements / elementLogic を渡すだけで
- * 地域フィルタと組み合わせた絞り込みができるようにする想定。
  */
 
 import { store } from "./modules/stateManager.js";
 import { renderStationTable, renderLoading, renderError } from "./modules/stationList.js";
 import { initRegionSelector } from "./modules/regionSelector.js";
-import { computeVisibleStations, buildPrefectureCounts } from "./modules/filterEngine.js";
+import { initElementFilter } from "./modules/elementFilter.js";
+import { computeVisibleStations, buildPrefectureCounts, buildElementCounts } from "./modules/filterEngine.js";
 import { buildElementLabelMap, buildRegionLabelMap } from "./utils/helpers.js";
 
 const tableContainer = document.getElementById("station-table-container");
 const regionSelectorContainer = document.getElementById("region-selector-container");
+const elementFilterContainer = document.getElementById("element-filter-container");
 const statusCount = document.getElementById("status-count");
 
 let elementLabelMap = new Map();
 let regionLabelMap = new Map();
 
-/** allStations / selectedPrefectures の現在値から visibleStations を再計算する */
+/** allStations / selectedPrefectures / selectedElements の現在値から visibleStations を再計算する */
 function applyFilters() {
   const state = store.getState();
   const visibleStations = computeVisibleStations(state.allStations, {
     selectedPrefectures: state.selectedPrefectures,
+    selectedElements: state.selectedElements,
+    elementLogic: state.elementLogic,
   });
   store.setState({ visibleStations });
 }
@@ -80,6 +80,17 @@ async function init() {
       stationCounts: prefectureCounts,
       onChange: (selectedPrefectures) => {
         store.setState({ selectedPrefectures });
+        applyFilters();
+      },
+    });
+
+    const elementCounts = buildElementCounts(data.stations);
+    initElementFilter({
+      container: elementFilterContainer,
+      elements: data.elements,
+      stationCounts: elementCounts,
+      onChange: (selectedElements, elementLogic) => {
+        store.setState({ selectedElements, elementLogic });
         applyFilters();
       },
     });
