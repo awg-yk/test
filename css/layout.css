@@ -1,0 +1,117 @@
+/* ===========================================================
+   layout.css — ページ全体のグリッドと骨格
+   =========================================================== */
+
+.site-header {
+  background: var(--color-slate);
+  color: #fff;
+  padding: var(--space-6) var(--space-6) var(--space-5);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 等圧線を思わせる控えめな装飾ライン */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-radial-gradient(
+      circle at 88% -10%,
+      transparent 0,
+      transparent 38px,
+      rgba(28, 124, 140, 0.35) 39px,
+      rgba(28, 124, 140, 0.35) 40px
+    );
+  pointer-events: none;
+}
+
+.site-header__inner {
+  position: relative;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.site-header__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--color-teal);
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+}
+
+.site-header__title {
+  font-size: 26px;
+  letter-spacing: 0.01em;
+}
+
+.site-header__desc {
+  margin-top: var(--space-2);
+  color: #C6CDD6;
+  font-size: 13px;
+  max-width: 640px;
+}
+
+.app-main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-6) var(--space-7);
+}
+
+.status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-teal-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.status-bar__count {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: var(--color-slate);
+}
+
+.panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.panel__header {
+  padding: var(--space-4) var(--space-4) var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.panel__title {
+  font-size: 14px;
+}
+
+.panel__note {
+  margin-top: var(--space-1);
+  font-size: 12px;
+  color: var(--color-ink-soft);
+}
+
+.panel__body {
+  padding: var(--space-4);
+}
+
+.station-table-wrap {
+  overflow-x: auto;
+}
+
+@media (max-width: 720px) {
+  .site-header {
+    padding: var(--space-5) var(--space-4);
+  }
+  .app-main {
+    padding: var(--space-4);
+  }
+}

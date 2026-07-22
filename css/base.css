@@ -1,0 +1,109 @@
+/* ===========================================================
+   base.css — デザイントークン・リセット・共通要素
+   =========================================================== */
+
+:root {
+  /* カラー */
+  --color-bg: #F6F7F5;
+  --color-surface: #FFFFFF;
+  --color-ink: #1B1F23;
+  --color-ink-soft: #5B6672;
+  --color-slate: #1E2A38;
+  --color-slate-soft: #33445A;
+  --color-teal: #1C7C8C;
+  --color-teal-soft: #E4F0F1;
+  --color-amber: #E8A33D;
+  --color-amber-soft: #FBEBD3;
+  --color-border: #DDE1E0;
+  --color-border-strong: #B9C0C6;
+
+  /* タイポグラフィ */
+  --font-ui: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Consolas", monospace;
+
+  /* スペーシング */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* その他 */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --shadow-card: 0 1px 2px rgba(27, 31, 35, 0.06), 0 2px 8px rgba(27, 31, 35, 0.04);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-weight: 700;
+}
+
+p {
+  margin: 0;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* 数値・地点コードは等幅で */
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* キーボードフォーカスを明示 */
+:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+}
+
+/* モーション低減設定を尊重 */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

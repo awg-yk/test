@@ -1,0 +1,98 @@
+/* ===========================================================
+   components.css — 個別UI部品（テーブル・バッジ等）
+   =========================================================== */
+
+.station-table {
+  font-size: 13px;
+}
+
+.station-table thead th {
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-bg);
+  color: var(--color-ink-soft);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--color-border-strong);
+  white-space: nowrap;
+}
+
+.station-table tbody td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+.station-table tbody tr:hover {
+  background: var(--color-teal-soft);
+}
+
+.station-table__name {
+  font-weight: 700;
+  color: var(--color-slate);
+}
+
+.station-table__id {
+  color: var(--color-ink-soft);
+}
+
+.element-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  background: var(--color-teal-soft);
+  color: var(--color-teal);
+  border: 1px solid rgba(28, 124, 140, 0.25);
+  white-space: nowrap;
+}
+
+.tag--snow {
+  background: var(--color-amber-soft);
+  color: #9A6A1B;
+  border-color: rgba(232, 163, 61, 0.35);
+}
+
+.badge-type {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  background: var(--color-slate-soft);
+  color: #fff;
+}
+
+.empty-state {
+  padding: var(--space-6);
+  text-align: center;
+  color: var(--color-ink-soft);
+}
+
+.loading-state {
+  padding: var(--space-6);
+  text-align: center;
+  color: var(--color-ink-soft);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+/* フェーズ2/3以降で使う予定のフィルターパネルの土台
+   （今は「近日公開」プレースホルダーとして表示） */
+.filter-placeholder {
+  padding: var(--space-4);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--color-ink-soft);
+  font-size: 12px;
+  background: var(--color-bg);
+}
