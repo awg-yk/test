@@ -30,19 +30,31 @@
       <span class="mono" style="font-size: 12px; color: var(--color-ink-soft);">v0.1 (Phase 1)</span>
     </div>
 
-    <!-- フェーズ2/3で地域選択・観測要素フィルタのUIをここに追加予定 -->
-    <section class="panel" style="margin-bottom: var(--space-4);">
-      <div class="panel__header">
-        <h2 class="panel__title">地域・観測要素で絞り込む</h2>
-        <p class="panel__note">地方／都道府県の一括選択、観測要素フィルタは次フェーズで実装予定です。</p>
-      </div>
-      <div class="panel__body">
-        <div class="filter-placeholder">
-          フェーズ2: 地方・都道府県の一括選択（北海道／東北／関東 … ）<br />
-          フェーズ3: 観測要素による絞り込み（気温・降水量・積雪・風・湿度・日照時間、AND/OR切り替え）
+    <div class="filter-panels">
+      <section class="panel">
+        <div class="panel__header">
+          <h2 class="panel__title">地域で絞り込む</h2>
+          <p class="panel__note">地方単位・都道府県単位で一括選択できます。何も選択しない場合は全観測所を表示します。</p>
         </div>
-      </div>
-    </section>
+        <div class="panel__body">
+          <div id="region-selector-container"></div>
+        </div>
+      </section>
+
+      <!-- フェーズ3で観測要素フィルタのUIをここに実装予定 -->
+      <section class="panel">
+        <div class="panel__header">
+          <h2 class="panel__title">観測要素で絞り込む</h2>
+          <p class="panel__note">気温・降水量・積雪などによるフィルタは次フェーズで実装予定です。</p>
+        </div>
+        <div class="panel__body">
+          <div class="filter-placeholder">
+            フェーズ3: 観測要素による絞り込み<br />
+            （気温・降水量・積雪・風・湿度・日照時間、AND/OR切り替え対応）
+          </div>
+        </div>
+      </section>
+    </div>
 
     <section class="panel">
       <div class="panel__header">

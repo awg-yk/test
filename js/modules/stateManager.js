@@ -32,14 +32,15 @@ function createStore(initialState) {
   return { getState, setState, subscribe };
 }
 
-// フェーズ1時点で扱う状態:
+// 扱う状態:
 // - allStations: 読み込んだ観測所マスタ全件
 // - visibleStations: 現在の絞り込み条件で表示すべき観測所
-//   （フェーズ1では allStations と同一。フェーズ2/3でフィルタを適用する）
+// - selectedPrefectures: 地域選択UIで選ばれた都道府県の集合（空 = 絞り込みなし）
 // - status: "loading" | "ready" | "error"
 export const store = createStore({
   allStations: [],
   visibleStations: [],
+  selectedPrefectures: new Set(),
   status: "loading",
   errorMessage: "",
 });
