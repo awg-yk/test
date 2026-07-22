@@ -14,12 +14,14 @@ import { renderStationTable, renderLoading, renderError } from "./modules/statio
 import { initRegionSelector } from "./modules/regionSelector.js";
 import { initElementFilter } from "./modules/elementFilter.js";
 import { computeVisibleStations, buildPrefectureCounts, buildElementCounts } from "./modules/filterEngine.js";
+import { exportStationsAsCSV } from "./modules/exporter.js";
 import { buildElementLabelMap, buildRegionLabelMap } from "./utils/helpers.js";
 
 const tableContainer = document.getElementById("station-table-container");
 const regionSelectorContainer = document.getElementById("region-selector-container");
 const elementFilterContainer = document.getElementById("element-filter-container");
 const statusCount = document.getElementById("status-count");
+const exportCsvBtn = document.getElementById("export-csv-btn");
 
 let elementLabelMap = new Map();
 let regionLabelMap = new Map();
@@ -34,6 +36,18 @@ function applyFilters() {
   });
   store.setState({ visibleStations });
 }
+
+exportCsvBtn.addEventListener("click", () => {
+  const state = store.getState();
+  const exported = exportStationsAsCSV(state.visibleStations, { elementLabelMap, regionLabelMap });
+  if (!exported) {
+    const previousText = statusCount.textContent;
+    statusCount.textContent = "エクスポート対象の観測所がありません（絞り込み条件を確認してください）";
+    setTimeout(() => {
+      statusCount.textContent = previousText;
+    }, 3000);
+  }
+});
 
 // store の状態が変わるたびに一覧を再描画する
 store.subscribe((state) => {

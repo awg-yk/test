@@ -195,7 +195,7 @@
 }
 
 /* フェーズ3以降で使う予定のフィルターパネルの土台
-   （今は「近日公開」プレースホルダーとして表示） */
+   （現在は使用箇所なし。将来のプレースホルダー用に残置） */
 .filter-placeholder {
   padding: var(--space-4);
   border: 1px dashed var(--color-border-strong);
@@ -203,4 +203,150 @@
   color: var(--color-ink-soft);
   font-size: 12px;
   background: var(--color-bg);
+}
+
+/* ---------------------------------------------------------
+   element filter（フェーズ3・観測要素絞り込み）
+   --------------------------------------------------------- */
+
+.element-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.element-controls__mode {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.element-controls__mode-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-slate);
+  cursor: pointer;
+  margin-right: var(--space-2);
+}
+
+.element-controls__mode-radio {
+  accent-color: var(--color-teal);
+  cursor: pointer;
+  margin-right: 2px;
+}
+
+.element-controls__clear {
+  margin-left: auto;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface);
+  color: var(--color-ink-soft);
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.element-controls__clear:hover {
+  border-color: var(--color-teal);
+  color: var(--color-teal);
+}
+
+.element-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2) var(--space-3);
+}
+
+@media (max-width: 640px) {
+  .element-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.element-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--color-ink);
+  transition: background 0.15s ease;
+}
+
+.element-item:hover {
+  background: var(--color-teal-soft);
+}
+
+.element-item__checkbox {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--color-teal);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.element-item__label {
+  flex: 1;
+}
+
+/* ---------------------------------------------------------
+   export actions（フェーズ4・CSVエクスポート／気象庁公式リンク）
+   --------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn--primary {
+  background: var(--color-teal);
+  color: #fff;
+}
+
+.btn--primary:hover {
+  background: #17636f;
+}
+
+.btn--secondary {
+  background: var(--color-surface);
+  color: var(--color-slate);
+  border-color: var(--color-border-strong);
+}
+
+.btn--secondary:hover {
+  border-color: var(--color-teal);
+  color: var(--color-teal);
+}
+
+.jma-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-teal);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.jma-link:hover {
+  text-decoration: underline;
+}
+
+.jma-link--disabled {
+  color: var(--color-ink-soft);
+  font-weight: 400;
 }

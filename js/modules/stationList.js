@@ -8,6 +8,7 @@
  */
 
 import { h } from "../utils/helpers.js";
+import { buildJmaStationLink } from "./exporter.js";
 
 const SNOW_ELEMENT_ID = "snow";
 
@@ -21,6 +22,14 @@ function renderElementTags(elementIds, elementLabelMap) {
   return wrap;
 }
 
+function renderJmaLinkCell(station) {
+  const url = buildJmaStationLink(station);
+  if (!url) {
+    return h("span", { class: "jma-link jma-link--disabled" }, "—");
+  }
+  return h("a", { class: "jma-link", href: url, target: "_blank", rel: "noopener noreferrer" }, "気象庁で見る ↗");
+}
+
 function renderRow(station, elementLabelMap, regionLabelMap) {
   return h("tr", {}, [
     h("td", {}, h("span", { class: "station-table__id mono" }, station.id)),
@@ -29,6 +38,7 @@ function renderRow(station, elementLabelMap, regionLabelMap) {
     h("td", {}, regionLabelMap.get(station.region) ?? station.region),
     h("td", {}, renderElementTags(station.elements, elementLabelMap)),
     h("td", {}, h("span", { class: "badge-type" }, station.stationType)),
+    h("td", {}, renderJmaLinkCell(station)),
   ]);
 }
 
@@ -48,6 +58,7 @@ export function renderStationTable(container, stations, { elementLabelMap, regio
     h("th", {}, "地方"),
     h("th", {}, "観測要素"),
     h("th", {}, "種別"),
+    h("th", {}, "気象庁"),
   ]));
 
   const tbody = h("tbody", {});

@@ -13,7 +13,7 @@
 
   <header class="site-header">
     <div class="site-header__inner">
-      <p class="site-header__eyebrow">Weather Station Finder — Prototype / Phase 3</p>
+      <p class="site-header__eyebrow">Weather Station Finder — Prototype / Phase 4</p>
       <h1 class="site-header__title">観測所ファインダー</h1>
       <p class="site-header__desc">
         気象庁の公開データをより効率よく取得するための非公式ツールです。
@@ -27,7 +27,7 @@
 
     <div class="status-bar">
       <span id="status-count" class="status-bar__count">読み込み中...</span>
-      <span class="mono" style="font-size: 12px; color: var(--color-ink-soft);">v0.3 (Phase 3)</span>
+      <span class="mono" style="font-size: 12px; color: var(--color-ink-soft);">v0.4 (Phase 4)</span>
     </div>
 
     <div class="filter-panels">
@@ -53,9 +53,15 @@
     </div>
 
     <section class="panel">
-      <div class="panel__header">
-        <h2 class="panel__title">観測所一覧</h2>
-        <p class="panel__note">現在は全国のサンプル観測所（都道府県代表地点）を表示しています。</p>
+      <div class="panel__header panel__header--with-actions">
+        <div>
+          <h2 class="panel__title">観測所一覧</h2>
+          <p class="panel__note">現在は全国のサンプル観測所（都道府県代表地点）を表示しています。「気象庁」列のリンクは地点番号（prec_no/block_no）を収録した観測所のみ表示されます。</p>
+        </div>
+        <div class="panel__actions">
+          <button type="button" id="export-csv-btn" class="btn btn--primary">選択結果をCSVでダウンロード</button>
+          <a id="open-jma-btn" class="btn btn--secondary" href="https://www.data.jma.go.jp/risk/obsdl/index.php" target="_blank" rel="noopener noreferrer">気象庁の公式ページを開く ↗</a>
+        </div>
       </div>
       <div class="panel__body station-table-wrap">
         <div id="station-table-container"></div>
