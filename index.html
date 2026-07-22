@@ -13,7 +13,7 @@
 
   <header class="site-header">
     <div class="site-header__inner">
-      <p class="site-header__eyebrow">Weather Station Finder — Prototype / Phase 4</p>
+      <p class="site-header__eyebrow">Weather Station Finder — Prototype / Phase 5（実データ整備）</p>
       <h1 class="site-header__title">観測所ファインダー</h1>
       <p class="site-header__desc">
         気象庁の公開データをより効率よく取得するための非公式ツールです。
@@ -27,7 +27,7 @@
 
     <div class="status-bar">
       <span id="status-count" class="status-bar__count">読み込み中...</span>
-      <span class="mono" style="font-size: 12px; color: var(--color-ink-soft);">v0.4 (Phase 4)</span>
+      <span class="mono" style="font-size: 12px; color: var(--color-ink-soft);">v0.5 (Phase 5: 実データ整備)</span>
     </div>
 
     <div class="filter-panels">
@@ -56,7 +56,7 @@
       <div class="panel__header panel__header--with-actions">
         <div>
           <h2 class="panel__title">観測所一覧</h2>
-          <p class="panel__note">現在は全国のサンプル観測所（都道府県代表地点）を表示しています。「気象庁」列のリンクは地点番号（prec_no/block_no）を収録した観測所のみ表示されます。</p>
+          <p class="panel__note">気象庁「アメダス観測所表」に基づく全国1,286地点（気象官署56地点＋アメダス1,230地点）を収録しています。「気象庁」列のリンクは地点番号（prec_no/block_no）を収録した観測所のみ表示されます（現状は未収録のため「—」表示）。</p>
         </div>
         <div class="panel__actions">
           <button type="button" id="export-csv-btn" class="btn btn--primary">選択結果をCSVでダウンロード</button>
@@ -69,6 +69,10 @@
     </section>
 
   </main>
+
+  <footer class="site-footer">
+    <p>観測所データ: 気象庁「アメダス観測所表」（<a href="https://www.jma.go.jp/bosai/amedas/const/amedastable.json" target="_blank" rel="noopener noreferrer">amedastable.json</a>）をもとに作成。都道府県境界データ: <a href="https://github.com/dataofjapan/land" target="_blank" rel="noopener noreferrer">dataofjapan/land</a>（緯度経度から都道府県を判定するために使用）。本サイトは気象庁の非公式ツールであり、気象庁が提供・保証するものではありません。</p>
+  </footer>
 
   <script type="module" src="js/main.js"></script>
 </body>
