@@ -39,7 +39,7 @@ const container = document.getElementById("root");
 const counts = new Map();
 data.stations.forEach((s) => (s.elements ?? []).forEach((id) => counts.set(id, (counts.get(id) ?? 0) + 1)));
 
-initElementFilter({
+const elementFilter = initElementFilter({
   container,
   elements: data.elements,
   stationCounts: counts,
@@ -81,5 +81,26 @@ clearButton.dispatchEvent(new dom.window.Event("click"));
 assert(lastSelected.size === 0, "クリア後は0件選択");
 assert(snowCheckbox.checked === false, "クリア後はチェックボックスの見た目もOFFになる");
 assert(lastMode === "OR", "クリアしてもモードは維持される");
+
+// 6. updateCounts(): 他の絞り込み（地域など）に連動して件数表示だけを差し替える（フェーズ10）
+const tempLabel = () => container.querySelector("#element-temperature + .element-item__label").textContent;
+
+assert(tempLabel() === `気温 (${counts.get("temperature")})`, "初期表示は全観測所ベースの件数");
+
+snowCheckbox.checked = true; // 件数更新でチェック状態が壊れないことの確認用
+snowCheckbox.dispatchEvent(new dom.window.Event("change"));
+
+elementFilter.updateCounts(new Map([["temperature", 174], ["snow", 120]]));
+assert(tempLabel() === "気温 (174)", `updateCounts() で件数表示が更新される (実際: ${tempLabel()})`);
+assert(snowCheckbox.checked === true, "updateCounts() はチェック状態を変えない");
+assert(lastSelected.size === 1 && lastSelected.has("snow"), "updateCounts() は onChange を呼ばない（選択状態も不変）");
+assert(
+  container.querySelector("#element-precipitation").parentElement.classList.contains("element-item--empty"),
+  "0件になった観測要素には element-item--empty が付く"
+);
+assert(
+  !container.querySelector("#element-temperature").parentElement.classList.contains("element-item--empty"),
+  "1件以上ある観測要素には element-item--empty は付かない"
+);
 
 console.log("\nAll element-filter tests passed.");

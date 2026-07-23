@@ -1,0 +1,39 @@
+{
+  "_comment": [
+    "気象庁の amedastable.json（国内アメダス観測所表）には含まれないが、",
+    "「過去の気象データ検索」(etrn) には収録されている観測所を手動で定義するファイル。",
+    "scripts/build_stations.py が stations.json を再構築する際、ここの内容を追記する。",
+    "regions に無い地方IDを使う場合は、extraRegions 側にも定義を追加すること。"
+  ],
+  "extraRegions": [
+    {
+      "id": "antarctica",
+      "name": "南極",
+      "prefectures": ["南極"]
+    }
+  ],
+  "stations": [
+    {
+      "id": "89532",
+      "name": "昭和基地",
+      "kana": "ショウワキチ",
+      "enName": "Syowa",
+      "prefecture": "南極",
+      "region": "antarctica",
+      "lat": -69.006944,
+      "lon": 39.583889,
+      "alt": 18,
+      "elements": ["temperature", "wind", "sunshine", "snow", "humidity"],
+      "stationType": "気象官署",
+      "precNo": "99",
+      "blockNo": "89532",
+      "_note": [
+        "南極観測（第1次〜）で気象庁が通年観測を行っている基地。etrn上の表記は「昭和（南極）」。",
+        "id は amedas観測所コードではなくWMO地点番号(89532)を流用している（国内コードと重複しないことを確認済み）。",
+        "elements: 降水量(precipitation)は地吹雪のため観測しておらず、etrnの日別値でも常に空欄のため含めていない。",
+        "最深積雪は値が入るため snow は含めている。",
+        "lat/lon は基地の位置（南緯69度00分25秒／東経39度35分01秒）、alt は気象観測露場の標高。"
+      ]
+    }
+  ]
+}

@@ -18,12 +18,7 @@ import { initKeywordSearch } from "./modules/keywordSearch.js";
 import { initPresetPanel } from "./modules/presetPanel.js";
 import { PRESETS, buildPresetState } from "./modules/presets.js";
 import { paginate, renderPagination } from "./modules/pagination.js";
-import {
-  computeVisibleStations,
-  buildPrefectureCounts,
-  buildElementCounts,
-  buildStationTypeCounts,
-} from "./modules/filterEngine.js";
+import { computeVisibleStations, buildFacetCounts, buildStationTypeCounts } from "./modules/filterEngine.js";
 import { exportStationsAsCSV } from "./modules/exporter.js";
 import { initMapView } from "./modules/mapView.js";
 import { parseStateFromUrl, syncUrlWithState } from "./modules/urlState.js";
@@ -44,19 +39,36 @@ const copyLinkBtn = document.getElementById("copy-link-btn");
 let elementLabelMap = new Map();
 let regionLabelMap = new Map();
 let stationData = null; // init() 完了後、data/stations.json の regions/elements を保持（プリセット適用時のUI再構築に使う）
+let filterUIs = { region: null, element: null, type: null }; // 各絞り込みUIのハンドル（件数の更新に使う）
 
-/** allStations / selectedPrefectures / selectedElements / selectedStationTypes / keyword の現在値から
- *  visibleStations を再計算する。絞り込み条件が変わったときは、存在しないページを見続けないよう1ページ目に戻す。 */
-function applyFilters({ resetPage = true } = {}) {
-  const state = store.getState();
-  const visibleStations = computeVisibleStations(state.allStations, {
+/** store の状態から filterEngine に渡す絞り込み条件を取り出す */
+function filtersFromState(state) {
+  return {
     selectedPrefectures: state.selectedPrefectures,
     selectedElements: state.selectedElements,
     elementLogic: state.elementLogic,
     selectedStationTypes: state.selectedStationTypes,
     keyword: state.keyword,
-  });
+  };
+}
+
+/** 各絞り込みUIの「(件数)」を、他の絞り込み条件を反映した件数に更新する（フェーズ10）。
+ *  例: 地域で北海道だけ選ぶと、観測要素・種別の件数が北海道の中での件数になる。 */
+function refreshFacetCounts(allStations, filters) {
+  const { prefectureCounts, elementCounts, stationTypeCounts } = buildFacetCounts(allStations, filters);
+  filterUIs.region?.updateCounts(prefectureCounts);
+  filterUIs.element?.updateCounts(elementCounts);
+  filterUIs.type?.updateCounts(stationTypeCounts);
+}
+
+/** allStations / selectedPrefectures / selectedElements / selectedStationTypes / keyword の現在値から
+ *  visibleStations を再計算する。絞り込み条件が変わったときは、存在しないページを見続けないよう1ページ目に戻す。 */
+function applyFilters({ resetPage = true } = {}) {
+  const state = store.getState();
+  const filters = filtersFromState(state);
+  const visibleStations = computeVisibleStations(state.allStations, filters);
   store.setState({ visibleStations, ...(resetPage ? { page: 1 } : {}) });
+  refreshFacetCounts(state.allStations, filters);
 }
 
 /**
@@ -65,11 +77,19 @@ function applyFilters({ resetPage = true } = {}) {
  * 両方から呼ばれる共通処理。
  */
 function initFilterUIs(data, initialValues) {
-  const prefectureCounts = buildPrefectureCounts(data.stations);
-  initRegionSelector({
+  // 初期表示の件数も、URLクエリ・プリセット由来の絞り込みを反映した値にする
+  const facetCounts = buildFacetCounts(data.stations, {
+    selectedPrefectures: initialValues.prefectures,
+    selectedElements: initialValues.elements,
+    elementLogic: initialValues.elementLogic,
+    selectedStationTypes: initialValues.stationTypes,
+    keyword: initialValues.keyword,
+  });
+
+  filterUIs.region = initRegionSelector({
     container: regionSelectorContainer,
     regions: data.regions,
-    stationCounts: prefectureCounts,
+    stationCounts: facetCounts.prefectureCounts,
     initialSelected: initialValues.prefectures,
     onChange: (selectedPrefectures) => {
       store.setState({ selectedPrefectures });
@@ -77,11 +97,10 @@ function initFilterUIs(data, initialValues) {
     },
   });
 
-  const elementCounts = buildElementCounts(data.stations);
-  initElementFilter({
+  filterUIs.element = initElementFilter({
     container: elementFilterContainer,
     elements: data.elements,
-    stationCounts: elementCounts,
+    stationCounts: facetCounts.elementCounts,
     initialSelected: initialValues.elements,
     initialMode: initialValues.elementLogic,
     onChange: (selectedElements, elementLogic) => {
@@ -90,11 +109,12 @@ function initFilterUIs(data, initialValues) {
     },
   });
 
-  const stationTypeCounts = buildStationTypeCounts(data.stations);
-  initTypeFilter({
+  // 選択肢そのもの（気象官署／アメダス）は全観測所から作り、件数だけ絞り込み連動にする
+  // （件数0の種別も選択肢として残しておくため）
+  filterUIs.type = initTypeFilter({
     container: typeFilterContainer,
-    stationTypes: [...stationTypeCounts.keys()],
-    stationCounts: stationTypeCounts,
+    stationTypes: [...buildStationTypeCounts(data.stations).keys()],
+    stationCounts: facetCounts.stationTypeCounts,
     initialSelected: initialValues.stationTypes,
     onChange: (selectedStationTypes) => {
       store.setState({ selectedStationTypes });

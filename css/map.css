@@ -18,6 +18,62 @@
   }
 }
 
+/* タッチ端末で1本指スワイプがページのスクロールになるようにする
+   （Leaflet既定の touch-action: none を上書き。2本指操作は mapView.js 側で地図に渡す） */
+.map-view.leaflet-container {
+  touch-action: pan-x pan-y;
+}
+
+/* Ctrl押下中はドラッグで動かせることが分かるようにカーソルを変える
+   （Leafletの .leaflet-grab より後に定義して優先させる） */
+.map-view--gesture-active,
+.map-view--gesture-active .leaflet-interactive {
+  cursor: grab;
+}
+
+/* 修飾キー無しでスクロール／ドラッグしたときに一時表示する操作ヒント */
+.map-gesture-hint {
+  position: absolute;
+  inset: 0;
+  z-index: 1100; /* Leafletのコントロール(1000)より前面 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  background: rgba(23, 30, 38, 0.45);
+  color: #fff;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  pointer-events: none; /* ヒント自体は操作の邪魔をしない */
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.map-gesture-hint.is-visible {
+  opacity: 1;
+}
+
+/* 「検索結果に合わせる」ボタン（Leafletコントロールとして右上に配置） */
+.map-fit-btn {
+  padding: 6px 10px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  color: var(--color-ink);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.map-fit-btn:hover {
+  background: var(--color-bg);
+}
+
 .map-view__error {
   padding: var(--space-4);
   color: var(--color-ink-soft);

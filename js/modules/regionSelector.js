@@ -10,7 +10,10 @@
  *     stationCounts: Map<prefecture, number>, // 都道府県ごとの観測所数
  *     initialSelected?: Set<string>,          // 初期選択（URLクエリ復元用。省略時は未選択）
  *     onChange: (selectedPrefectures: Set<string>) => void,
- *   })
+ *   }) -> { updateCounts(newCounts: Map<prefecture, number>): void }
+ *
+ *   戻り値の updateCounts() で、チェック状態や開閉状態を保ったまま
+ *   「(件数)」だけを差し替えられる（他の絞り込み条件に連動して件数を更新するため。フェーズ10）。
  *
  * 選択状態の正は「都道府県名の集合（selected）」。
  * 地方チェックボックス・「全国」チェックボックスは、
@@ -26,9 +29,12 @@ export function initRegionSelector({ container, regions, stationCounts, initialS
   const selected = new Set(initialSelected ?? []); // 選択中の都道府県名
   const prefectureCheckboxes = new Map(); // prefName -> <input>
   const regionCheckboxes = new Map(); // regionId -> <input>
+  const prefectureLabels = new Map(); // prefName -> <label>（件数の差し替え用）
+  const regionLabels = new Map(); // regionId -> <label>（件数の差し替え用）
+  let counts = stationCounts;
   let allCheckbox;
 
-  const countFor = (prefName) => stationCounts.get(prefName) ?? 0;
+  const countFor = (prefName) => counts.get(prefName) ?? 0;
   const regionCount = (region) => region.prefectures.reduce((sum, p) => sum + countFor(p), 0);
   const totalPrefectureCount = regions.reduce((sum, r) => sum + r.prefectures.length, 0);
 
@@ -83,10 +89,11 @@ export function initRegionSelector({ container, regions, stationCounts, initialS
     emitChange();
   });
 
+  // 南極（昭和基地）を収録しているため「47都道府県」ではなく「地域」と数える
   const allLabel = h(
     "label",
     { for: "region-select-all", class: "region-controls__label" },
-    `全国一括選択（全 ${totalPrefectureCount} 都道府県）`
+    `すべて一括選択（全 ${totalPrefectureCount} 地域）`
   );
 
   const clearButton = h(
@@ -136,11 +143,14 @@ export function initRegionSelector({ container, regions, stationCounts, initialS
       "−"
     );
 
-    const header = h("div", { class: "region-group__header" }, [
-      regionCb,
-      h("label", { for: groupId, class: "region-group__label" }, `${region.name} (${regionCount(region)})`),
-      toggleBtn,
-    ]);
+    const regionLabel = h(
+      "label",
+      { for: groupId, class: "region-group__label" },
+      `${region.name} (${regionCount(region)})`
+    );
+    regionLabels.set(region.id, regionLabel);
+
+    const header = h("div", { class: "region-group__header" }, [regionCb, regionLabel, toggleBtn]);
 
     const prefList = h("ul", { class: "prefecture-list" });
 
@@ -159,10 +169,15 @@ export function initRegionSelector({ container, regions, stationCounts, initialS
       });
       prefectureCheckboxes.set(prefName, prefCb);
 
-      const li = h("li", { class: "prefecture-item" }, [
-        prefCb,
-        h("label", { for: prefId, class: "prefecture-item__label" }, ` ${prefName} (${countFor(prefName)})`),
-      ]);
+      const prefLabel = h(
+        "label",
+        { for: prefId, class: "prefecture-item__label" },
+        ` ${prefName} (${countFor(prefName)})`
+      );
+      prefectureLabels.set(prefName, prefLabel);
+
+      const li = h("li", { class: "prefecture-item" }, [prefCb, prefLabel]);
+      li.classList.toggle("prefecture-item--empty", countFor(prefName) === 0);
       prefList.append(li);
     });
 
@@ -179,4 +194,22 @@ export function initRegionSelector({ container, regions, stationCounts, initialS
 
   container.append(list);
   refreshDerivedStates();
+
+  /** 他の絞り込み条件が変わったとき、チェック状態・開閉状態を保ったまま「(件数)」だけ更新する */
+  function updateCounts(newCounts) {
+    counts = newCounts ?? new Map();
+    regions.forEach((region) => {
+      const regionLabel = regionLabels.get(region.id);
+      if (regionLabel) regionLabel.textContent = `${region.name} (${regionCount(region)})`;
+
+      region.prefectures.forEach((prefName) => {
+        const prefLabel = prefectureLabels.get(prefName);
+        if (!prefLabel) return;
+        prefLabel.textContent = ` ${prefName} (${countFor(prefName)})`;
+        prefLabel.parentElement?.classList.toggle("prefecture-item--empty", countFor(prefName) === 0);
+      });
+    });
+  }
+
+  return { updateCounts };
 }

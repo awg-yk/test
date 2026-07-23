@@ -295,6 +295,13 @@
   flex: 1;
 }
 
+/* 他の絞り込み条件のもとで該当0件になった選択肢は控えめに表示する（フェーズ10） */
+.element-item--empty .element-item__label,
+.prefecture-item--empty .prefecture-item__label {
+  color: var(--color-ink-soft);
+  opacity: 0.55;
+}
+
 /* ---------------------------------------------------------
    export actions（フェーズ4・CSVエクスポート／気象庁公式リンク）
    --------------------------------------------------------- */

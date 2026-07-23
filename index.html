@@ -66,7 +66,7 @@
       <section class="panel">
         <div class="panel__header">
           <h2 class="panel__title">地域で絞り込む</h2>
-          <p class="panel__note">地方単位・都道府県単位で一括選択できます。何も選択しない場合は全観測所を表示します。</p>
+          <p class="panel__note">地方単位・都道府県単位で一括選択できます。何も選択しない場合は全観測所を表示します。南極（昭和基地）もここから選べます。（　）内の件数は、観測要素・種別・検索語による絞り込みを反映した件数です。</p>
         </div>
         <div class="panel__body">
           <div id="region-selector-container"></div>
@@ -76,7 +76,7 @@
       <section class="panel">
         <div class="panel__header">
           <h2 class="panel__title">観測要素で絞り込む</h2>
-          <p class="panel__note">気温・降水量・積雪などで絞り込めます。複数選択時は「すべて含む(AND)」「いずれか含む(OR)」を切り替えられます。</p>
+          <p class="panel__note">気温・降水量・積雪などで絞り込めます。複数選択時は「すべて含む(AND)」「いずれか含む(OR)」を切り替えられます。（　）内の件数は、地域・種別・検索語による絞り込みを反映した件数です（例: 北海道だけを選ぶと北海道内の件数になります）。</p>
         </div>
         <div class="panel__body">
           <div id="element-filter-container"></div>
@@ -87,7 +87,7 @@
     <section class="panel" style="margin-bottom: var(--space-4);">
       <div class="panel__header">
         <h2 class="panel__title">種別で絞り込む</h2>
-        <p class="panel__note">気象官署・アメダスで絞り込めます。何も選択しない場合は両方を表示します。</p>
+        <p class="panel__note">気象官署・アメダスで絞り込めます。何も選択しない場合は両方を表示します。（　）内の件数は、地域・観測要素・検索語による絞り込みを反映した件数です。</p>
       </div>
       <div class="panel__body">
         <div id="type-filter-container"></div>
@@ -105,6 +105,9 @@
         <h2 class="panel__title">地図で見る</h2>
         <p class="panel__note">
           現在の絞り込み結果を地図上に表示します。マーカーをクリックすると地点名・観測要素・気象庁リンクを確認できます。
+          ページをスクロールしただけで地図が動かないよう、<strong>拡大縮小・移動には Ctrl（macOSは⌘）キー</strong>が必要です
+          （Ctrl＋ホイールで拡大縮小、Ctrl＋ドラッグで移動。タッチ端末では2本指）。
+          Ctrlなしで使える操作として、左上の ＋／− ボタン、ダブルクリックでの拡大、右上の「検索結果に合わせる」ボタンがあります。
         </p>
       </div>
       <div class="panel__body map-panel__body">
@@ -120,7 +123,7 @@
       <div class="panel__header panel__header--with-actions">
         <div>
           <h2 class="panel__title">観測所一覧</h2>
-          <p class="panel__note">気象庁「アメダス観測所表」に基づく全国1,286地点（気象官署56地点＋アメダス1,230地点）を収録しています。「気象庁」列のリンクは地点番号（prec_no/block_no）が確定している観測所のみ表示されます（1,279地点で確定済み）。残る7地点は気象庁側に同名で複数の地点番号があり自動判定を保留しているため「候補あり（要確認）」と表示されます。</p>
+          <p class="panel__note">気象庁「アメダス観測所表」に基づく全国1,286地点（気象官署56地点＋アメダス1,230地点）に、南極・昭和基地を加えた1,287地点を収録しています。「気象庁」列のリンクは地点番号（prec_no/block_no）が確定している観測所のみ表示されます（1,280地点で確定済み）。残る7地点は気象庁側に同名で複数の地点番号があり自動判定を保留しているため「候補あり（要確認）」と表示されます。</p>
         </div>
         <div class="panel__actions">
           <button type="button" id="export-csv-btn" class="btn btn--primary">選択結果をCSVでダウンロード</button>

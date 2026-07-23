@@ -9,6 +9,8 @@
  *   （AND/OR判定そのものは elementFilter.js の matchesElementFilter に委譲）
  * フェーズ5: keyword（地点名・かな・都道府県のフリーワード検索）を追加
  * フェーズ9: selectedStationTypes（気象官署／アメダス）を追加。プリセット機能の土台。
+ * フェーズ10: buildFacetCounts を追加。各絞り込みUIの「(件数)」を、他の絞り込み条件を
+ *   適用した状態の件数に更新するために使う（例: 北海道だけ選ぶと観測要素側の件数も北海道分になる）。
  */
 
 import { matchesElementFilter } from "./elementFilter.js";
@@ -75,4 +77,28 @@ export function buildStationTypeCounts(allStations) {
     counts.set(station.stationType, (counts.get(station.stationType) ?? 0) + 1);
   });
   return counts;
+}
+
+/**
+ * 各絞り込みUIに表示する「(件数)」を、現在の他の絞り込み条件を反映した値として集計する。
+ *
+ * 数え方は一般的なファセット検索と同じで、「その軸自身の選択は無視し、他の軸の条件だけを
+ * 適用した母集団」を数える。こうすると
+ *   - 地域で北海道だけ選ぶ → 観測要素・種別の件数が北海道の中での件数になる
+ *   - 観測要素で積雪を選ぶ → 都道府県の件数が積雪観測地点だけの件数になる
+ *   - すでに選んでいる項目の件数が、自分自身の選択のせいで減って見えることはない
+ * という挙動になる。キーワード検索は「軸」ではなく常時適用の条件として全ての件数に効かせる。
+ *
+ * @returns {{prefectureCounts: Map, elementCounts: Map, stationTypeCounts: Map}}
+ */
+export function buildFacetCounts(allStations, filters = {}) {
+  const withoutPrefectures = computeVisibleStations(allStations, { ...filters, selectedPrefectures: new Set() });
+  const withoutElements = computeVisibleStations(allStations, { ...filters, selectedElements: new Set() });
+  const withoutTypes = computeVisibleStations(allStations, { ...filters, selectedStationTypes: new Set() });
+
+  return {
+    prefectureCounts: buildPrefectureCounts(withoutPrefectures),
+    elementCounts: buildElementCounts(withoutElements),
+    stationTypeCounts: buildStationTypeCounts(withoutTypes),
+  };
 }

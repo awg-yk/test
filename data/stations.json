@@ -100,6 +100,13 @@
       "prefectures": [
         "沖縄県"
       ]
+    },
+    {
+      "id": "antarctica",
+      "name": "南極",
+      "prefectures": [
+        "南極"
+      ]
     }
   ],
   "elements": [
@@ -25203,6 +25210,27 @@
       "stationType": "アメダス",
       "precNo": "88",
       "blockNo": "1277"
+    },
+    {
+      "id": "89532",
+      "name": "昭和基地",
+      "kana": "ショウワキチ",
+      "enName": "Syowa",
+      "prefecture": "南極",
+      "region": "antarctica",
+      "lat": -69.006944,
+      "lon": 39.583889,
+      "alt": 18,
+      "elements": [
+        "temperature",
+        "wind",
+        "sunshine",
+        "snow",
+        "humidity"
+      ],
+      "stationType": "気象官署",
+      "precNo": "99",
+      "blockNo": "89532"
     },
     {
       "id": "91011",

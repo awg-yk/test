@@ -9,7 +9,10 @@
  *     stationCounts?: Map<stationType, number>,
  *     initialSelected?: Set<string>,          // 初期選択（URLクエリ・プリセット復元用）
  *     onChange: (selected: Set<string>) => void,
- *   })
+ *   }) -> { updateCounts(newCounts: Map<stationType, number>): void }
+ *
+ *   戻り値の updateCounts() で、UIを作り直さずに「(件数)」だけを差し替えられる
+ *   （他の絞り込み条件に連動して件数を更新するため。フェーズ10）。
  *
  * 選択状態の正は「選択中の種別の集合（selected）」。
  * 何も選択されていない状態 = 絞り込みなし（全観測所を表示）として扱う
@@ -24,8 +27,14 @@ export function initTypeFilter({ container, stationTypes, stationCounts, initial
 
   const selected = new Set(initialSelected ?? []);
   const checkboxes = new Map();
+  const labelSpans = new Map(); // stationType -> <span>（件数の差し替え用）
+  let counts = stationCounts ?? null;
 
-  const countFor = (type) => (stationCounts ? stationCounts.get(type) ?? 0 : null);
+  const countFor = (type) => (counts ? counts.get(type) ?? 0 : null);
+  const labelTextFor = (type) => {
+    const count = countFor(type);
+    return count === null ? type : `${type} (${count})`;
+  };
 
   function emitChange() {
     onChange(new Set(selected));
@@ -68,13 +77,26 @@ export function initTypeFilter({ container, stationTypes, stationCounts, initial
     });
     checkboxes.set(type, cb);
 
-    const count = countFor(type);
-    const labelText = count === null ? type : `${type} (${count})`;
+    const labelSpan = h("span", { class: "element-item__label" }, labelTextFor(type));
+    labelSpans.set(type, labelSpan);
 
-    list.append(
-      h("label", { for: id, class: "element-item" }, [cb, h("span", { class: "element-item__label" }, labelText)])
-    );
+    const item = h("label", { for: id, class: "element-item" }, [cb, labelSpan]);
+    item.classList.toggle("element-item--empty", countFor(type) === 0);
+    list.append(item);
   });
 
   container.append(list);
+
+  /** 他の絞り込み条件が変わったとき、チェック状態を保ったまま「(件数)」だけ更新する */
+  function updateCounts(newCounts) {
+    counts = newCounts ?? null;
+    stationTypes.forEach((type) => {
+      const labelSpan = labelSpans.get(type);
+      if (!labelSpan) return;
+      labelSpan.textContent = labelTextFor(type);
+      labelSpan.parentElement?.classList.toggle("element-item--empty", countFor(type) === 0);
+    });
+  }
+
+  return { updateCounts };
 }

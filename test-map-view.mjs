@@ -8,7 +8,7 @@ global.window = dom.window;
 global.document = dom.window.document;
 global.Node = dom.window.Node;
 
-const { getMarkerColor, buildPopupHtml } = await import("./js/modules/mapView.js");
+const { getMarkerColor, buildPopupHtml, isMapGestureModifier } = await import("./js/modules/mapView.js");
 
 function assert(cond, msg) {
   if (!cond) throw new Error("FAIL: " + msg);
@@ -79,5 +79,13 @@ const maliciousStation = {
 const escapedHtml = buildPopupHtml(maliciousStation, { elementLabelMap });
 assert(!escapedHtml.includes("<img"), "地点名内のHTMLタグはエスケープされる");
 assert(escapedHtml.includes("&lt;img"), "エスケープ後の文字列が含まれる");
+
+// --- 地図操作の修飾キー判定（意図しないスクロールズーム防止） ---------------
+
+assert(isMapGestureModifier({ ctrlKey: true }) === true, "Ctrl押下は地図操作の修飾キーとして扱う");
+assert(isMapGestureModifier({ metaKey: true }) === true, "⌘(macOS)押下も地図操作の修飾キーとして扱う");
+assert(isMapGestureModifier({ ctrlKey: false, metaKey: false }) === false, "修飾キー無しの操作は地図に渡さない");
+assert(isMapGestureModifier({ shiftKey: true }) === false, "Shiftは地図操作の修飾キーではない");
+assert(isMapGestureModifier(undefined) === false, "イベントが無くても例外を投げずfalseを返す");
 
 console.log("\nAll mapView tests passed.");

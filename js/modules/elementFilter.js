@@ -13,7 +13,10 @@
  *     initialSelected?: Set<string>,              // 初期選択（URLクエリ復元用。省略時は未選択）
  *     initialMode?: "AND" | "OR",                 // 初期モード（省略時はAND）
  *     onChange: (selected: Set<string>, mode: "AND" | "OR") => void,
- *   })
+ *   }) -> { updateCounts(newCounts: Map<elementId, number>): void }
+ *
+ *   戻り値の updateCounts() で、UIを作り直さずに「(件数)」だけを差し替えられる
+ *   （他の絞り込み条件に連動して件数を更新するため。フェーズ10）。
  *
  *   matchesElementFilter(station, selectedElementIds, mode)
  *     -> mode === "AND": station.elements が selectedElementIds を全て含むか
@@ -31,9 +34,15 @@ export function initElementFilter({ container, elements, stationCounts, initialS
 
   const selected = new Set(initialSelected ?? []); // 選択中の観測要素ID
   const checkboxes = new Map(); // elementId -> <input>
+  const labelSpans = new Map(); // elementId -> <span>（件数の差し替え用）
+  let counts = stationCounts ?? null;
   let mode = initialMode === "OR" ? "OR" : "AND";
 
-  const countFor = (elementId) => (stationCounts ? stationCounts.get(elementId) ?? 0 : null);
+  const countFor = (elementId) => (counts ? counts.get(elementId) ?? 0 : null);
+  const labelTextFor = (el) => {
+    const count = countFor(el.id);
+    return count === null ? el.name : `${el.name} (${count})`;
+  };
 
   function emitChange() {
     onChange(new Set(selected), mode);
@@ -109,15 +118,28 @@ export function initElementFilter({ container, elements, stationCounts, initialS
     });
     checkboxes.set(el.id, cb);
 
-    const count = countFor(el.id);
-    const labelText = count === null ? el.name : `${el.name} (${count})`;
+    const labelSpan = h("span", { class: "element-item__label" }, labelTextFor(el));
+    labelSpans.set(el.id, labelSpan);
 
-    list.append(
-      h("label", { for: id, class: "element-item" }, [cb, h("span", { class: "element-item__label" }, labelText)])
-    );
+    const item = h("label", { for: id, class: "element-item" }, [cb, labelSpan]);
+    item.classList.toggle("element-item--empty", countFor(el.id) === 0);
+    list.append(item);
   });
 
   container.append(list);
+
+  /** 他の絞り込み条件が変わったとき、チェック状態を保ったまま「(件数)」だけ更新する */
+  function updateCounts(newCounts) {
+    counts = newCounts ?? null;
+    elements.forEach((el) => {
+      const labelSpan = labelSpans.get(el.id);
+      if (!labelSpan) return;
+      labelSpan.textContent = labelTextFor(el);
+      labelSpan.parentElement?.classList.toggle("element-item--empty", countFor(el.id) === 0);
+    });
+  }
+
+  return { updateCounts };
 }
 
 export function matchesElementFilter(station, selectedElementIds, mode = "AND") {
