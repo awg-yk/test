@@ -221,6 +221,13 @@ function setupGestureHandling({ map, container, showHint }) {
  * @returns {Object|null} Leaflet map インスタンス（Leaflet未読み込み時はnull）
  */
 export function initMapView({ container, store, elementLabelMap }) {
+  const onSelectStation = (id) => {
+    const state = store.getState();
+    const index = state.visibleStations.findIndex((s) => s.id === id);
+    const page = index === -1 ? state.page : Math.floor(index / state.pageSize) + 1;
+    store.setState({ selectedStationId: id, page });
+  };
+
   if (typeof window === "undefined" || !window.L) {
     container.innerHTML =
       '<p class="map-view__error">地図ライブラリ(Leaflet)の読み込みに失敗しました。ネットワーク接続をご確認のうえ再読み込みしてください。</p>';
@@ -253,6 +260,8 @@ export function initMapView({ container, store, elementLabelMap }) {
 
   let lastVisibleStations = null;
   let lastValidStations = []; // 「検索結果に合わせる」ボタン用に、現在描画中の観測所を保持する
+  let markerById = new Map(); // 一覧の行選択との相互連携用（フェーズ15）。render()のたびに作り直す
+  let selectedMarker = null;
 
   /** 現在描画中の観測所がすべて収まるように表示範囲を合わせる */
   function fitToRenderedStations({ maxZoom = 9 } = {}) {
@@ -290,6 +299,8 @@ export function initMapView({ container, store, elementLabelMap }) {
    */
   function render(stations, isFiltered) {
     markerLayer.clearLayers();
+    markerById = new Map();
+    selectedMarker = null;
 
     lastValidStations = stations.filter((s) => typeof s.lat === "number" && typeof s.lon === "number");
 
@@ -302,17 +313,51 @@ export function initMapView({ container, store, elementLabelMap }) {
         fillOpacity: 0.9,
       });
       marker.bindPopup(buildPopupHtml(station, { elementLabelMap }), { maxWidth: 260 });
+      marker.on("click", () => onSelectStation(station.id));
+      markerById.set(station.id, marker);
       markerLayer.addLayer(marker);
     });
 
     if (isFiltered) fitToRenderedStations();
   }
 
+  /**
+   * 一覧の行がクリックされたとき（またはマーカー自身がクリックされたとき）、
+   * 対応するマーカーを目立たせ、地図の表示範囲をそこへ合わせてポップアップを開く。
+   * クラスタ化されているときは zoomToShowLayer でクラスタを解いてから開く。
+   */
+  function focusStation(id) {
+    const marker = markerById.get(id);
+    if (!marker) return; // 絞り込みで現在の地図に表示されていない観測所は何もしない
+
+    if (selectedMarker && selectedMarker !== marker) {
+      selectedMarker.setStyle({ radius: 6, weight: 1 });
+    }
+    marker.setStyle({ radius: 9, weight: 3 });
+    selectedMarker = marker;
+
+    const centerAndOpen = () => {
+      map.panTo(marker.getLatLng());
+      marker.openPopup();
+    };
+    if (hasCluster && typeof markerLayer.zoomToShowLayer === "function") {
+      markerLayer.zoomToShowLayer(marker, centerAndOpen);
+    } else {
+      centerAndOpen();
+    }
+  }
+
+  let lastSelectedStationId = null;
   store.subscribe((state) => {
     if (state.status !== "ready") return;
-    if (state.visibleStations === lastVisibleStations) return; // ページ切り替え等は再描画しない
-    lastVisibleStations = state.visibleStations;
-    render(state.visibleStations, state.visibleStations.length !== state.allStations.length);
+    if (state.visibleStations !== lastVisibleStations) {
+      lastVisibleStations = state.visibleStations;
+      render(state.visibleStations, state.visibleStations.length !== state.allStations.length);
+    }
+    if (state.selectedStationId !== lastSelectedStationId) {
+      lastSelectedStationId = state.selectedStationId;
+      if (state.selectedStationId != null) focusStation(state.selectedStationId);
+    }
   });
 
   // 購読開始時点で既に ready 状態なら即描画する

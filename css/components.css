@@ -25,8 +25,24 @@
   vertical-align: middle;
 }
 
+.station-table tbody tr {
+  cursor: pointer;
+}
+
 .station-table tbody tr:hover {
   background: var(--color-teal-soft);
+}
+
+.station-table tbody tr:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: -2px;
+}
+
+/* 地図のマーカーと相互連携して選択された行（フェーズ15） */
+.station-table tbody tr.station-table__row--selected,
+.station-table tbody tr.station-table__row--selected:hover {
+  background: var(--color-amber-soft);
+  box-shadow: inset 3px 0 0 var(--color-amber);
 }
 
 .station-table__name {

@@ -125,6 +125,7 @@
 - 全国選択時など表示件数が多い場合は、近接するマーカーをクラスタ化して表示する（Leaflet.markercluster使用。ズームすると自動的に個別マーカーに分解される）
 - ページネーションでページを送っても地図は再描画されない（地図は「絞り込み結果全体」を表示する仕様のため、テーブルのページングとは独立している）
 - Leaflet / Leaflet.markercluster はCDN（unpkg.com）から読み込むため、オフラインやCDNブロック環境では地図パネルにエラーメッセージを表示する（他機能には影響しない）
+- **マーカー⇔一覧行の相互連携**（フェーズ15）: 地図のマーカーをクリックすると、対応する一覧の行がある位置までページが自動的に切り替わり、その行がハイライト＆スクロール表示される。逆に一覧の行をクリックすると、地図がその地点へパンしてポップアップが開く（クラスタ化されている場合はクラスタを解いてから開く）。マーカーと行はどちらも`store.selectedStationId`という共通の状態を介してやり取りしており、絞り込み条件を変えたり手動でページを送ったりすると選択状態は解除される
 
 ### URLクエリ化の動作仕様
 
@@ -166,10 +167,10 @@ Node.js がある場合は `npx serve` でも構いません。
 
 ## 動作テスト
 
-地域選択・観測要素フィルタ・件数の連動集計・CSVエクスポート・気象庁リンク生成・検索/ページネーション、
-および実際にHTML+JSを動かす統合スモークテストを、jsdom を使った自動テストで検証しています
+地域選択・観測要素フィルタ・件数の連動集計・CSVエクスポート・気象庁リンク生成・検索/ページネーション・
+マーカー⇔一覧行の相互連携、および実際にHTML+JSを動かす統合スモークテストを、jsdom を使った自動テストで検証しています
 （`test-region-selector.mjs` / `test-element-filter.mjs` / `test-facet-counts.mjs` /
-`test-exporter.mjs` / `test-search-pagination.mjs` / `test-integration-smoke.mjs`）。
+`test-exporter.mjs` / `test-search-pagination.mjs` / `test-map-selection.mjs` / `test-integration-smoke.mjs`）。
 
 ```bash
 cd weather-station-finder
@@ -199,7 +200,7 @@ weather-station-finder/
 │   │   ├── pagination.js      # ページネーション（フェーズ5・実装済み）
 │   │   ├── filterEngine.js    # 絞り込み条件の合成ロジック（地域/要素/検索）
 │   │   ├── exporter.js        # CSV出力・気象庁公式ページへのリンク生成（フェーズ4・実装済み）
-│   │   ├── mapView.js         # 地図表示・Leaflet連携（フェーズ6・実装済み）
+│   │   ├── mapView.js         # 地図表示・Leaflet連携。一覧行との相互連携（フェーズ6・フェーズ15）
 │   │   ├── urlState.js        # 絞り込み状態⇔URLクエリの相互変換（フェーズ7・実装済み）
 │   │   └── typeFilter.js      # 種別（気象官署／アメダス）絞り込みUI（実装済み）
 │   └── utils/
@@ -219,6 +220,7 @@ weather-station-finder/
 ├── test-url-state.mjs         # URLクエリの読み書きロジックの自動テスト（フェーズ7）
 ├── test-type-filter.mjs       # 種別フィルタUIの自動テスト（フェーズ9）
 ├── test-facet-counts.mjs      # 件数の連動集計・南極データ収録の自動テスト（フェーズ11）
+├── test-map-selection.mjs     # マーカー⇔一覧行の相互連携の自動テスト（フェイクLeaflet使用。フェーズ15）
 ├── test-integration-smoke.mjs # index.html + main.js を実際に動かす統合スモークテスト（jsdom使用）
 └── package.json
 ```
@@ -263,4 +265,8 @@ weather-station-finder/
   - 2つのblock_no候補は重複ではなく、観測要素の追加（雨量のみ→4要素化）または観測所の移転（統計切断）による新旧番号の切り替えと判明。現在有効な新番号側を`precNo`/`blockNo`として確定した
   - `merge_block_numbers.py`は、すでに`precNo`/`blockNo`が確定済みの観測所（`scripts/extra_stations.json`由来、および今回手動確認した7地点）を再照合の対象から除外するように変更し、再実行時に手動確認の結論が上書きされないようにした
   - 結果、全1,287地点で`precNo`/`blockNo`が確定し、一覧・地図とも例外なく地点別リンクを表示するようになった
-- **フェーズ15（今後の候補）**: マーカー⇔一覧行の相互連携（クリックでハイライト/パン）など
+- ~~**フェーズ15**: マーカー⇔一覧行の相互連携~~ ✅ 完了
+  - 地図のマーカーをクリックすると、対応する一覧の行が表示されるページへ自動的に切り替わり、ハイライト＆スクロール表示される
+  - 一覧の行をクリックすると、地図がその地点へパンしてポップアップを開く（クラスタ化中はクラスタを解いてから開く）
+  - 両者は`store.selectedStationId`という共通の状態でつながっており、絞り込み変更や手動でのページ送りでは選択を解除する
+- **フェーズ16（今後の候補）**: 「観測していない地点」を絞り込める種別フィルタの追加（要件を確認中）

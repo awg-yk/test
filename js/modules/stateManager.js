@@ -43,6 +43,7 @@ function createStore(initialState) {
 // - page: 現在のページ番号（1始まり）
 // - pageSize: 1ページあたりの表示件数
 // - status: "loading" | "ready" | "error"
+// - selectedStationId: 一覧の行／地図のマーカーどちらかで選択された観測所のID（未選択はnull。フェーズ15）
 export const store = createStore({
   allStations: [],
   visibleStations: [],
@@ -55,4 +56,5 @@ export const store = createStore({
   pageSize: 50,
   status: "loading",
   errorMessage: "",
+  selectedStationId: null,
 });

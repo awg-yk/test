@@ -63,8 +63,15 @@ function applyFilters({ resetPage = true } = {}) {
   const state = store.getState();
   const filters = filtersFromState(state);
   const visibleStations = computeVisibleStations(state.allStations, filters);
-  store.setState({ visibleStations, ...(resetPage ? { page: 1 } : {}) });
+  // 絞り込みが変わると選択中の観測所が表示から外れうるので、ページ同様に選択も解除する（フェーズ15）
+  store.setState({ visibleStations, ...(resetPage ? { page: 1, selectedStationId: null } : {}) });
   refreshFacetCounts(state.allStations, filters);
+}
+
+/** 一覧の行クリックで呼ばれる選択ハンドラ（地図マーカー側は mapView.js が同じ store.selectedStationId を
+ *  直接更新するので、一覧・地図どちらの操作でも最終的にここと同じ状態を共有する。フェーズ15） */
+function selectStation(stationId) {
+  store.setState({ selectedStationId: stationId });
 }
 
 /**
@@ -173,13 +180,19 @@ store.subscribe((state) => {
 
   const { items, page, totalPages, total } = paginate(state.visibleStations, state.page, state.pageSize);
 
-  renderStationTable(tableContainer, items, { elementLabelMap, regionLabelMap });
+  renderStationTable(tableContainer, items, {
+    elementLabelMap,
+    regionLabelMap,
+    selectedStationId: state.selectedStationId,
+    onSelectStation: selectStation,
+  });
 
   renderPagination(paginationContainer, {
     page,
     pageSize: state.pageSize,
     total,
-    onPageChange: (nextPage) => store.setState({ page: nextPage }),
+    // 手動でのページ送りは、直前の選択行が別ページに残ったままにならないよう選択も解除する
+    onPageChange: (nextPage) => store.setState({ page: nextPage, selectedStationId: null }),
   });
 
   if (total === 0) {

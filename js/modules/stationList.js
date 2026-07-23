@@ -60,19 +60,38 @@ function renderNameCell(station) {
   return h("span", { class: "station-table__name" }, station.name);
 }
 
-function renderRow(station, elementLabelMap, regionLabelMap) {
-  return h("tr", {}, [
-    h("td", {}, h("span", { class: "station-table__id mono" }, station.id)),
-    h("td", {}, renderNameCell(station)),
-    h("td", {}, h("span", { class: "station-table__kana" }, station.kana ?? "")),
-    h("td", {}, station.prefecture),
-    h("td", {}, regionLabelMap.get(station.region) ?? station.region),
-    h("td", { class: "station-table__num" }, h("span", { class: "mono" }, formatNumber(station.alt, 0))),
-    h("td", { class: "station-table__num" }, h("span", { class: "mono" }, formatNumber(station.lat, 4))),
-    h("td", { class: "station-table__num" }, h("span", { class: "mono" }, formatNumber(station.lon, 4))),
-    h("td", {}, renderElementTags(station.elements, elementLabelMap)),
-    h("td", {}, h("span", { class: "badge-type" }, station.stationType)),
-  ]);
+/** 行クリック（または行にフォーカスしてEnter/Space）で observeStation を選択状態にする。
+ *  地図のマーカーをクリックしたときと同じ store.selectedStationId を介した相互連携（フェーズ15）。 */
+function renderRow(station, elementLabelMap, regionLabelMap, selectedStationId, onSelectStation) {
+  const isSelected = station.id === selectedStationId;
+  const selectRow = () => onSelectStation?.(station.id);
+  return h(
+    "tr",
+    {
+      class: `station-table__row${isSelected ? " station-table__row--selected" : ""}`,
+      tabindex: "0",
+      "aria-selected": isSelected ? "true" : "false",
+      onClick: selectRow,
+      onKeydown: (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          selectRow();
+        }
+      },
+    },
+    [
+      h("td", {}, h("span", { class: "station-table__id mono" }, station.id)),
+      h("td", {}, renderNameCell(station)),
+      h("td", {}, h("span", { class: "station-table__kana" }, station.kana ?? "")),
+      h("td", {}, station.prefecture),
+      h("td", {}, regionLabelMap.get(station.region) ?? station.region),
+      h("td", { class: "station-table__num" }, h("span", { class: "mono" }, formatNumber(station.alt, 0))),
+      h("td", { class: "station-table__num" }, h("span", { class: "mono" }, formatNumber(station.lat, 4))),
+      h("td", { class: "station-table__num" }, h("span", { class: "mono" }, formatNumber(station.lon, 4))),
+      h("td", {}, renderElementTags(station.elements, elementLabelMap)),
+      h("td", {}, h("span", { class: "badge-type" }, station.stationType)),
+    ]
+  );
 }
 
 /** 数値を固定小数桁で表示する（欠測は「—」）。緯度経度は4桁≒10m精度で十分 */
@@ -80,7 +99,11 @@ function formatNumber(value, digits) {
   return typeof value === "number" ? value.toFixed(digits) : "—";
 }
 
-export function renderStationTable(container, stations, { elementLabelMap, regionLabelMap }) {
+export function renderStationTable(
+  container,
+  stations,
+  { elementLabelMap, regionLabelMap, selectedStationId = null, onSelectStation } = {}
+) {
   container.innerHTML = "";
 
   if (stations.length === 0) {
@@ -103,12 +126,18 @@ export function renderStationTable(container, stations, { elementLabelMap, regio
   ]));
 
   const tbody = h("tbody", {});
+  let selectedRow = null;
   stations.forEach((station) => {
-    tbody.append(renderRow(station, elementLabelMap, regionLabelMap));
+    const row = renderRow(station, elementLabelMap, regionLabelMap, selectedStationId, onSelectStation);
+    if (station.id === selectedStationId) selectedRow = row;
+    tbody.append(row);
   });
 
   table.append(thead, tbody);
   container.append(table);
+
+  // 地図のマーカークリックで選択された行を、一覧のスクロール位置に入れる（jsdomにはscrollIntoViewが無いため任意呼び出し）
+  selectedRow?.scrollIntoView?.({ block: "nearest" });
 }
 
 export function renderLoading(container, message = "観測所データを読み込み中...") {

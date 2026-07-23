@@ -160,4 +160,39 @@ assert(
   `観測要素タグに要素ごとの色クラスが付く (実際: ${firstTag.className})`
 );
 
+// --- 一覧の行クリックで選択状態になる（マーカー⇔一覧行の相互連携。フェーズ15） -------
+const rowsForSelection = [...doc.querySelectorAll("#station-table-container tbody tr")];
+const secondRow = rowsForSelection[1];
+secondRow.dispatchEvent(new win.Event("click", { bubbles: true }));
+await wait(10);
+
+const selectedRows = doc.querySelectorAll("#station-table-container tbody tr.station-table__row--selected");
+assert(selectedRows.length === 1, "行クリックで選択行が1件だけハイライトされる");
+assert(selectedRows[0].getAttribute("aria-selected") === "true", "選択された行にaria-selected=trueが付く");
+
+// 別の行をクリックすると選択が移る（同時に2件ハイライトされない）
+// renderStationTable は毎回テーブル全体を作り直すため、行はDOM参照ではなく地点コードで追跡する
+const thirdRow = doc.querySelectorAll("#station-table-container tbody tr")[2];
+const thirdRowStationId = thirdRow.querySelector(".station-table__id").textContent;
+thirdRow.dispatchEvent(new win.Event("click", { bubbles: true }));
+await wait(10);
+const selectedRowsAfter = doc.querySelectorAll("#station-table-container tbody tr.station-table__row--selected");
+assert(
+  selectedRowsAfter.length === 1 &&
+    selectedRowsAfter[0].querySelector(".station-table__id").textContent === thirdRowStationId,
+  "別の行をクリックすると選択がそちらに移る"
+);
+
+// 絞り込み条件を変えると選択状態は解除される（表示から外れた地点の選択が残らないように）
+kanshoCheckbox.checked = true;
+kanshoCheckbox.dispatchEvent(new win.Event("change"));
+await wait(50);
+assert(
+  doc.querySelectorAll("#station-table-container tbody tr.station-table__row--selected").length === 0,
+  "絞り込み条件を変えると選択状態が解除される"
+);
+kanshoCheckbox.checked = false;
+kanshoCheckbox.dispatchEvent(new win.Event("change"));
+await wait(50);
+
 console.log("\nAll integration smoke tests passed.");
