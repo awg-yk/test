@@ -38,6 +38,7 @@ function createStore(initialState) {
 // - selectedPrefectures: 地域選択UIで選ばれた都道府県の集合（空 = 絞り込みなし）
 // - selectedElements: 観測要素フィルタUIで選ばれた観測要素IDの集合（空 = 絞り込みなし）
 // - elementLogic: 観測要素フィルタの合成モード（"AND" | "OR"）
+// - selectedStationTypes: 種別フィルタUIで選ばれた観測所種別の集合（空 = 絞り込みなし。フェーズ9）
 // - keyword: 検索ボックスに入力された文字列（空 = 絞り込みなし）
 // - page: 現在のページ番号（1始まり）
 // - pageSize: 1ページあたりの表示件数
@@ -48,6 +49,7 @@ export const store = createStore({
   selectedPrefectures: new Set(),
   selectedElements: new Set(),
   elementLogic: "AND",
+  selectedStationTypes: new Set(),
   keyword: "",
   page: 1,
   pageSize: 50,
