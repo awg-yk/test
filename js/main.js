@@ -18,6 +18,7 @@ import { paginate, renderPagination } from "./modules/pagination.js";
 import { computeVisibleStations, buildPrefectureCounts, buildElementCounts } from "./modules/filterEngine.js";
 import { exportStationsAsCSV } from "./modules/exporter.js";
 import { initMapView } from "./modules/mapView.js";
+import { parseStateFromUrl, syncUrlWithState } from "./modules/urlState.js";
 import { buildElementLabelMap, buildRegionLabelMap } from "./utils/helpers.js";
 
 const tableContainer = document.getElementById("station-table-container");
@@ -28,6 +29,7 @@ const keywordSearchContainer = document.getElementById("keyword-search-container
 const mapViewContainer = document.getElementById("map-view-container");
 const statusCount = document.getElementById("status-count");
 const exportCsvBtn = document.getElementById("export-csv-btn");
+const copyLinkBtn = document.getElementById("copy-link-btn");
 
 let elementLabelMap = new Map();
 let regionLabelMap = new Map();
@@ -57,6 +59,20 @@ exportCsvBtn.addEventListener("click", () => {
   }
 });
 
+copyLinkBtn?.addEventListener("click", async () => {
+  const previousText = copyLinkBtn.textContent;
+  try {
+    await navigator.clipboard.writeText(window.location.href);
+    copyLinkBtn.textContent = "コピーしました ✓";
+  } catch (err) {
+    console.error(err);
+    copyLinkBtn.textContent = "コピーに失敗しました";
+  }
+  setTimeout(() => {
+    copyLinkBtn.textContent = previousText;
+  }, 2000);
+});
+
 // store の状態が変わるたびに一覧・ページネーションを再描画する
 store.subscribe((state) => {
   if (state.status === "loading") {
@@ -72,6 +88,8 @@ store.subscribe((state) => {
     paginationContainer.innerHTML = "";
     return;
   }
+
+  syncUrlWithState(state); // フェーズ7: 絞り込み条件をURLクエリに反映（履歴は汚さない）
 
   const { items, page, totalPages, total } = paginate(state.visibleStations, state.page, state.pageSize);
 
@@ -104,9 +122,17 @@ async function init() {
     elementLabelMap = buildElementLabelMap(data.elements);
     regionLabelMap = buildRegionLabelMap(data.regions);
 
+    // フェーズ7: URLクエリから初期の絞り込み状態を復元する（共有リンクからのアクセス対応）
+    const urlState = parseStateFromUrl(new URLSearchParams(window.location.search));
+
     store.setState({
       allStations: data.stations,
-      visibleStations: data.stations, // 初期状態は絞り込みなし＝全件表示
+      visibleStations: data.stations, // applyFilters() で絞り込み結果に更新される
+      selectedPrefectures: urlState.prefectures,
+      selectedElements: urlState.elements,
+      elementLogic: urlState.elementLogic,
+      keyword: urlState.keyword,
+      page: urlState.page,
       status: "ready",
     });
 
@@ -115,6 +141,7 @@ async function init() {
       container: regionSelectorContainer,
       regions: data.regions,
       stationCounts: prefectureCounts,
+      initialSelected: urlState.prefectures,
       onChange: (selectedPrefectures) => {
         store.setState({ selectedPrefectures });
         applyFilters();
@@ -126,6 +153,8 @@ async function init() {
       container: elementFilterContainer,
       elements: data.elements,
       stationCounts: elementCounts,
+      initialSelected: urlState.elements,
+      initialMode: urlState.elementLogic,
       onChange: (selectedElements, elementLogic) => {
         store.setState({ selectedElements, elementLogic });
         applyFilters();
@@ -134,6 +163,7 @@ async function init() {
 
     initKeywordSearch({
       container: keywordSearchContainer,
+      initialKeyword: urlState.keyword,
       onChange: (keyword) => {
         store.setState({ keyword });
         applyFilters();
@@ -145,6 +175,10 @@ async function init() {
       store,
       elementLabelMap,
     });
+
+    // URLに絞り込み条件が含まれていた場合、その条件で visibleStations を計算する
+    // （ページ番号はURL由来のものを保持したいので resetPage: false）
+    applyFilters({ resetPage: false });
   } catch (err) {
     console.error(err);
     store.setState({
