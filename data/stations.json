@@ -2972,7 +2972,12 @@
         "sunshine",
         "humidity"
       ],
-      "stationType": "アメダス"
+      "stationType": "アメダス",
+      "precNoAmbiguous": "19",
+      "blockNoAmbiguousCandidates": [
+        "0092",
+        "1187"
+      ]
     },
     {
       "id": "19076",
@@ -9278,7 +9283,9 @@
         "snow",
         "humidity"
       ],
-      "stationType": "アメダス"
+      "stationType": "アメダス",
+      "precNo": "40",
+      "blockNo": "47646"
     },
     {
       "id": "40341",
@@ -9485,7 +9492,9 @@
         "snow",
         "humidity"
       ],
-      "stationType": "アメダス"
+      "stationType": "アメダス",
+      "precNo": "41",
+      "blockNo": "47690"
     },
     {
       "id": "41172",
@@ -10632,7 +10641,12 @@
         "precipitation",
         "wind"
       ],
-      "stationType": "アメダス"
+      "stationType": "アメダス",
+      "precNoAmbiguous": "44",
+      "blockNoAmbiguousCandidates": [
+        "1134",
+        "1522"
+      ]
     },
     {
       "id": "44216",
@@ -10649,7 +10663,12 @@
         "precipitation",
         "wind"
       ],
-      "stationType": "アメダス"
+      "stationType": "アメダス",
+      "precNoAmbiguous": "44",
+      "blockNoAmbiguousCandidates": [
+        "1505",
+        "1523"
+      ]
     },
     {
       "id": "44226",
@@ -11981,7 +12000,12 @@
       "elements": [
         "precipitation"
       ],
-      "stationType": "アメダス"
+      "stationType": "アメダス",
+      "precNoAmbiguous": "48",
+      "blockNoAmbiguousCandidates": [
+        "0418",
+        "1551"
+      ]
     },
     {
       "id": "48561",
@@ -12900,7 +12924,12 @@
       "elements": [
         "precipitation"
       ],
-      "stationType": "アメダス"
+      "stationType": "アメダス",
+      "precNoAmbiguous": "50",
+      "blockNoAmbiguousCandidates": [
+        "1106",
+        "1393"
+      ]
     },
     {
       "id": "50416",
@@ -15510,7 +15539,12 @@
       "elements": [
         "precipitation"
       ],
-      "stationType": "アメダス"
+      "stationType": "アメダス",
+      "precNoAmbiguous": "55",
+      "blockNoAmbiguousCandidates": [
+        "0548",
+        "1412"
+      ]
     },
     {
       "id": "55091",
@@ -22930,7 +22964,12 @@
         "sunshine",
         "humidity"
       ],
-      "stationType": "アメダス"
+      "stationType": "アメダス",
+      "precNoAmbiguous": "84",
+      "blockNoAmbiguousCandidates": [
+        "1080",
+        "1138"
+      ]
     },
     {
       "id": "84361",
@@ -25526,7 +25565,9 @@
         "sunshine",
         "humidity"
       ],
-      "stationType": "気象官署"
+      "stationType": "気象官署",
+      "precNo": "91",
+      "blockNo": "47945"
     },
     {
       "id": "92012",
