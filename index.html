@@ -8,12 +8,17 @@
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
+  <!-- 地図表示（フェーズ6）: Leaflet本体 + マーカークラスタリングプラグイン -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="css/map.css" />
 </head>
 <body>
 
   <header class="site-header">
     <div class="site-header__inner">
-      <p class="site-header__eyebrow">Weather Station Finder — Prototype / Phase 5（実データ整備）</p>
+      <p class="site-header__eyebrow">Weather Station Finder — Prototype / Phase 6（地図表示）</p>
       <h1 class="site-header__title">観測所ファインダー</h1>
       <p class="site-header__desc">
         気象庁の公開データをより効率よく取得するための非公式ツールです。
@@ -27,7 +32,7 @@
 
     <div class="status-bar">
       <span id="status-count" class="status-bar__count">読み込み中...</span>
-      <span class="mono" style="font-size: 12px; color: var(--color-ink-soft);">v0.6 (Phase 5: UI/UXブラッシュアップ)</span>
+      <span class="mono" style="font-size: 12px; color: var(--color-ink-soft);">v0.7 (Phase 6: 地図表示)</span>
     </div>
 
     <div class="filter-panels">
@@ -58,6 +63,22 @@
       </div>
     </section>
 
+    <section class="panel map-panel" style="margin-bottom: var(--space-4);">
+      <div class="panel__header">
+        <h2 class="panel__title">地図で見る</h2>
+        <p class="panel__note">
+          現在の絞り込み結果を地図上に表示します。マーカーをクリックすると地点名・観測要素・気象庁リンクを確認できます。
+        </p>
+      </div>
+      <div class="panel__body map-panel__body">
+        <div id="map-view-container" class="map-view"></div>
+      </div>
+      <div class="map-legend">
+        <span class="map-legend__item"><span class="map-legend__dot map-legend__dot--kansho"></span>気象官署</span>
+        <span class="map-legend__item"><span class="map-legend__dot map-legend__dot--amedas"></span>アメダス</span>
+      </div>
+    </section>
+
     <section class="panel">
       <div class="panel__header panel__header--with-actions">
         <div>
@@ -83,6 +104,9 @@
     <p>観測所データ: 気象庁「アメダス観測所表」（<a href="https://www.jma.go.jp/bosai/amedas/const/amedastable.json" target="_blank" rel="noopener noreferrer">amedastable.json</a>）をもとに作成。都道府県境界データ: <a href="https://github.com/dataofjapan/land" target="_blank" rel="noopener noreferrer">dataofjapan/land</a>（緯度経度から都道府県を判定するために使用）。本サイトは気象庁の非公式ツールであり、気象庁が提供・保証するものではありません。</p>
   </footer>
 
+  <!-- 地図表示（フェーズ6）: main.js(モジュール)より先に読み込み、window.L を用意する -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
   <script type="module" src="js/main.js"></script>
 </body>
 </html>
