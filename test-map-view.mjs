@@ -54,6 +54,19 @@ assert(
   "precNo/blockNoが欠けている場合はリンクの代わりに未収録表示"
 );
 
+const stationWithAmbiguousCandidates = {
+  ...stationWithLink,
+  precNo: undefined,
+  blockNo: undefined,
+  blockNoAmbiguousCandidates: ["0092", "1187"],
+};
+const htmlWithCandidates = buildPopupHtml(stationWithAmbiguousCandidates, { elementLabelMap });
+assert(
+  htmlWithCandidates.includes("0092 / 1187"),
+  "候補が複数ある場合はその番号一覧をポップアップに表示する"
+);
+assert(!htmlWithCandidates.includes("気象庁リンク未収録"), "候補がある場合は「未収録」ではなく候補を表示する");
+
 // --- XSS対策（地点名にHTML特殊文字が含まれても壊れない） -----------------
 
 const maliciousStation = {
