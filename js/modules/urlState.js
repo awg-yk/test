@@ -18,8 +18,15 @@
 const PARAM_PREF = "pref";
 const PARAM_ELEM = "elem";
 const PARAM_MODE = "mode";
+const PARAM_TYPE = "type";
 const PARAM_KEYWORD = "q";
 const PARAM_PAGE = "page";
+
+// URLを短く保つため、種別名は短いコードで表現する（フェーズ9）
+const STATION_TYPE_TO_CODE = { 気象官署: "kansho", アメダス: "amedas" };
+const CODE_TO_STATION_TYPE = Object.fromEntries(
+  Object.entries(STATION_TYPE_TO_CODE).map(([type, code]) => [code, type])
+);
 
 function splitCsv(value) {
   return (value ?? "")
@@ -38,12 +45,17 @@ export function parseStateFromUrl(search) {
   const prefectures = new Set(splitCsv(params.get(PARAM_PREF)));
   const elements = new Set(splitCsv(params.get(PARAM_ELEM)));
   const elementLogic = params.get(PARAM_MODE) === "OR" ? "OR" : "AND";
+  const stationTypes = new Set(
+    splitCsv(params.get(PARAM_TYPE))
+      .map((code) => CODE_TO_STATION_TYPE[code])
+      .filter(Boolean)
+  );
   const keyword = params.get(PARAM_KEYWORD) ?? "";
 
   const pageRaw = Number.parseInt(params.get(PARAM_PAGE) ?? "1", 10);
   const page = Number.isFinite(pageRaw) && pageRaw >= 1 ? pageRaw : 1;
 
-  return { prefectures, elements, elementLogic, keyword, page };
+  return { prefectures, elements, elementLogic, stationTypes, keyword, page };
 }
 
 /**
@@ -60,6 +72,12 @@ export function buildQueryString(state) {
     params.set(PARAM_ELEM, [...state.selectedElements].join(","));
     if (state.elementLogic === "OR") {
       params.set(PARAM_MODE, "OR");
+    }
+  }
+  if (state.selectedStationTypes && state.selectedStationTypes.size > 0) {
+    const codes = [...state.selectedStationTypes].map((type) => STATION_TYPE_TO_CODE[type]).filter(Boolean);
+    if (codes.length > 0) {
+      params.set(PARAM_TYPE, codes.join(","));
     }
   }
   if (state.keyword && state.keyword.trim() !== "") {
