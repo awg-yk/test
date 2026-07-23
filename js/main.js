@@ -17,6 +17,7 @@ import { initKeywordSearch } from "./modules/keywordSearch.js";
 import { paginate, renderPagination } from "./modules/pagination.js";
 import { computeVisibleStations, buildPrefectureCounts, buildElementCounts } from "./modules/filterEngine.js";
 import { exportStationsAsCSV } from "./modules/exporter.js";
+import { initMapView } from "./modules/mapView.js";
 import { buildElementLabelMap, buildRegionLabelMap } from "./utils/helpers.js";
 
 const tableContainer = document.getElementById("station-table-container");
@@ -24,6 +25,7 @@ const paginationContainer = document.getElementById("pagination-container");
 const regionSelectorContainer = document.getElementById("region-selector-container");
 const elementFilterContainer = document.getElementById("element-filter-container");
 const keywordSearchContainer = document.getElementById("keyword-search-container");
+const mapViewContainer = document.getElementById("map-view-container");
 const statusCount = document.getElementById("status-count");
 const exportCsvBtn = document.getElementById("export-csv-btn");
 
@@ -136,6 +138,12 @@ async function init() {
         store.setState({ keyword });
         applyFilters();
       },
+    });
+
+    initMapView({
+      container: mapViewContainer,
+      store,
+      elementLabelMap,
     });
   } catch (err) {
     console.error(err);
