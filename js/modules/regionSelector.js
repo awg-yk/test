@@ -8,6 +8,7 @@
  *     container: HTMLElement,
  *     regions: Region[],                     // stations.json の regions
  *     stationCounts: Map<prefecture, number>, // 都道府県ごとの観測所数
+ *     initialSelected?: Set<string>,          // 初期選択（URLクエリ復元用。省略時は未選択）
  *     onChange: (selectedPrefectures: Set<string>) => void,
  *   })
  *
@@ -19,10 +20,10 @@
 
 import { h } from "../utils/helpers.js";
 
-export function initRegionSelector({ container, regions, stationCounts, onChange }) {
+export function initRegionSelector({ container, regions, stationCounts, initialSelected, onChange }) {
   container.innerHTML = "";
 
-  const selected = new Set(); // 選択中の都道府県名
+  const selected = new Set(initialSelected ?? []); // 選択中の都道府県名
   const prefectureCheckboxes = new Map(); // prefName -> <input>
   const regionCheckboxes = new Map(); // regionId -> <input>
   let allCheckbox;
@@ -149,6 +150,7 @@ export function initRegionSelector({ container, regions, stationCounts, onChange
       prefCb.type = "checkbox";
       prefCb.className = "prefecture-item__checkbox";
       prefCb.id = prefId;
+      prefCb.checked = selected.has(prefName);
       prefCb.addEventListener("change", () => {
         setPrefectureSelected(prefName, prefCb.checked);
         updateRegionCheckboxState(region);

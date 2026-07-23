@@ -10,6 +10,8 @@
  *     container: HTMLElement,
  *     elements: Element[],                       // data/stations.json の elements
  *     stationCounts?: Map<elementId, number>,     // 要素ごとの該当観測所数（表示用・省略可）
+ *     initialSelected?: Set<string>,              // 初期選択（URLクエリ復元用。省略時は未選択）
+ *     initialMode?: "AND" | "OR",                 // 初期モード（省略時はAND）
  *     onChange: (selected: Set<string>, mode: "AND" | "OR") => void,
  *   })
  *
@@ -24,12 +26,12 @@
 
 import { h } from "../utils/helpers.js";
 
-export function initElementFilter({ container, elements, stationCounts, onChange }) {
+export function initElementFilter({ container, elements, stationCounts, initialSelected, initialMode, onChange }) {
   container.innerHTML = "";
 
-  const selected = new Set(); // 選択中の観測要素ID
+  const selected = new Set(initialSelected ?? []); // 選択中の観測要素ID
   const checkboxes = new Map(); // elementId -> <input>
-  let mode = "AND";
+  let mode = initialMode === "OR" ? "OR" : "AND";
 
   const countFor = (elementId) => (stationCounts ? stationCounts.get(elementId) ?? 0 : null);
 
@@ -96,6 +98,7 @@ export function initElementFilter({ container, elements, stationCounts, onChange
     cb.type = "checkbox";
     cb.className = "element-item__checkbox";
     cb.id = id;
+    cb.checked = selected.has(el.id);
     cb.addEventListener("change", () => {
       if (cb.checked) {
         selected.add(el.id);

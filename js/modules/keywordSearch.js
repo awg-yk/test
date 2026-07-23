@@ -8,13 +8,14 @@
  *   initKeywordSearch({
  *     container: HTMLElement,
  *     onChange: (keyword: string) => void,
+ *     initialKeyword?: string, // 初期値（URLクエリ復元用。省略時は空）
  *     debounceMs?: number,   // 既定 200ms
  *   })
  */
 
 import { h } from "../utils/helpers.js";
 
-export function initKeywordSearch({ container, onChange, debounceMs = 200 }) {
+export function initKeywordSearch({ container, onChange, initialKeyword = "", debounceMs = 200 }) {
   container.innerHTML = "";
 
   let timer = null;
@@ -24,6 +25,7 @@ export function initKeywordSearch({ container, onChange, debounceMs = 200 }) {
   input.className = "keyword-search__input";
   input.placeholder = "地点名・都道府県で検索（例: 富士山、札幌、青森県）";
   input.setAttribute("aria-label", "観測所を検索");
+  input.value = initialKeyword;
 
   input.addEventListener("input", () => {
     clearTimeout(timer);
