@@ -8,17 +8,32 @@
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
-  <!-- 地図表示（フェーズ6）: Leaflet本体 + マーカークラスタリングプラグイン -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+  <!-- 地図表示: Leaflet本体 + マーカークラスタリングプラグイン（CDN。整合性検証のためSRIハッシュを付与） -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"
+    integrity="sha384-pmjIAcz2bAn0xukfxADbZIb3t8oRT9Sv0rvO+BR5Csr6Dhqq+nZs59P0pPKQJkEV"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"
+    integrity="sha384-wgw+aLYNQ7dlhK47ZPK7FRACiq7ROZwgFNg0m04avm4CaXS+Z9Y7nMu8yNjBKYC+"
+    crossorigin="anonymous"
+  />
   <link rel="stylesheet" href="css/map.css" />
 </head>
 <body>
 
   <header class="site-header">
     <div class="site-header__inner">
-      <p class="site-header__eyebrow">Weather Station Finder — Prototype / Phase 6（地図表示）</p>
+      <p class="site-header__eyebrow">Weather Station Finder — v1.0</p>
       <h1 class="site-header__title">観測所ファインダー</h1>
       <p class="site-header__desc">
         気象庁の公開データをより効率よく取得するための非公式ツールです。
@@ -31,10 +46,9 @@
   <main class="app-main">
 
     <div class="status-bar">
-      <span id="status-count" class="status-bar__count">読み込み中...</span>
+      <span id="status-count" class="status-bar__count" role="status" aria-live="polite">読み込み中...</span>
       <div class="status-bar__right">
-        <button type="button" id="copy-link-btn" class="btn btn--secondary btn--small">この条件のURLをコピー</button>
-        <span class="mono" style="font-size: 12px; color: var(--color-ink-soft);">v0.9 (Phase 9: プリセット)</span>
+        <button type="button" id="copy-link-btn" class="btn btn--secondary btn--small" aria-live="polite">この条件のURLをコピー</button>
       </div>
     </div>
 
@@ -73,7 +87,7 @@
     <section class="panel" style="margin-bottom: var(--space-4);">
       <div class="panel__header">
         <h2 class="panel__title">種別で絞り込む</h2>
-        <p class="panel__note">気象官署・アメダスで絞り込めます（フェーズ9）。何も選択しない場合は両方を表示します。</p>
+        <p class="panel__note">気象官署・アメダスで絞り込めます。何も選択しない場合は両方を表示します。</p>
       </div>
       <div class="panel__body">
         <div id="type-filter-container"></div>
@@ -106,7 +120,7 @@
       <div class="panel__header panel__header--with-actions">
         <div>
           <h2 class="panel__title">観測所一覧</h2>
-          <p class="panel__note">気象庁「アメダス観測所表」に基づく全国1,286地点（気象官署56地点＋アメダス1,230地点）を収録しています。「気象庁」列のリンクは地点番号（prec_no/block_no）を収録した観測所のみ表示されます（現在99%収録済み。未収録の一部地点は「—」表示）。</p>
+          <p class="panel__note">気象庁「アメダス観測所表」に基づく全国1,286地点（気象官署56地点＋アメダス1,230地点）を収録しています。「気象庁」列のリンクは地点番号（prec_no/block_no）が確定している観測所のみ表示されます（1,279地点で確定済み）。残る7地点は気象庁側に同名で複数の地点番号があり自動判定を保留しているため「候補あり（要確認）」と表示されます。</p>
         </div>
         <div class="panel__actions">
           <button type="button" id="export-csv-btn" class="btn btn--primary">選択結果をCSVでダウンロード</button>
@@ -127,9 +141,17 @@
     <p>観測所データ: 気象庁「アメダス観測所表」（<a href="https://www.jma.go.jp/bosai/amedas/const/amedastable.json" target="_blank" rel="noopener noreferrer">amedastable.json</a>）をもとに作成。都道府県境界データ: <a href="https://github.com/dataofjapan/land" target="_blank" rel="noopener noreferrer">dataofjapan/land</a>（緯度経度から都道府県を判定するために使用）。本サイトは気象庁の非公式ツールであり、気象庁が提供・保証するものではありません。</p>
   </footer>
 
-  <!-- 地図表示（フェーズ6）: main.js(モジュール)より先に読み込み、window.L を用意する -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <!-- 地図表示: main.js(モジュール)より先に読み込み、window.L を用意する（SRIハッシュ付き） -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"
+    integrity="sha384-eXVCORTRlv4FUUgS/xmOyr66XBVraen8ATNLMESp92FKXLAMiKkerixTiBvXriZr"
+    crossorigin="anonymous"
+  ></script>
   <script type="module" src="js/main.js"></script>
 </body>
 </html>
