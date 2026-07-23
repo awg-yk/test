@@ -34,9 +34,19 @@
       <span id="status-count" class="status-bar__count">読み込み中...</span>
       <div class="status-bar__right">
         <button type="button" id="copy-link-btn" class="btn btn--secondary btn--small">この条件のURLをコピー</button>
-        <span class="mono" style="font-size: 12px; color: var(--color-ink-soft);">v0.8 (Phase 7: URLクエリ化)</span>
+        <span class="mono" style="font-size: 12px; color: var(--color-ink-soft);">v0.9 (Phase 9: プリセット)</span>
       </div>
     </div>
+
+    <section class="panel" style="margin-bottom: var(--space-4);">
+      <div class="panel__header">
+        <h2 class="panel__title">プリセットで絞り込む</h2>
+        <p class="panel__note">よく使う条件をワンクリックで適用します。地域・観測要素・種別・検索語がまとめてリセットされます。</p>
+      </div>
+      <div class="panel__body">
+        <div id="preset-panel-container"></div>
+      </div>
+    </section>
 
     <div class="filter-panels">
       <section class="panel">
@@ -59,6 +69,16 @@
         </div>
       </section>
     </div>
+
+    <section class="panel" style="margin-bottom: var(--space-4);">
+      <div class="panel__header">
+        <h2 class="panel__title">種別で絞り込む</h2>
+        <p class="panel__note">気象官署・アメダスで絞り込めます（フェーズ9）。何も選択しない場合は両方を表示します。</p>
+      </div>
+      <div class="panel__body">
+        <div id="type-filter-container"></div>
+      </div>
+    </section>
 
     <section class="panel" style="margin-bottom: var(--space-4);">
       <div class="panel__body">
