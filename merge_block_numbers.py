@@ -36,29 +36,37 @@ def main():
     stations_data = json.load(open(args.stations, encoding="utf-8"))
     block_numbers = json.load(open(args.block_numbers, encoding="utf-8"))
 
-    # (prefecture, name) -> record 、name のみ -> [records] の索引を作る
-    by_pref_name = {}
+    # (prefecture, name) -> [records] （同名地点が複数ある場合に備えてリストで持つ）
+    by_pref_name = defaultdict(list)
     by_name_only = defaultdict(list)
     for rec in block_numbers:
-        by_pref_name[(rec["prefName"], rec["name"])] = rec
+        by_pref_name[(rec["prefName"], rec["name"])].append(rec)
         by_name_only[rec["name"]].append(rec)
 
-    matched, matched_by_name_only, unmatched = 0, 0, []
+    matched, matched_by_name_only, unmatched, ambiguous = 0, 0, [], []
 
     for station in stations_data["stations"]:
         key = (station["prefecture"], station["name"])
-        rec = by_pref_name.get(key)
+        candidates = by_pref_name.get(key, [])
 
-        if rec is None:
+        if not candidates:
             candidates = by_name_only.get(station["name"], [])
-            if len(candidates) == 1:
-                rec = candidates[0]
-                matched_by_name_only += 1
+            name_only_fallback = True
+        else:
+            name_only_fallback = False
 
-        if rec is not None:
+        if len(candidates) == 1:
+            rec = candidates[0]
             station["precNo"] = rec["precNo"]
             station["blockNo"] = rec["blockNo"]
             matched += 1
+            if name_only_fallback:
+                matched_by_name_only += 1
+        elif len(candidates) > 1:
+            # 同じ都道府県・同じ地点名で複数のblockNo候補がある = 自動判定は危険なのでスキップ
+            ambiguous.append(
+                (station["id"], station["name"], station["prefecture"], [c["blockNo"] for c in candidates])
+            )
         else:
             unmatched.append((station["id"], station["name"], station["prefecture"]))
 
@@ -69,7 +77,16 @@ def main():
     print(f"matched (prefecture+name): {matched - matched_by_name_only} / {total}")
     print(f"matched (name only, unambiguous): {matched_by_name_only} / {total}")
     print(f"total matched: {matched} / {total}")
-    print(f"unmatched: {len(unmatched)} / {total}")
+    print(f"ambiguous (skipped, needs manual review): {len(ambiguous)} / {total}")
+    print(f"unmatched (no candidate found): {len(unmatched)} / {total}")
+
+    if ambiguous:
+        print("\n--- ambiguous stations (id, name, prefecture, candidate blockNos) ---")
+        for row in ambiguous[:50]:
+            print("  ", row)
+        if len(ambiguous) > 50:
+            print(f"  ... and {len(ambiguous) - 50} more")
+
     if unmatched:
         print("\n--- unmatched stations (id, name, prefecture) ---")
         for row in unmatched[:50]:
