@@ -1,0 +1,100 @@
+/* ===========================================================
+   map.css — 地図パネル（フェーズ6: 地図表示）
+   =========================================================== */
+
+.map-panel__body {
+  padding: 0; /* 地図はパネル幅いっぱいに表示する */
+}
+
+.map-view {
+  height: 480px;
+  width: 100%;
+  background: var(--color-bg);
+}
+
+@media (max-width: 720px) {
+  .map-view {
+    height: 340px;
+  }
+}
+
+.map-view__error {
+  padding: var(--space-4);
+  color: var(--color-ink-soft);
+  font-size: 13px;
+}
+
+.map-legend {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-2) var(--space-4);
+  font-size: 12px;
+  color: var(--color-ink-soft);
+  border-top: 1px solid var(--color-border);
+}
+
+.map-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.map-legend__dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  box-shadow: 0 0 0 1px var(--color-border-strong);
+}
+
+.map-legend__dot--kansho {
+  background: var(--color-teal);
+}
+
+.map-legend__dot--amedas {
+  background: var(--color-amber);
+}
+
+/* Leaflet ポップアップの中身（デザイントークンに合わせる） */
+.map-popup {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--color-ink);
+  line-height: 1.5;
+}
+
+.map-popup__title {
+  font-weight: 700;
+  font-size: 13px;
+  margin: 0 0 2px;
+}
+
+.map-popup__kana {
+  font-weight: 400;
+  color: var(--color-ink-soft);
+  font-size: 11px;
+}
+
+.map-popup__meta {
+  margin: 0 0 4px;
+  color: var(--color-ink-soft);
+}
+
+.map-popup__elements {
+  margin: 0 0 6px;
+}
+
+.map-popup__link {
+  margin: 0;
+}
+
+.map-popup__link a {
+  color: var(--color-teal);
+  font-weight: 600;
+}
+
+.map-popup__no-link {
+  color: var(--color-ink-soft);
+}
