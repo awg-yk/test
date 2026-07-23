@@ -8,42 +8,76 @@
  */
 
 import { h } from "../utils/helpers.js";
-import { buildJmaStationLink } from "./exporter.js";
+import { buildJmaStationLink, buildJmaPrefectureLink } from "./exporter.js";
 
-const SNOW_ELEMENT_ID = "snow";
-
+/** 観測要素タグは要素ごとに色分けする（CSS側の .tag--<id> と対応。凡例は観測要素フィルタのドット） */
 function renderElementTags(elementIds, elementLabelMap) {
   const wrap = h("div", { class: "element-tags" });
   elementIds.forEach((id) => {
     const label = elementLabelMap.get(id) ?? id;
-    const tagClass = id === SNOW_ELEMENT_ID ? "tag tag--snow" : "tag";
-    wrap.append(h("span", { class: tagClass }, label));
+    wrap.append(h("span", { class: `tag tag--${id}` }, label));
   });
   return wrap;
 }
 
-function renderJmaLinkCell(station) {
-  const url = buildJmaStationLink(station);
-  if (url) {
-    return h("a", { class: "jma-link", href: url, target: "_blank", rel: "noopener noreferrer" }, "気象庁で見る ↗");
+/**
+ * 地点名セル。気象庁「過去の気象データ検索」の当該地点ページへのリンクにする。
+ * 地点番号が確定していない7地点は、都道府県までを選択済みのページへ案内する
+ * （どのリンクも必ず有効なページに着地するようにしている）。
+ */
+function renderNameCell(station) {
+  const stationUrl = buildJmaStationLink(station);
+  if (stationUrl) {
+    return h(
+      "a",
+      {
+        class: "station-table__name station-table__name--link",
+        href: stationUrl,
+        target: "_blank",
+        rel: "noopener noreferrer",
+        title: `気象庁「過去の気象データ検索」で${station.name}のデータを開く`,
+      },
+      `${station.name} ↗`
+    );
   }
-  if (station.blockNoAmbiguousCandidates?.length) {
-    const title = `気象庁の地点選択ページに同名で複数の地点番号（${station.blockNoAmbiguousCandidates.join(" / ")}）があり、自動判定を保留しています。気象庁サイトで手動確認してください。`;
-    return h("span", { class: "jma-link jma-link--disabled", title }, "候補あり（要確認）");
+
+  const prefectureUrl = buildJmaPrefectureLink(station);
+  if (prefectureUrl) {
+    const candidates = station.blockNoAmbiguousCandidates?.join(" / ") ?? "";
+    return h(
+      "a",
+      {
+        class: "station-table__name station-table__name--link station-table__name--ambiguous",
+        href: prefectureUrl,
+        target: "_blank",
+        rel: "noopener noreferrer",
+        title: `気象庁側に同名で複数の地点番号（${candidates}）があり自動判定を保留しています。都道府県の地点選択ページを開くので、地図から地点を選んでください。`,
+      },
+      `${station.name} ↗*`
+    );
   }
-  return h("span", { class: "jma-link jma-link--disabled" }, "—");
+
+  return h("span", { class: "station-table__name" }, station.name);
 }
 
 function renderRow(station, elementLabelMap, regionLabelMap) {
   return h("tr", {}, [
     h("td", {}, h("span", { class: "station-table__id mono" }, station.id)),
-    h("td", {}, h("span", { class: "station-table__name" }, station.name)),
+    h("td", {}, renderNameCell(station)),
+    h("td", {}, h("span", { class: "station-table__kana" }, station.kana ?? "")),
     h("td", {}, station.prefecture),
     h("td", {}, regionLabelMap.get(station.region) ?? station.region),
+    h("td", { class: "station-table__num" }, h("span", { class: "mono" }, formatNumber(station.alt, 0))),
+    h("td", { class: "station-table__num" }, h("span", { class: "mono" }, formatNumber(station.lat, 4))),
+    h("td", { class: "station-table__num" }, h("span", { class: "mono" }, formatNumber(station.lon, 4))),
     h("td", {}, renderElementTags(station.elements, elementLabelMap)),
     h("td", {}, h("span", { class: "badge-type" }, station.stationType)),
-    h("td", {}, renderJmaLinkCell(station)),
   ]);
+}
+
+/** 数値を固定小数桁で表示する（欠測は「—」）。緯度経度は4桁≒10m精度で十分 */
+function formatNumber(value, digits) {
+  return typeof value === "number" ? value.toFixed(digits) : "—";
 }
 
 export function renderStationTable(container, stations, { elementLabelMap, regionLabelMap }) {
@@ -58,11 +92,14 @@ export function renderStationTable(container, stations, { elementLabelMap, regio
   const thead = h("thead", {}, h("tr", {}, [
     h("th", {}, "地点コード"),
     h("th", {}, "地点名"),
+    h("th", {}, "かな"),
     h("th", {}, "都道府県"),
     h("th", {}, "地方"),
+    h("th", { class: "station-table__num" }, "標高(m)"),
+    h("th", { class: "station-table__num" }, "緯度"),
+    h("th", { class: "station-table__num" }, "経度"),
     h("th", {}, "観測要素"),
     h("th", {}, "種別"),
-    h("th", {}, "気象庁"),
   ]));
 
   const tbody = h("tbody", {});

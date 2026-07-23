@@ -15,8 +15,6 @@ import { initRegionSelector } from "./modules/regionSelector.js";
 import { initElementFilter } from "./modules/elementFilter.js";
 import { initTypeFilter } from "./modules/typeFilter.js";
 import { initKeywordSearch } from "./modules/keywordSearch.js";
-import { initPresetPanel } from "./modules/presetPanel.js";
-import { PRESETS, buildPresetState } from "./modules/presets.js";
 import { paginate, renderPagination } from "./modules/pagination.js";
 import { computeVisibleStations, buildFacetCounts, buildStationTypeCounts } from "./modules/filterEngine.js";
 import { exportStationsAsCSV } from "./modules/exporter.js";
@@ -30,7 +28,6 @@ const regionSelectorContainer = document.getElementById("region-selector-contain
 const elementFilterContainer = document.getElementById("element-filter-container");
 const typeFilterContainer = document.getElementById("type-filter-container");
 const keywordSearchContainer = document.getElementById("keyword-search-container");
-const presetPanelContainer = document.getElementById("preset-panel-container");
 const mapViewContainer = document.getElementById("map-view-container");
 const statusCount = document.getElementById("status-count");
 const exportCsvBtn = document.getElementById("export-csv-btn");
@@ -38,7 +35,6 @@ const copyLinkBtn = document.getElementById("copy-link-btn");
 
 let elementLabelMap = new Map();
 let regionLabelMap = new Map();
-let stationData = null; // init() 完了後、data/stations.json の regions/elements を保持（プリセット適用時のUI再構築に使う）
 let filterUIs = { region: null, element: null, type: null }; // 各絞り込みUIのハンドル（件数の更新に使う）
 
 /** store の状態から filterEngine に渡す絞り込み条件を取り出す */
@@ -72,12 +68,11 @@ function applyFilters({ resetPage = true } = {}) {
 }
 
 /**
- * 地域・観測要素・種別・検索ボックスのUIを、与えられた初期選択値で（再）構築する。
- * 初回読み込み時（URLクエリ由来の初期値）と、プリセット適用時（プリセットの値）の
- * 両方から呼ばれる共通処理。
+ * 地域・観測要素・種別・検索ボックスのUIを、与えられた初期選択値で構築する。
+ * 初期選択値は、URLクエリから復元した絞り込み条件（共有リンクからのアクセス対応）。
  */
 function initFilterUIs(data, initialValues) {
-  // 初期表示の件数も、URLクエリ・プリセット由来の絞り込みを反映した値にする
+  // 初期表示の件数も、URLクエリ由来の絞り込みを反映した値にする
   const facetCounts = buildFacetCounts(data.stations, {
     selectedPrefectures: initialValues.prefectures,
     selectedElements: initialValues.elements,
@@ -130,25 +125,6 @@ function initFilterUIs(data, initialValues) {
       applyFilters();
     },
   });
-}
-
-/** プリセットボタンが選ばれたときの処理（フェーズ9）。
- *  絞り込み条件をプリセットの内容で完全に置き換え、各UIをその値で作り直す。 */
-function applyPreset(presetId) {
-  if (!stationData) return;
-  const presetState = buildPresetState(presetId);
-
-  store.setState({ ...presetState, page: 1 });
-
-  initFilterUIs(stationData, {
-    prefectures: presetState.selectedPrefectures,
-    elements: presetState.selectedElements,
-    elementLogic: presetState.elementLogic,
-    stationTypes: presetState.selectedStationTypes,
-    keyword: presetState.keyword,
-  });
-
-  applyFilters({ resetPage: false }); // 上でpage:1に設定済みなのでここではリセット不要
 }
 
 exportCsvBtn.addEventListener("click", () => {
@@ -222,7 +198,6 @@ async function init() {
       throw new Error(`データの取得に失敗しました（HTTP ${response.status}）`);
     }
     const data = await response.json();
-    stationData = data; // プリセット適用時にUIを作り直すため保持しておく
 
     elementLabelMap = buildElementLabelMap(data.elements);
     regionLabelMap = buildRegionLabelMap(data.regions);
@@ -248,12 +223,6 @@ async function init() {
       elementLogic: urlState.elementLogic,
       stationTypes: urlState.stationTypes,
       keyword: urlState.keyword,
-    });
-
-    initPresetPanel({
-      container: presetPanelContainer,
-      presets: PRESETS,
-      onSelect: applyPreset,
     });
 
     initMapView({

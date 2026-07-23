@@ -121,7 +121,10 @@ export function initElementFilter({ container, elements, stationCounts, initialS
     const labelSpan = h("span", { class: "element-item__label" }, labelTextFor(el));
     labelSpans.set(el.id, labelSpan);
 
-    const item = h("label", { for: id, class: "element-item" }, [cb, labelSpan]);
+    // 一覧テーブルの観測要素タグと同じ色のドット。色と要素の対応を示す凡例を兼ねる
+    const dot = h("span", { class: `element-item__dot element-item__dot--${el.id}`, "aria-hidden": "true" });
+
+    const item = h("label", { for: id, class: "element-item" }, [cb, dot, labelSpan]);
     item.classList.toggle("element-item--empty", countFor(el.id) === 0);
     list.append(item);
   });

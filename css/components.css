@@ -34,8 +34,33 @@
   color: var(--color-slate);
 }
 
-.station-table__id {
+.station-table__name--link {
+  color: var(--color-teal);
+  text-decoration: none;
+}
+
+.station-table__name--link:hover {
+  text-decoration: underline;
+}
+
+/* 地点番号が確定していない7地点（都道府県ページへの案内） */
+.station-table__name--ambiguous {
   color: var(--color-ink-soft);
+}
+
+.station-table__id,
+.station-table__kana {
+  color: var(--color-ink-soft);
+}
+
+.station-table__kana {
+  font-size: 11px;
+}
+
+/* 標高・緯度・経度は右寄せ＋等幅で桁を揃える */
+.station-table__num {
+  text-align: right;
+  white-space: nowrap;
 }
 
 .element-tags {
@@ -57,10 +82,62 @@
   white-space: nowrap;
 }
 
+/* ---------------------------------------------------------
+   観測要素の色分け
+   一覧のタグ（.tag--<id>）と、観測要素フィルタの凡例ドット（.element-item__dot）で
+   同じ色を使い、色と要素の対応を覚えられるようにする。
+   色は「気温=暖色、降水・積雪=寒色、日照=日射の橙」のように意味と結びつけて選定。
+   --------------------------------------------------------- */
+
+:root {
+  --el-temperature: #C0392B; /* 気温: 赤 */
+  --el-temperature-soft: #FAE5E1;
+  --el-precipitation: #1F6FB2; /* 降水量: 青 */
+  --el-precipitation-soft: #DFEAF6;
+  --el-snow: #4F63A8; /* 積雪: 藍（降水量と混同しない寒色） */
+  --el-snow-soft: #E6E9F5;
+  --el-wind: #1F7A5A; /* 風: 緑 */
+  --el-wind-soft: #DFF0E8;
+  --el-humidity: #6B3FA0; /* 湿度: 紫 */
+  --el-humidity-soft: #EDE4F7;
+  --el-sunshine: #9A6A1B; /* 日照時間: 橙（日射のイメージ） */
+  --el-sunshine-soft: var(--color-amber-soft);
+}
+
+.tag--temperature {
+  background: var(--el-temperature-soft);
+  color: var(--el-temperature);
+  border-color: color-mix(in srgb, var(--el-temperature) 30%, transparent);
+}
+
+.tag--precipitation {
+  background: var(--el-precipitation-soft);
+  color: var(--el-precipitation);
+  border-color: color-mix(in srgb, var(--el-precipitation) 30%, transparent);
+}
+
 .tag--snow {
-  background: var(--color-amber-soft);
-  color: #9A6A1B;
-  border-color: rgba(232, 163, 61, 0.35);
+  background: var(--el-snow-soft);
+  color: var(--el-snow);
+  border-color: color-mix(in srgb, var(--el-snow) 30%, transparent);
+}
+
+.tag--wind {
+  background: var(--el-wind-soft);
+  color: var(--el-wind);
+  border-color: color-mix(in srgb, var(--el-wind) 30%, transparent);
+}
+
+.tag--humidity {
+  background: var(--el-humidity-soft);
+  color: var(--el-humidity);
+  border-color: color-mix(in srgb, var(--el-humidity) 30%, transparent);
+}
+
+.tag--sunshine {
+  background: var(--el-sunshine-soft);
+  color: var(--el-sunshine);
+  border-color: color-mix(in srgb, var(--el-sunshine) 30%, transparent);
 }
 
 .badge-type {
@@ -295,6 +372,39 @@
   flex: 1;
 }
 
+/* 観測要素フィルタの色ドット（一覧テーブルのタグ色の凡例を兼ねる） */
+.element-item__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--color-ink-soft);
+}
+
+.element-item__dot--temperature {
+  background: var(--el-temperature);
+}
+
+.element-item__dot--precipitation {
+  background: var(--el-precipitation);
+}
+
+.element-item__dot--snow {
+  background: var(--el-snow);
+}
+
+.element-item__dot--wind {
+  background: var(--el-wind);
+}
+
+.element-item__dot--humidity {
+  background: var(--el-humidity);
+}
+
+.element-item__dot--sunshine {
+  background: var(--el-sunshine);
+}
+
 /* 他の絞り込み条件のもとで該当0件になった選択肢は控えめに表示する（フェーズ10） */
 .element-item--empty .element-item__label,
 .prefecture-item--empty .prefecture-item__label {
@@ -347,53 +457,6 @@
   font-size: 11px;
 }
 
-/* ---------------------------------------------------------
-   presets（フェーズ9・絞り込み条件のプリセット）
-   --------------------------------------------------------- */
-
-.preset-panel {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-}
-
-.preset-panel__btn {
-  display: inline-flex;
-  align-items: center;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 6px 12px;
-  border-radius: 999px;
-  border: 1px solid var(--color-border-strong);
-  background: var(--color-surface);
-  color: var(--color-slate);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
-}
-
-.preset-panel__btn:hover {
-  border-color: var(--color-teal);
-  color: var(--color-teal);
-  background: var(--color-teal-soft);
-}
-
-.jma-link {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--color-teal);
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.jma-link:hover {
-  text-decoration: underline;
-}
-
-.jma-link--disabled {
-  color: var(--color-ink-soft);
-  font-weight: 400;
-}
 
 /* ---------------------------------------------------------
    keyword search（フェーズ5・UI/UXブラッシュアップ）

@@ -27,7 +27,7 @@
  *       CDN から読み込み、window.L としてグローバルに存在すること。
  */
 
-import { buildJmaStationLink } from "./exporter.js";
+import { buildJmaStationLink, buildJmaPrefectureLink } from "./exporter.js";
 
 const STATION_TYPE_COLORS = {
   気象官署: "#1C7C8C", // --color-teal
@@ -55,16 +55,22 @@ export function buildPopupHtml(station, { elementLabelMap } = {}) {
     .map((id) => elementLabelMap?.get(id) ?? id)
     .join("・");
   const jmaLink = buildJmaStationLink(station);
+  const prefectureLink = buildJmaPrefectureLink(station);
   let jmaLinkHtml;
   if (jmaLink) {
     jmaLinkHtml = `<a href="${jmaLink}" target="_blank" rel="noopener noreferrer">気象庁の観測データを見る ↗</a>`;
-  } else if (station.blockNoAmbiguousCandidates?.length) {
-    jmaLinkHtml = `<span class="map-popup__no-link">気象庁側に同名で複数の地点番号（${escapeHtml(
-      station.blockNoAmbiguousCandidates.join(" / ")
-    )}）があり判定保留中</span>`;
+  } else if (prefectureLink) {
+    jmaLinkHtml = `<a href="${prefectureLink}" target="_blank" rel="noopener noreferrer">都道府県の地点選択ページを開く ↗</a><br><span class="map-popup__no-link">（気象庁側に同名で複数の地点番号${escapeHtml(
+      station.blockNoAmbiguousCandidates?.length ? `（${station.blockNoAmbiguousCandidates.join(" / ")}）` : ""
+    )}があり自動判定を保留中）</span>`;
   } else {
     jmaLinkHtml = `<span class="map-popup__no-link">気象庁リンク未収録</span>`;
   }
+
+  const coords =
+    typeof station.lat === "number" && typeof station.lon === "number"
+      ? `${station.lat.toFixed(4)}, ${station.lon.toFixed(4)}`
+      : "—";
 
   return [
     '<div class="map-popup">',
@@ -72,7 +78,8 @@ export function buildPopupHtml(station, { elementLabelMap } = {}) {
     `<span class="map-popup__kana">（${escapeHtml(station.kana ?? "")}）</span></p>`,
     `<p class="map-popup__meta">${escapeHtml(station.prefecture)} ／ ${escapeHtml(
       station.stationType ?? ""
-    )} ／ 標高${escapeHtml(station.alt ?? "-")}m</p>`,
+    )} ／ 標高 ${escapeHtml(station.alt ?? "—")} m</p>`,
+    `<p class="map-popup__meta">緯度経度 ${escapeHtml(coords)} ／ 地点コード ${escapeHtml(station.id ?? "—")}</p>`,
     `<p class="map-popup__elements">${escapeHtml(elementNames || "観測要素データなし")}</p>`,
     `<p class="map-popup__link">${jmaLinkHtml}</p>`,
     "</div>",

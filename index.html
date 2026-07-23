@@ -52,16 +52,6 @@
       </div>
     </div>
 
-    <section class="panel" style="margin-bottom: var(--space-4);">
-      <div class="panel__header">
-        <h2 class="panel__title">プリセットで絞り込む</h2>
-        <p class="panel__note">よく使う条件をワンクリックで適用します。地域・観測要素・種別・検索語がまとめてリセットされます。</p>
-      </div>
-      <div class="panel__body">
-        <div id="preset-panel-container"></div>
-      </div>
-    </section>
-
     <div class="filter-panels">
       <section class="panel">
         <div class="panel__header">
@@ -123,7 +113,7 @@
       <div class="panel__header panel__header--with-actions">
         <div>
           <h2 class="panel__title">観測所一覧</h2>
-          <p class="panel__note">気象庁「アメダス観測所表」に基づく全国1,286地点（気象官署56地点＋アメダス1,230地点）に、南極・昭和基地を加えた1,287地点を収録しています。「気象庁」列のリンクは地点番号（prec_no/block_no）が確定している観測所のみ表示されます（1,280地点で確定済み）。残る7地点は気象庁側に同名で複数の地点番号があり自動判定を保留しているため「候補あり（要確認）」と表示されます。</p>
+          <p class="panel__note">気象庁「アメダス観測所表」に基づく全国1,286地点（気象官署56地点＋アメダス1,230地点）に、南極・昭和基地を加えた1,287地点を収録しています。<strong>地点名をクリックすると、気象庁「過去の気象データ検索」がその地点を選択した状態で開きます</strong>（年月・データ種別を選ぶと日別値・月別値・平年値などを閲覧できます）。地点名の後ろに「*」が付く7地点は、気象庁側に同名で複数の地点番号があり自動判定を保留しているため、都道府県の地点選択ページへ案内します。観測要素は色分けして表示しています（色の対応は「観測要素で絞り込む」の各項目のドットと同じです）。</p>
         </div>
         <div class="panel__actions">
           <button type="button" id="export-csv-btn" class="btn btn--primary">選択結果をCSVでダウンロード</button>

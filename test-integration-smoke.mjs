@@ -90,39 +90,33 @@ await wait(300);
 const rowsAfterClear = doc.querySelectorAll("#station-table-container tbody tr");
 assert(rowsAfterClear.length === 50, "検索クリア後は1ページ目の50件表示に戻る");
 
-// --- プリセット: 「気象官署のみ」を適用する（フェーズ9） -----------------------
-const presetButtons = [...doc.querySelectorAll("#preset-panel-container .preset-panel__btn")];
-assert(presetButtons.length > 0, "プリセットボタンが描画されている");
+// --- 種別フィルタ: 「気象官署」だけに絞り込む -------------------------------
+const kanshoCheckbox = doc.querySelector("#type-filter-container #type-気象官署");
+assert(!!kanshoCheckbox, "種別フィルタに「気象官署」のチェックボックスが描画されている");
 
-const kanshoPresetBtn = presetButtons.find((btn) => btn.textContent.includes("気象官署のみ"));
-assert(!!kanshoPresetBtn, "「気象官署のみ」プリセットボタンが存在する");
-
-kanshoPresetBtn.click();
+kanshoCheckbox.checked = true;
+kanshoCheckbox.dispatchEvent(new win.Event("change"));
 await wait(50);
 
-const rowsAfterPreset = [...doc.querySelectorAll("#station-table-container tbody tr")];
-assert(rowsAfterPreset.length > 0, "プリセット適用後も観測所が表示される");
+const rowsAfterTypeFilter = [...doc.querySelectorAll("#station-table-container tbody tr")];
+assert(rowsAfterTypeFilter.length > 0, "種別で絞り込んでも観測所が表示される");
 
 // 気象官署56地点 + 南極・昭和基地 = 57地点
 const kanshoCount = JSON.parse(stationsJson).stations.filter((s) => s.stationType === "気象官署").length;
-const statusTextAfterPreset = doc.querySelector("#status-count").textContent;
+const statusTextAfterTypeFilter = doc.querySelector("#status-count").textContent;
 assert(
-  statusTextAfterPreset.includes(`絞り込み ${kanshoCount}件`),
-  `「気象官署のみ」プリセットで絞り込み件数が${kanshoCount}件になる (実際の表示: ${statusTextAfterPreset})`
+  statusTextAfterTypeFilter.includes(`絞り込み ${kanshoCount}件`),
+  `「気象官署」で絞り込むと${kanshoCount}件になる (実際の表示: ${statusTextAfterTypeFilter})`
 );
 
-const typeCheckboxAfterPreset = doc.querySelector("#type-filter-container #type-気象官署");
-assert(typeCheckboxAfterPreset?.checked === true, "プリセット適用後、種別フィルタUIにも「気象官署」が選択済みとして反映される");
-
 // --- 件数表示が他の絞り込みに連動する（フェーズ10） -------------------------
-// 種別プリセットが残っていると件数の期待値が変わるため、いったん全条件をクリアする
-const clearPresetBtn = presetButtons.find((btn) => btn.textContent.includes("すべてクリア"));
-assert(!!clearPresetBtn, "「すべてクリア」プリセットボタンが存在する");
-clearPresetBtn.click();
+// 種別の絞り込みが残っていると件数の期待値が変わるため、いったん解除する
+kanshoCheckbox.checked = false;
+kanshoCheckbox.dispatchEvent(new win.Event("change"));
 await wait(50);
 
 const elementLabelOf = (id) =>
-  doc.querySelector(`#element-filter-container #element-${id} + .element-item__label`).textContent;
+  doc.querySelector(`#element-filter-container #element-${id} ~ .element-item__label`).textContent;
 
 const tempLabelNationwide = elementLabelOf("temperature");
 
@@ -143,6 +137,27 @@ const expectedHokkaidoTemp = JSON.parse(stationsJson).stations.filter(
 assert(
   tempLabelHokkaido.includes(`(${expectedHokkaidoTemp})`),
   `観測要素の件数が北海道内の気温観測地点数になる (期待: ${expectedHokkaidoTemp}, 実際: ${tempLabelHokkaido})`
+);
+
+// --- 一覧テーブルの列構成（プリセット廃止・気象庁リンクの地点名化） -----------
+const headerCells = [...doc.querySelectorAll("#station-table-container thead th")].map((th) => th.textContent);
+assert(
+  headerCells.join(",") === "地点コード,地点名,かな,都道府県,地方,標高(m),緯度,経度,観測要素,種別",
+  `一覧の列が想定通り (実際: ${headerCells.join(",")})`
+);
+assert(!doc.querySelector("#preset-panel-container"), "プリセットパネルは廃止されている");
+
+const firstNameLink = doc.querySelector("#station-table-container tbody a.station-table__name--link");
+assert(!!firstNameLink, "地点名が気象庁ページへのリンクになっている");
+assert(
+  firstNameLink.getAttribute("href").startsWith("https://www.data.jma.go.jp/stats/etrn/index.php?"),
+  `地点名リンクの遷移先がetrnの地点選択済みページ (実際: ${firstNameLink.getAttribute("href")})`
+);
+
+const firstTag = doc.querySelector("#station-table-container tbody .tag");
+assert(
+  /tag--(temperature|precipitation|snow|wind|humidity|sunshine)/.test(firstTag.className),
+  `観測要素タグに要素ごとの色クラスが付く (実際: ${firstTag.className})`
 );
 
 console.log("\nAll integration smoke tests passed.");
