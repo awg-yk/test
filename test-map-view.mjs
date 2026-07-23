@@ -58,6 +58,7 @@ const stationWithAmbiguousCandidates = {
   ...stationWithLink,
   precNo: undefined,
   blockNo: undefined,
+  precNoAmbiguous: "19",
   blockNoAmbiguousCandidates: ["0092", "1187"],
 };
 const htmlWithCandidates = buildPopupHtml(stationWithAmbiguousCandidates, { elementLabelMap });
