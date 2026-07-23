@@ -24,10 +24,14 @@ function renderElementTags(elementIds, elementLabelMap) {
 
 function renderJmaLinkCell(station) {
   const url = buildJmaStationLink(station);
-  if (!url) {
-    return h("span", { class: "jma-link jma-link--disabled" }, "—");
+  if (url) {
+    return h("a", { class: "jma-link", href: url, target: "_blank", rel: "noopener noreferrer" }, "気象庁で見る ↗");
   }
-  return h("a", { class: "jma-link", href: url, target: "_blank", rel: "noopener noreferrer" }, "気象庁で見る ↗");
+  if (station.blockNoAmbiguousCandidates?.length) {
+    const title = `気象庁の地点選択ページに同名で複数の地点番号（${station.blockNoAmbiguousCandidates.join(" / ")}）があり、自動判定を保留しています。気象庁サイトで手動確認してください。`;
+    return h("span", { class: "jma-link jma-link--disabled", title }, "候補あり（要確認）");
+  }
+  return h("span", { class: "jma-link jma-link--disabled" }, "—");
 }
 
 function renderRow(station, elementLabelMap, regionLabelMap) {

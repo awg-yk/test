@@ -45,9 +45,16 @@ export function buildPopupHtml(station, { elementLabelMap } = {}) {
     .map((id) => elementLabelMap?.get(id) ?? id)
     .join("・");
   const jmaLink = buildJmaStationLink(station);
-  const jmaLinkHtml = jmaLink
-    ? `<a href="${jmaLink}" target="_blank" rel="noopener noreferrer">気象庁の観測データを見る ↗</a>`
-    : `<span class="map-popup__no-link">気象庁リンク未収録</span>`;
+  let jmaLinkHtml;
+  if (jmaLink) {
+    jmaLinkHtml = `<a href="${jmaLink}" target="_blank" rel="noopener noreferrer">気象庁の観測データを見る ↗</a>`;
+  } else if (station.blockNoAmbiguousCandidates?.length) {
+    jmaLinkHtml = `<span class="map-popup__no-link">気象庁側に同名で複数の地点番号（${escapeHtml(
+      station.blockNoAmbiguousCandidates.join(" / ")
+    )}）があり判定保留中</span>`;
+  } else {
+    jmaLinkHtml = `<span class="map-popup__no-link">気象庁リンク未収録</span>`;
+  }
 
   return [
     '<div class="map-popup">',
