@@ -27,7 +27,7 @@
 
     <div class="status-bar">
       <span id="status-count" class="status-bar__count">読み込み中...</span>
-      <span class="mono" style="font-size: 12px; color: var(--color-ink-soft);">v0.5 (Phase 5: 実データ整備)</span>
+      <span class="mono" style="font-size: 12px; color: var(--color-ink-soft);">v0.6 (Phase 5: UI/UXブラッシュアップ)</span>
     </div>
 
     <div class="filter-panels">
@@ -52,11 +52,17 @@
       </section>
     </div>
 
+    <section class="panel" style="margin-bottom: var(--space-4);">
+      <div class="panel__body">
+        <div id="keyword-search-container"></div>
+      </div>
+    </section>
+
     <section class="panel">
       <div class="panel__header panel__header--with-actions">
         <div>
           <h2 class="panel__title">観測所一覧</h2>
-          <p class="panel__note">気象庁「アメダス観測所表」に基づく全国1,286地点（気象官署56地点＋アメダス1,230地点）を収録しています。「気象庁」列のリンクは地点番号（prec_no/block_no）を収録した観測所のみ表示されます（現状は未収録のため「—」表示）。</p>
+          <p class="panel__note">気象庁「アメダス観測所表」に基づく全国1,286地点（気象官署56地点＋アメダス1,230地点）を収録しています。「気象庁」列のリンクは地点番号（prec_no/block_no）を収録した観測所のみ表示されます（現在99%収録済み。未収録の一部地点は「—」表示）。</p>
         </div>
         <div class="panel__actions">
           <button type="button" id="export-csv-btn" class="btn btn--primary">選択結果をCSVでダウンロード</button>
@@ -65,6 +71,9 @@
       </div>
       <div class="panel__body station-table-wrap">
         <div id="station-table-container"></div>
+      </div>
+      <div class="panel__footer">
+        <div id="pagination-container"></div>
       </div>
     </section>
 

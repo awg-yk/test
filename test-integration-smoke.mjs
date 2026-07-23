@@ -1,0 +1,93 @@
+/**
+ * test-integration-smoke.mjs
+ * ------------------------------------------------------------
+ * index.html を実際にjsdomで読み込み、main.jsを走らせて
+ * 「検索・地域選択・要素選択・ページネーションがDOM上で
+ * 実際に噛み合っているか」を確認する統合テスト。
+ * 個別モジュールの単体テストでは検出できない、
+ * HTML側のID不一致や配線ミスを見つけるためのもの。
+ */
+import { JSDOM } from "jsdom";
+import { readFileSync } from "fs";
+
+const html = readFileSync("./index.html", "utf-8");
+const stationsJson = readFileSync("./data/stations.json", "utf-8");
+
+const dom = new JSDOM(html, {
+  url: "http://localhost/",
+  runScripts: "dangerously",
+});
+
+// fetch("data/stations.json") をダミー実装で差し替える
+dom.window.fetch = async (url) => {
+  if (String(url).includes("stations.json")) {
+    return { ok: true, json: async () => JSON.parse(stationsJson) };
+  }
+  throw new Error("unexpected fetch: " + url);
+};
+
+function loadScript(win, path) {
+  const code = readFileSync(path, "utf-8");
+  const script = win.document.createElement("script");
+  script.type = "module";
+  script.textContent = code;
+  win.document.body.appendChild(script);
+}
+
+function assert(cond, msg) {
+  if (!cond) throw new Error("FAIL: " + msg);
+  console.log("OK:", msg);
+}
+
+function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+const win = dom.window;
+const doc = win.document;
+
+// main.js は type="module" の相対importを使っているため、jsdom単体では
+// モジュール解決ができない。代わりにNodeのESMローダーでmain.jsを直接importし、
+// dom.window をグローバルとして差し込む簡易アプローチを取る。
+global.window = win;
+global.document = doc;
+global.fetch = win.fetch;
+global.Node = win.Node;
+global.HTMLElement = win.HTMLElement;
+
+await import("./js/main.js");
+
+// 初期読み込み（fetch + 各モジュール初期化）が終わるまで少し待つ
+await wait(50);
+
+// --- 初期表示: 1ページ目が50件表示されている ---
+const rowsInitial = doc.querySelectorAll("#station-table-container tbody tr");
+assert(rowsInitial.length === 50, `初期表示は1ページ目の50件 (実際: ${rowsInitial.length})`);
+
+const paginationButtons = doc.querySelectorAll("#pagination-container .pagination__page");
+assert(paginationButtons.length > 0, "ページネーションのページ番号ボタンが描画されている");
+
+// --- 検索: 「東京」で絞り込む ---
+const searchInput = doc.querySelector("#keyword-search-container .keyword-search__input");
+assert(searchInput != null, "検索ボックスが描画されている");
+
+searchInput.value = "東京";
+searchInput.dispatchEvent(new win.Event("input"));
+await wait(300); // デバウンス(200ms)待ち
+
+const rowsAfterSearch = doc.querySelectorAll("#station-table-container tbody tr");
+assert(rowsAfterSearch.length > 0, "「東京」検索でヒットする観測所がある");
+assert(rowsAfterSearch.length < 50, "「東京」検索で1,286件よりずっと少ない件数に絞り込まれる");
+
+const firstRowText = rowsAfterSearch[0].textContent;
+assert(firstRowText.includes("東京") || firstRowText.includes("都"), "絞り込み結果に「東京」関連の文字列が含まれる");
+
+// --- 検索クリアで全件表示に戻る ---
+const clearBtn = doc.querySelector("#keyword-search-container .keyword-search__clear");
+clearBtn.dispatchEvent(new win.Event("click"));
+await wait(300);
+
+const rowsAfterClear = doc.querySelectorAll("#station-table-container tbody tr");
+assert(rowsAfterClear.length === 50, "検索クリア後は1ページ目の50件表示に戻る");
+
+console.log("\nAll integration smoke tests passed.");

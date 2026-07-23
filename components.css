@@ -294,3 +294,173 @@
 .element-item__label {
   flex: 1;
 }
+
+/* ---------------------------------------------------------
+   export actions（フェーズ4・CSVエクスポート／気象庁公式リンク）
+   --------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn--primary {
+  background: var(--color-teal);
+  color: #fff;
+}
+
+.btn--primary:hover {
+  background: #17636f;
+}
+
+.btn--secondary {
+  background: var(--color-surface);
+  color: var(--color-slate);
+  border-color: var(--color-border-strong);
+}
+
+.btn--secondary:hover {
+  border-color: var(--color-teal);
+  color: var(--color-teal);
+}
+
+.jma-link {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-teal);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.jma-link:hover {
+  text-decoration: underline;
+}
+
+.jma-link--disabled {
+  color: var(--color-ink-soft);
+  font-weight: 400;
+}
+
+/* ---------------------------------------------------------
+   keyword search（フェーズ5・UI/UXブラッシュアップ）
+   --------------------------------------------------------- */
+
+.keyword-search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.keyword-search__input {
+  flex: 1;
+  font-family: inherit;
+  font-size: 13px;
+  padding: 8px 12px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-ink);
+}
+
+.keyword-search__input:focus-visible {
+  border-color: var(--color-teal);
+}
+
+.keyword-search__input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.keyword-search__clear {
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface);
+  color: var(--color-ink-soft);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.keyword-search__clear:hover {
+  border-color: var(--color-teal);
+  color: var(--color-teal);
+}
+
+/* ---------------------------------------------------------
+   pagination（フェーズ5・UI/UXブラッシュアップ）
+   --------------------------------------------------------- */
+
+.panel__footer {
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: center;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pagination__btn,
+.pagination__page {
+  min-width: 32px;
+  height: 32px;
+  padding: 0 8px;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-family: var(--font-mono);
+}
+
+.pagination__btn:hover:not(:disabled),
+.pagination__page:hover:not(.is-current) {
+  border-color: var(--color-teal);
+  color: var(--color-teal);
+}
+
+.pagination__btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.pagination__page.is-current {
+  background: var(--color-slate);
+  border-color: var(--color-slate);
+  color: #fff;
+  font-weight: 700;
+}
+
+.pagination__ellipsis {
+  padding: 0 4px;
+  color: var(--color-ink-soft);
+  font-size: 12px;
+}
+
+/* ---------------------------------------------------------
+   sticky table header（フェーズ5・UI/UXブラッシュアップ）
+   --------------------------------------------------------- */
+
+.station-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  /* base.cssのbackground(--color-bg)は既にthに指定済みなので、
+     下にスクロールしてきた行が透けないよう不透明を維持する */
+}
