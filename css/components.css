@@ -334,6 +334,12 @@
   color: var(--color-teal);
 }
 
+/* フェーズ7: ステータスバーの「URLをコピー」ボタン用の小型バリアント */
+.btn--small {
+  padding: 4px 10px;
+  font-size: 11px;
+}
+
 .jma-link {
   font-size: 12px;
   font-weight: 600;
