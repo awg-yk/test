@@ -1,0 +1,70 @@
+import { JSDOM } from "jsdom";
+
+// mapView.js の buildPopupHtml() は内部で document を直接触らないが、
+// import chain (exporter.js) が document 参照を持つコードパスを含むため、
+// 他のテストファイルと同様に最小限の DOM を用意しておく。
+const dom = new JSDOM("<!DOCTYPE html><div id='root'></div>", { url: "http://localhost/" });
+global.window = dom.window;
+global.document = dom.window.document;
+global.Node = dom.window.Node;
+
+const { getMarkerColor, buildPopupHtml } = await import("./js/modules/mapView.js");
+
+function assert(cond, msg) {
+  if (!cond) throw new Error("FAIL: " + msg);
+  console.log("OK:", msg);
+}
+
+// --- getMarkerColor -----------------------------------------------------
+
+assert(getMarkerColor({ stationType: "気象官署" }) === "#1C7C8C", "気象官署はteal色");
+assert(getMarkerColor({ stationType: "アメダス" }) === "#E8A33D", "アメダスはamber色");
+assert(getMarkerColor({ stationType: "不明種別" }) === "#5B6672", "未知の種別はデフォルト色");
+assert(getMarkerColor({}) === "#5B6672", "stationType未指定でもデフォルト色（例外を投げない）");
+
+// --- buildPopupHtml -------------------------------------------------------
+
+const elementLabelMap = new Map([
+  ["temperature", "気温"],
+  ["precipitation", "降水量"],
+]);
+
+const stationWithLink = {
+  id: "31506",
+  name: "三沢",
+  kana: "ミサワ",
+  prefecture: "青森県",
+  stationType: "アメダス",
+  alt: 39,
+  elements: ["temperature", "precipitation"],
+  precNo: "31",
+  blockNo: "0169",
+};
+
+const htmlWithLink = buildPopupHtml(stationWithLink, { elementLabelMap });
+assert(htmlWithLink.includes("三沢"), "地点名がポップアップHTMLに含まれる");
+assert(htmlWithLink.includes("ミサワ"), "かな読みがポップアップHTMLに含まれる");
+assert(htmlWithLink.includes("気温・降水量"), "観測要素が日本語ラベルで連結される");
+assert(htmlWithLink.includes("prec_no=31"), "precNo/blockNoが揃っていれば気象庁リンクを含む");
+
+const stationWithoutLink = { ...stationWithLink, precNo: undefined, blockNo: undefined };
+const htmlWithoutLink = buildPopupHtml(stationWithoutLink, { elementLabelMap });
+assert(
+  htmlWithoutLink.includes("気象庁リンク未収録"),
+  "precNo/blockNoが欠けている場合はリンクの代わりに未収録表示"
+);
+
+// --- XSS対策（地点名にHTML特殊文字が含まれても壊れない） -----------------
+
+const maliciousStation = {
+  name: '<img src=x onerror=alert(1)>',
+  kana: "テスト",
+  prefecture: "テスト県",
+  stationType: "アメダス",
+  elements: [],
+};
+const escapedHtml = buildPopupHtml(maliciousStation, { elementLabelMap });
+assert(!escapedHtml.includes("<img"), "地点名内のHTMLタグはエスケープされる");
+assert(escapedHtml.includes("&lt;img"), "エスケープ後の文字列が含まれる");
+
+console.log("\nAll mapView tests passed.");
