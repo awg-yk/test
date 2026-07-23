@@ -1,4 +1,4 @@
-import { matchesKeyword, computeVisibleStations } from "./js/modules/filterEngine.js";
+import { matchesKeyword, matchesTypeFilter, computeVisibleStations } from "./js/modules/filterEngine.js";
 import { paginate } from "./js/modules/pagination.js";
 
 function assert(cond, msg) {
@@ -42,6 +42,33 @@ const osakaWithSnow = computeVisibleStations(stations, {
   keyword: "大阪",
 });
 assert(osakaWithSnow.length === 1 && osakaWithSnow[0].name === "大阪", "キーワード検索と観測要素フィルタは組み合わさる（AND）");
+
+// --- matchesTypeFilter / 種別フィルタ（フェーズ9） --------------------------
+
+const kansho = { name: "東京", stationType: "気象官署" };
+const amedas = { name: "三沢", stationType: "アメダス" };
+
+assert(matchesTypeFilter(kansho, new Set()) === true, "未選択（空集合）は常にtrue（絞り込みなし）");
+assert(matchesTypeFilter(kansho, new Set(["気象官署"])) === true, "気象官署を選択していれば気象官署はtrue");
+assert(matchesTypeFilter(amedas, new Set(["気象官署"])) === false, "気象官署を選択していてもアメダスはfalse");
+assert(matchesTypeFilter(amedas, new Set(["気象官署", "アメダス"])) === true, "両方選択していればどちらもtrue");
+
+const typedStations = [
+  { name: "東京", prefecture: "東京都", region: "kanto", elements: [], stationType: "気象官署" },
+  { name: "三沢", prefecture: "青森県", region: "tohoku", elements: [], stationType: "アメダス" },
+];
+
+const kanshoOnly = computeVisibleStations(typedStations, {
+  selectedPrefectures: new Set(),
+  selectedElements: new Set(),
+  elementLogic: "AND",
+  selectedStationTypes: new Set(["気象官署"]),
+  keyword: "",
+});
+assert(
+  kanshoOnly.length === 1 && kanshoOnly[0].name === "東京",
+  "computeVisibleStations は種別フィルタも合成する"
+);
 
 // --- paginate ---------------------------------------------------------------
 

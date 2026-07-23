@@ -90,4 +90,26 @@ await wait(300);
 const rowsAfterClear = doc.querySelectorAll("#station-table-container tbody tr");
 assert(rowsAfterClear.length === 50, "検索クリア後は1ページ目の50件表示に戻る");
 
+// --- プリセット: 「気象官署のみ」を適用する（フェーズ9） -----------------------
+const presetButtons = [...doc.querySelectorAll("#preset-panel-container .preset-panel__btn")];
+assert(presetButtons.length > 0, "プリセットボタンが描画されている");
+
+const kanshoPresetBtn = presetButtons.find((btn) => btn.textContent.includes("気象官署のみ"));
+assert(!!kanshoPresetBtn, "「気象官署のみ」プリセットボタンが存在する");
+
+kanshoPresetBtn.click();
+await wait(50);
+
+const rowsAfterPreset = [...doc.querySelectorAll("#station-table-container tbody tr")];
+assert(rowsAfterPreset.length > 0, "プリセット適用後も観測所が表示される");
+
+const statusTextAfterPreset = doc.querySelector("#status-count").textContent;
+assert(
+  statusTextAfterPreset.includes("絞り込み 56件"),
+  `「気象官署のみ」プリセットで絞り込み件数が56件になる (実際の表示: ${statusTextAfterPreset})`
+);
+
+const typeCheckboxAfterPreset = doc.querySelector("#type-filter-container #type-気象官署");
+assert(typeCheckboxAfterPreset?.checked === true, "プリセット適用後、種別フィルタUIにも「気象官署」が選択済みとして反映される");
+
 console.log("\nAll integration smoke tests passed.");

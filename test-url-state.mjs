@@ -19,15 +19,26 @@ const empty = parseStateFromUrl(new URLSearchParams(""));
 assert(empty.prefectures.size === 0, "パラメータなしなら都道府県は未選択");
 assert(empty.elements.size === 0, "パラメータなしなら観測要素は未選択");
 assert(empty.elementLogic === "AND", "パラメータなしならモードはAND");
+assert(empty.stationTypes.size === 0, "パラメータなしなら種別は未選択");
 assert(empty.keyword === "", "パラメータなしならキーワードは空");
 assert(empty.page === 1, "パラメータなしなら1ページ目");
 
-const full = parseStateFromUrl(new URLSearchParams("pref=青森県,秋田県&elem=temperature,wind&mode=OR&q=空港&page=3"));
+const full = parseStateFromUrl(new URLSearchParams("pref=青森県,秋田県&elem=temperature,wind&mode=OR&type=kansho,amedas&q=空港&page=3"));
 assert(full.prefectures.size === 2 && full.prefectures.has("青森県") && full.prefectures.has("秋田県"), "都道府県をカンマ区切りで復元");
 assert(full.elements.size === 2 && full.elements.has("temperature") && full.elements.has("wind"), "観測要素をカンマ区切りで復元");
 assert(full.elementLogic === "OR", "mode=ORを復元");
+assert(
+  full.stationTypes.size === 2 && full.stationTypes.has("気象官署") && full.stationTypes.has("アメダス"),
+  "種別コードを日本語名に復元する"
+);
 assert(full.keyword === "空港", "キーワードを復元");
 assert(full.page === 3, "ページ番号を復元");
+
+const unknownTypeCode = parseStateFromUrl(new URLSearchParams("type=kansho,unknown_code"));
+assert(
+  unknownTypeCode.stationTypes.size === 1 && unknownTypeCode.stationTypes.has("気象官署"),
+  "未知の種別コードは無視し、既知のものだけ復元する"
+);
 
 const invalidPage = parseStateFromUrl(new URLSearchParams("page=0"));
 assert(invalidPage.page === 1, "0以下のページ番号は1に補正される");
@@ -49,12 +60,14 @@ const qs = buildQueryString({
   selectedPrefectures: new Set(["東京都"]),
   selectedElements: new Set(["snow"]),
   elementLogic: "OR",
+  selectedStationTypes: new Set(["気象官署"]),
   keyword: "山",
   page: 2,
 });
 assert(qs.includes("pref=%E6%9D%B1%E4%BA%AC%E9%83%BD") || qs.includes("pref=東京都"), "都道府県パラメータを含む");
 assert(qs.includes("elem=snow"), "観測要素パラメータを含む");
 assert(qs.includes("mode=OR"), "ORモードのときはmodeパラメータを含む");
+assert(qs.includes("type=kansho"), "種別パラメータを短いコードで含む");
 assert(qs.includes("page=2"), "1ページ目以外のときはpageパラメータを含む");
 
 const qsDefaultMode = buildQueryString({
