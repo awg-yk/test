@@ -38,7 +38,9 @@ assert(
 
 // --- buildJmaStationLink --------------------------------------------------
 
-assert(buildJmaStationLink(sample[0]) === null, "precNo/blockNo未収録の観測所はnullを返す（サンプルデータの現状）");
+// precNo/blockNo が無い観測所は null を返す（実データの内容に依存しない、合成データでテストする）
+const stationWithoutCodes = { ...sample[0], precNo: undefined, blockNo: undefined };
+assert(buildJmaStationLink(stationWithoutCodes) === null, "precNo/blockNoが無い観測所はnullを返す");
 
 const stationWithCodes = { ...sample[0], precNo: "31", blockNo: "47581" };
 const link = buildJmaStationLink(stationWithCodes);
