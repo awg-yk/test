@@ -60,13 +60,21 @@ export function buildPopupHtml(station, { elementLabelMap } = {}) {
     .join("・");
   const jmaLink = buildJmaStationLink(station);
   const prefectureLink = buildJmaPrefectureLink(station);
+  // 廃止済み観測所は、precNo/blockNoが確定していればリンクに加えて観測期間も表示する（フェーズ19）
+  const discontinuedPeriod = station.discontinued
+    ? `<br><span class="map-popup__no-link">廃止済み観測所（観測期間: ${escapeHtml(
+        station.observedFrom ?? "?"
+      )} 〜 ${escapeHtml(station.observedTo ?? "?")}）</span>`
+    : "";
+
   let jmaLinkHtml;
-  if (station.discontinued) {
+  if (jmaLink) {
+    jmaLinkHtml = `<a href="${jmaLink}" target="_blank" rel="noopener noreferrer">気象庁の観測データを見る ↗</a>${discontinuedPeriod}`;
+  } else if (station.discontinued) {
+    // 廃止済みでprecNo/blockNoが未確定の場合は、リンクの代わりに観測期間だけを表示する
     jmaLinkHtml = `<span class="map-popup__no-link">廃止済み観測所（観測期間: ${escapeHtml(
       station.observedFrom ?? "?"
     )} 〜 ${escapeHtml(station.observedTo ?? "?")}）。地点番号未確定のため気象庁ページへのリンクはありません。</span>`;
-  } else if (jmaLink) {
-    jmaLinkHtml = `<a href="${jmaLink}" target="_blank" rel="noopener noreferrer">気象庁の観測データを見る ↗</a>`;
   } else if (prefectureLink) {
     jmaLinkHtml = `<a href="${prefectureLink}" target="_blank" rel="noopener noreferrer">都道府県の地点選択ページを開く ↗</a><br><span class="map-popup__no-link">（気象庁側に同名で複数の地点番号${escapeHtml(
       station.blockNoAmbiguousCandidates?.length ? `（${station.blockNoAmbiguousCandidates.join(" / ")}）` : ""

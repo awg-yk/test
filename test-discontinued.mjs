@@ -40,11 +40,19 @@ data.discontinuedStations.forEach((s) => {
   assert(regionIds.has(s.region), `${s.name}: regionが規定のregions master内`);
   assert(typeof s.lat === "number" && s.lat > 20 && s.lat < 46, `${s.name}: 緯度が日本国内の範囲`);
   assert(typeof s.lon === "number" && s.lon > 122 && s.lon < 154, `${s.name}: 経度が日本国内の範囲`);
-  assert(!s.precNo && !s.blockNo, `${s.name}: precNo/blockNoは未設定（地点番号未確定のため）`);
+  // フェーズ19: block_numbers.json（etrnの地点選択ページのスクレイピング結果）と突き合わせて
+  // 一意に一致した361件だけprecNo/blockNoを確定している。両方揃うか、両方とも無いかのどちらか。
+  assert(
+    (s.precNo && s.blockNo) || (!s.precNo && !s.blockNo),
+    `${s.name}: precNo/blockNoは両方揃うか両方とも無いかのどちらか`
+  );
 });
 
 const ids = data.discontinuedStations.map((s) => s.id);
 assert(new Set(ids).size === ids.length, "discontinuedStations内でidの重複がない");
+
+const withLink = data.discontinuedStations.filter((s) => s.precNo && s.blockNo);
+assert(withLink.length === 361, `precNo/blockNoが確定している廃止済み観測所は361件 (実際: ${withLink.length})`);
 
 console.log("\nAll discontinued data-integrity checks passed.");
 
@@ -83,19 +91,31 @@ console.log("\nAll discontinuedFilter tests passed.");
 
 const { getMarkerColor, buildPopupHtml } = await import("./js/modules/mapView.js");
 
-const discontinuedStation = data.discontinuedStations[0];
-assert(getMarkerColor(discontinuedStation) === "#9AA1AA", "廃止済み観測所のマーカーは種別に関わらずグレーになる");
+// 地点番号が未確定の廃止済み観測所（precNo/blockNoともに無い）
+const noLinkStation = data.discontinuedStations.find((s) => !s.precNo);
+assert(!!noLinkStation, "precNo未確定の廃止済み観測所が存在する（テストの前提）");
+// フェーズ19でblock_numbers.jsonと突き合わせてprecNo/blockNoが確定した廃止済み観測所
+const withLinkStation = data.discontinuedStations.find((s) => s.precNo && s.blockNo);
+assert(!!withLinkStation, "precNo/blockNoが確定した廃止済み観測所が存在する（テストの前提）");
+
+assert(getMarkerColor(noLinkStation) === "#9AA1AA", "廃止済み観測所のマーカーは種別に関わらずグレーになる");
 assert(
-  getMarkerColor({ ...discontinuedStation, stationType: "気象官署" }) ===
-    getMarkerColor({ ...discontinuedStation, stationType: "アメダス" }),
+  getMarkerColor({ ...noLinkStation, stationType: "気象官署" }) ===
+    getMarkerColor({ ...noLinkStation, stationType: "アメダス" }),
   "廃止済み観測所は種別が違っても同じグレーになる"
 );
 
-const popupHtml = buildPopupHtml(discontinuedStation, { elementLabelMap: new Map() });
-assert(popupHtml.includes("廃止済み"), "廃止済み観測所のポップアップに「廃止済み」の表示が含まれる");
-assert(popupHtml.includes(discontinuedStation.observedFrom), "ポップアップに観測開始日が含まれる");
-assert(popupHtml.includes(discontinuedStation.observedTo), "ポップアップに観測終了日が含まれる");
-assert(!popupHtml.includes('<a href'), "廃止済み観測所のポップアップにはリンクが無い（地点番号未確定のため）");
+const popupHtmlNoLink = buildPopupHtml(noLinkStation, { elementLabelMap: new Map() });
+assert(popupHtmlNoLink.includes("廃止済み"), "廃止済み観測所のポップアップに「廃止済み」の表示が含まれる");
+assert(popupHtmlNoLink.includes(noLinkStation.observedFrom), "ポップアップに観測開始日が含まれる");
+assert(popupHtmlNoLink.includes(noLinkStation.observedTo), "ポップアップに観測終了日が含まれる");
+assert(!popupHtmlNoLink.includes("<a href"), "地点番号未確定の廃止済み観測所のポップアップにはリンクが無い");
+
+const popupHtmlWithLink = buildPopupHtml(withLinkStation, { elementLabelMap: new Map() });
+assert(popupHtmlWithLink.includes("<a href"), "precNo/blockNoが確定した廃止済み観測所のポップアップにはリンクがある");
+assert(popupHtmlWithLink.includes(`prec_no=${withLinkStation.precNo}`), "ポップアップのリンクに正しいprec_noが含まれる");
+assert(popupHtmlWithLink.includes("廃止済み観測所"), "リンクがあっても廃止済みである旨と観測期間は表示される");
+assert(popupHtmlWithLink.includes(withLinkStation.observedFrom), "リンクありでも観測期間（開始日）が表示される");
 
 console.log("\nAll mapView discontinued-station tests passed.");
 
@@ -107,20 +127,29 @@ const tableContainer = document.createElement("div");
 const elementLabelMap = new Map(data.elements.map((el) => [el.id, el.name]));
 const regionLabelMap = new Map(data.regions.map((r) => [r.id, r.name]));
 
-renderStationTable(tableContainer, [data.stations[0], discontinuedStation], {
+renderStationTable(tableContainer, [data.stations[0], noLinkStation, withLinkStation], {
   elementLabelMap,
   regionLabelMap,
 });
 
 const rows = [...tableContainer.querySelectorAll("tbody tr")];
-assert(rows.length === 2, "現役1件・廃止済み1件、あわせて2行描画される");
+assert(rows.length === 3, "現役1件・廃止済み2件、あわせて3行描画される");
 assert(!rows[0].classList.contains("station-table__row--discontinued"), "現役観測所の行には廃止クラスが付かない");
 assert(rows[1].classList.contains("station-table__row--discontinued"), "廃止済み観測所の行に廃止クラスが付く");
 assert(rows[1].querySelector(".station-table__discontinued-badge")?.textContent === "廃止", "廃止済み観測所の行に「廃止」バッジが表示される");
 assert(
-  rows[1].textContent.includes(discontinuedStation.observedFrom.slice(0, 4)),
+  rows[1].textContent.includes(noLinkStation.observedFrom.slice(0, 4)),
   "廃止済み観測所の行に観測開始年が表示される"
 );
-assert(!rows[1].querySelector("a"), "廃止済み観測所の地点名はリンクにならない（地点番号未確定のため）");
+assert(!rows[1].querySelector("a"), "地点番号未確定の廃止済み観測所の地点名はリンクにならない");
+
+assert(rows[2].classList.contains("station-table__row--discontinued"), "precNo確定済みの廃止済み観測所の行にも廃止クラスが付く");
+assert(rows[2].querySelector(".station-table__discontinued-badge")?.textContent === "廃止", "precNo確定済みでも「廃止」バッジは表示される");
+const linkInRow2 = rows[2].querySelector("a");
+assert(!!linkInRow2, "precNo/blockNoが確定した廃止済み観測所の地点名はリンクになる（フェーズ19）");
+assert(
+  linkInRow2.getAttribute("href").includes(`prec_no=${withLinkStation.precNo}`),
+  "そのリンク先に正しいprec_noが含まれる"
+);
 
 console.log("\nAll stationList discontinued-station tests passed.");
