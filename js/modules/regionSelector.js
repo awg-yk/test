@@ -22,20 +22,22 @@
  * 何も選択されていない状態 = 絞り込みなし（全観測所を表示）として扱う。
  *
  * 北海道は面積が広く1都道府県のままでは絞り込みの単位として粗いため、hokkaidoSubAreas が
- * 渡された場合はカード自体を「北海道（道北・道東）」「北海道（道央・道南）」の2枚（各7地域）に
- * 分割して表示する（フェーズ23。station.prefecture自体は「北海道」のまま変わらず、
- * filterEngine.js の regionSelectorKey() が北海道の観測所をprecNoから地域名に変換して照合する）。
+ * 渡された場合は宗谷・上川など14地域を選択肢に持つ1枚のカードとして表示する
+ * （フェーズ23で導入・フェーズ24で2枚組から1枚に統合。station.prefecture自体は「北海道」の
+ * まま変わらず、filterEngine.js の regionSelectorKey() が北海道の観測所をprecNoから
+ * 地域名に変換して照合する）。
  * また沖縄・南極は選択肢が1件ずつしかなく縦に短いため、同じグリッド列内に半分の高さで
- * 上下に重ねて表示し、地域カード全体の並びを5列×2段に保つ。
+ * 上下に重ねて表示する。
  */
 
 import { h } from "../utils/helpers.js";
 
-/** 北海道の地域カードを分割し、沖縄・南極を1列に重ねられるよう並べ替えた表示用リストを作る */
+/** 北海道の地域カードを1枚にまとめ、沖縄・南極を1列に重ねられるよう並べ替えた表示用リストを作る */
 function buildDisplayRegions(regions, hokkaidoSubAreas) {
   const expanded = regions.flatMap((region) => {
     if (region.id === "hokkaido" && hokkaidoSubAreas && hokkaidoSubAreas.length > 0) {
-      return hokkaidoSubAreas.map((sub) => ({ id: sub.id, name: sub.name, prefectures: sub.areas }));
+      const allAreas = hokkaidoSubAreas.flatMap((sub) => sub.areas);
+      return [{ id: region.id, name: region.name, prefectures: allAreas }];
     }
     return [region];
   });

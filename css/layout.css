@@ -71,13 +71,6 @@
   border-radius: var(--radius-md);
 }
 
-.status-bar__right {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  flex-wrap: wrap;
-}
-
 .status-bar__count {
   font-family: var(--font-mono);
   font-weight: 700;
@@ -85,7 +78,8 @@
 }
 
 /* 地域パネル（横5×縦2の全幅グリッド）を上段に、観測要素・種別・廃止済み観測所を
-   その下に横並びで配置する（フェーズ22）。 */
+   その下に配置する（フェーズ22）。観測要素を左、種別・廃止済み観測所を右列に
+   縦積みで配置する（フェーズ24）。 */
 .filter-panels {
   display: flex;
   flex-direction: column;
@@ -95,9 +89,15 @@
 
 .filter-panels__row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: var(--space-4);
   align-items: start;
+}
+
+.filter-panels__row-right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
 }
 
 @media (max-width: 900px) {

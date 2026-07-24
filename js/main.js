@@ -33,7 +33,6 @@ const keywordSearchContainer = document.getElementById("keyword-search-container
 const mapViewContainer = document.getElementById("map-view-container");
 const statusCount = document.getElementById("status-count");
 const exportCsvBtn = document.getElementById("export-csv-btn");
-const copyLinkBtn = document.getElementById("copy-link-btn");
 
 let elementLabelMap = new Map();
 let regionLabelMap = new Map();
@@ -180,20 +179,6 @@ exportCsvBtn.addEventListener("click", () => {
       statusCount.textContent = previousText;
     }, 3000);
   }
-});
-
-copyLinkBtn?.addEventListener("click", async () => {
-  const previousText = copyLinkBtn.textContent;
-  try {
-    await navigator.clipboard.writeText(window.location.href);
-    copyLinkBtn.textContent = "コピーしました ✓";
-  } catch (err) {
-    console.error(err);
-    copyLinkBtn.textContent = "コピーに失敗しました";
-  }
-  setTimeout(() => {
-    copyLinkBtn.textContent = previousText;
-  }, 2000);
 });
 
 // store の状態が変わるたびに一覧・ページネーションを再描画する

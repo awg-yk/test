@@ -32,9 +32,6 @@
 
     <div class="status-bar">
       <span id="status-count" class="status-bar__count" role="status" aria-live="polite">読み込み中...</span>
-      <div class="status-bar__right">
-        <button type="button" id="copy-link-btn" class="btn btn--secondary btn--small" aria-live="polite">この条件のURLをコピー</button>
-      </div>
     </div>
 
     <div class="filter-panels">
@@ -72,38 +69,40 @@
           </div>
         </section>
 
-        <section class="panel">
-          <div class="panel__header">
-            <h2 class="panel__title">
-              種別で絞り込む
-              <span class="panel__info" tabindex="0">
-                <span class="panel__info-icon" aria-hidden="true">i</span>
-                <span class="u-visually-hidden">説明を表示</span>
-                <p class="panel__note" role="tooltip">気象官署・アメダスで絞り込めます。何も選択しない場合は両方を表示します。（　）内の件数は、地域・観測要素・検索語による絞り込みを反映した件数です。</p>
-              </span>
-              <span id="type-filter-clear-container" class="panel__header-clear"></span>
-            </h2>
-          </div>
-          <div class="panel__body">
-            <div id="type-filter-container"></div>
-          </div>
-        </section>
+        <div class="filter-panels__row-right">
+          <section class="panel">
+            <div class="panel__header">
+              <h2 class="panel__title">
+                種別で絞り込む
+                <span class="panel__info" tabindex="0">
+                  <span class="panel__info-icon" aria-hidden="true">i</span>
+                  <span class="u-visually-hidden">説明を表示</span>
+                  <p class="panel__note" role="tooltip">気象官署・アメダスで絞り込めます。何も選択しない場合は両方を表示します。（　）内の件数は、地域・観測要素・検索語による絞り込みを反映した件数です。</p>
+                </span>
+                <span id="type-filter-clear-container" class="panel__header-clear"></span>
+              </h2>
+            </div>
+            <div class="panel__body">
+              <div id="type-filter-container"></div>
+            </div>
+          </section>
 
-        <section class="panel">
-          <div class="panel__header">
-            <h2 class="panel__title">
-              廃止済み観測所
-              <span class="panel__info" tabindex="0">
-                <span class="panel__info-icon" aria-hidden="true">i</span>
-                <span class="u-visually-hidden">説明を表示</span>
-                <p class="panel__note" role="tooltip">現在は運用されていない、過去の観測所です。気象庁の観測所履歴資料をもとに収録しています（緯度経度・観測期間は判明している範囲）。506地点のうち386地点は気象庁ページへの直接リンクも確認済みです（残る120地点は地点番号が未確定のためリンクはありません）。一覧・地図には既定で含まれています。（　）内の件数は、地域・観測要素・種別・検索語による絞り込みを反映した件数です。</p>
-              </span>
-            </h2>
-          </div>
-          <div class="panel__body">
-            <div id="discontinued-filter-container"></div>
-          </div>
-        </section>
+          <section class="panel">
+            <div class="panel__header">
+              <h2 class="panel__title">
+                廃止済み観測所
+                <span class="panel__info" tabindex="0">
+                  <span class="panel__info-icon" aria-hidden="true">i</span>
+                  <span class="u-visually-hidden">説明を表示</span>
+                  <p class="panel__note" role="tooltip">現在は運用されていない、過去の観測所です。気象庁の観測所履歴資料をもとに収録しています（緯度経度・観測期間は判明している範囲）。506地点のうち386地点は気象庁ページへの直接リンクも確認済みです（残る120地点は地点番号が未確定のためリンクはありません）。一覧・地図には既定で含まれています。（　）内の件数は、地域・観測要素・種別・検索語による絞り込みを反映した件数です。</p>
+                </span>
+              </h2>
+            </div>
+            <div class="panel__body">
+              <div id="discontinued-filter-container"></div>
+            </div>
+          </section>
+        </div>
       </div>
     </div>
 
