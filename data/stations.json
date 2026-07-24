@@ -26124,7 +26124,7 @@
     {
       "id": "11011",
       "name": "船泊",
-      "kana": "ﾌﾅﾄﾞﾏﾘ",
+      "kana": "フナドマリ",
       "enName": "FUNADOMARI",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26147,7 +26147,7 @@
     {
       "id": "11012",
       "name": "幌泊",
-      "kana": "ﾎﾛﾄﾞﾏﾘ",
+      "kana": "ホロドマリ",
       "enName": "HORODOMARI",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26169,7 +26169,7 @@
     {
       "id": "11013",
       "name": "礼文上泊埼",
-      "kana": "ﾚﾌﾞﾝｳｴﾄﾞﾏﾘｻｷ",
+      "kana": "レブンウエドマリサキ",
       "enName": "REBUN-UEDOMARISAKI",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26189,7 +26189,7 @@
     {
       "id": "12151",
       "name": "ピヤシリ山",
-      "kana": "ﾋﾟﾔｼﾘﾔﾏ",
+      "kana": "ピヤシリヤマ",
       "enName": "PIYASHIRIYAMA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26209,7 +26209,7 @@
     {
       "id": "12216",
       "name": "雨竜",
-      "kana": "ｳﾘｭｳ",
+      "kana": "ウリュウ",
       "enName": "URYU",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26227,7 +26227,7 @@
     {
       "id": "12291",
       "name": "犬牛別峠",
-      "kana": "ｲﾇｳｼﾍﾞﾂﾄｳｹﾞ",
+      "kana": "イヌウシベツトウゲ",
       "enName": "INUUSHIBETSUTOGE",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26247,7 +26247,7 @@
     {
       "id": "12341",
       "name": "雄鷹峰",
-      "kana": "ｵﾀｶﾐﾈ",
+      "kana": "オタカミネ",
       "enName": "OTAKAMINE",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26267,7 +26267,7 @@
     {
       "id": "12346",
       "name": "和寒",
-      "kana": "ﾜｯｻﾑ",
+      "kana": "ワッサム",
       "enName": "WASSAMU",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26285,7 +26285,7 @@
     {
       "id": "12351",
       "name": "蓬莱山",
-      "kana": "ﾎｳﾗｲｻﾞﾝ",
+      "kana": "ホウライザン",
       "enName": "HORAIZAN",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26305,7 +26305,7 @@
     {
       "id": "12456",
       "name": "瑞穂",
-      "kana": "ﾐｽﾞﾎ",
+      "kana": "ミズホ",
       "enName": "MIZUHO",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26323,7 +26323,7 @@
     {
       "id": "12496",
       "name": "終沢",
-      "kana": "ｵﾜﾘｻﾞﾜ",
+      "kana": "オワリザワ",
       "enName": "OWARIZAWA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26343,7 +26343,7 @@
     {
       "id": "12511",
       "name": "忠別",
-      "kana": "ﾁｭｳﾍﾞﾂ",
+      "kana": "チュウベツ",
       "enName": "CHUBETSU",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26364,7 +26364,7 @@
     {
       "id": "12521",
       "name": "旭岳",
-      "kana": "ｱｻﾋﾀﾞｹ",
+      "kana": "アサヒダケ",
       "enName": "ASAHIDAKE",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26384,7 +26384,7 @@
     {
       "id": "12606",
       "name": "白金",
-      "kana": "ｼﾛｶﾞﾈ",
+      "kana": "シロガネ",
       "enName": "SHIROGANE",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26402,7 +26402,7 @@
     {
       "id": "12631",
       "name": "前富良野岳",
-      "kana": "ﾏｴﾌﾗﾉﾀﾞｹ",
+      "kana": "マエフラノダケ",
       "enName": "MAEFURANODAKE",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26422,7 +26422,7 @@
     {
       "id": "12681",
       "name": "前時雨山",
-      "kana": "ﾏｴｼｸﾞﾚﾔﾏ",
+      "kana": "マエシグレヤマ",
       "enName": "MAESHIGUREYAMA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26442,7 +26442,7 @@
     {
       "id": "14076",
       "name": "阿曽岩",
-      "kana": "ｱｿｲﾜ",
+      "kana": "アソイワ",
       "enName": "ASOIWA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26462,7 +26462,7 @@
     {
       "id": "14156",
       "name": "手稲山",
-      "kana": "ﾃｲﾈﾔﾏ",
+      "kana": "テイネヤマ",
       "enName": "TEINEYAMA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26480,7 +26480,7 @@
     {
       "id": "14171",
       "name": "西野幌",
-      "kana": "ﾆｼﾉｯﾎﾟﾛ",
+      "kana": "ニシノッポロ",
       "enName": "NISHINOPPORO",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26503,7 +26503,7 @@
     {
       "id": "14246",
       "name": "島松山",
-      "kana": "ｼﾏﾏﾂﾔﾏ",
+      "kana": "シママツヤマ",
       "enName": "SHIMAMATSUYAMA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26523,7 +26523,7 @@
     {
       "id": "15171",
       "name": "常盤山",
-      "kana": "ﾄｷﾜﾔﾏ",
+      "kana": "トキワヤマ",
       "enName": "TOKIWAYAMA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26543,7 +26543,7 @@
     {
       "id": "15196",
       "name": "桜山",
-      "kana": "ｻｸﾗﾔﾏ",
+      "kana": "サクラヤマ",
       "enName": "SAKURAYAMA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26563,7 +26563,7 @@
     {
       "id": "15246",
       "name": "神威岳",
-      "kana": "ｶﾓｲﾀﾞｹ",
+      "kana": "カモイダケ",
       "enName": "KAMOIDAKE",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26583,7 +26583,7 @@
     {
       "id": "15271",
       "name": "晩生内",
-      "kana": "ｵｿｷﾅｲ",
+      "kana": "オソキナイ",
       "enName": "OSOKINAI",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26603,7 +26603,7 @@
     {
       "id": "15366",
       "name": "下桂沢",
-      "kana": "ｼﾓｶﾂﾗｻﾞﾜ",
+      "kana": "シモカツラザワ",
       "enName": "SHIMOKATSURAZAWA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26623,7 +26623,7 @@
     {
       "id": "15441",
       "name": "丁未山",
-      "kana": "ﾃｲﾐﾔﾏ",
+      "kana": "テイミヤマ",
       "enName": "TEIMIYAMA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26643,7 +26643,7 @@
     {
       "id": "15496",
       "name": "登川山",
-      "kana": "ﾉﾎﾞﾘｶﾜﾔﾏ",
+      "kana": "ノボリカワヤマ",
       "enName": "NOBORIKAWAYAMA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26663,7 +26663,7 @@
     {
       "id": "16226",
       "name": "脇方台地",
-      "kana": "ﾜｷｶﾀﾀﾞｲﾁ",
+      "kana": "ワキカタダイチ",
       "enName": "WAKIKATADAICHI",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26683,7 +26683,7 @@
     {
       "id": "16271",
       "name": "桂台",
-      "kana": "ｶﾂﾗﾀﾞｲ",
+      "kana": "カツラダイ",
       "enName": "KATSURADAI",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26703,7 +26703,7 @@
     {
       "id": "17481",
       "name": "白滝",
-      "kana": "ｼﾗﾀｷ",
+      "kana": "シラタキ",
       "enName": "SHIRATAKI",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26725,7 +26725,7 @@
     {
       "id": "17511",
       "name": "仁頃山",
-      "kana": "ﾆｺﾛﾔﾏ",
+      "kana": "ニコロヤマ",
       "enName": "NIKOROYAMA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26743,7 +26743,7 @@
     {
       "id": "17606",
       "name": "留辺蘂山",
-      "kana": "ﾙﾍﾞｼﾍﾞﾔﾏ",
+      "kana": "ルベシベヤマ",
       "enName": "RUBESHIBEYAMA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26763,7 +26763,7 @@
     {
       "id": "17641",
       "name": "藻琴山",
-      "kana": "ﾓｺﾄﾔﾏ",
+      "kana": "モコトヤマ",
       "enName": "MOKOTOYAMA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26783,7 +26783,7 @@
     {
       "id": "17706",
       "name": "チミケップ山",
-      "kana": "ﾁﾐｹｯﾌﾟﾔﾏ",
+      "kana": "チミケップヤマ",
       "enName": "CHIMIKEPPUYAMA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26803,7 +26803,7 @@
     {
       "id": "17766",
       "name": "北見中山",
-      "kana": "ｷﾀﾐﾅｶﾔﾏ",
+      "kana": "キタミナカヤマ",
       "enName": "KITAMINAKAYAMA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26823,7 +26823,7 @@
     {
       "id": "18036",
       "name": "羅臼",
-      "kana": "ﾗｳｽ",
+      "kana": "ラウス",
       "enName": "RAUSU",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26845,7 +26845,7 @@
     {
       "id": "18037",
       "name": "羅臼",
-      "kana": "ﾗｳｽ",
+      "kana": "ラウス",
       "enName": "RAUSU",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26867,7 +26867,7 @@
     {
       "id": "18206",
       "name": "計根別",
-      "kana": "ｹﾈﾍﾞﾂ",
+      "kana": "ケネベツ",
       "enName": "KENEBETSU",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26890,7 +26890,7 @@
     {
       "id": "19091",
       "name": "弟子屈",
-      "kana": "ﾃｼｶｶﾞ",
+      "kana": "テシカガ",
       "enName": "TESHIKAGA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26903,12 +26903,14 @@
       "stationType": "アメダス",
       "discontinued": true,
       "observedFrom": "1974-11-01",
-      "observedTo": "1977-10-06"
+      "observedTo": "1977-10-06",
+      "precNo": "19",
+      "blockNo": "0092"
     },
     {
       "id": "19186",
       "name": "幌呂台地",
-      "kana": "ﾎﾛﾛﾀﾞｲﾁ",
+      "kana": "ホロロダイチ",
       "enName": "HORORODAICHI",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26928,7 +26930,7 @@
     {
       "id": "19396",
       "name": "霧多布",
-      "kana": "ｷﾘﾀｯﾌﾟ",
+      "kana": "キリタップ",
       "enName": "KIRITAPPU",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26948,7 +26950,7 @@
     {
       "id": "20046",
       "name": "三国山",
-      "kana": "ﾐｸﾆﾔﾏ",
+      "kana": "ミクニヤマ",
       "enName": "MIKUNIYAMA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26968,7 +26970,7 @@
     {
       "id": "20116",
       "name": "軍艦山",
-      "kana": "ｸﾞﾝｶﾝﾔﾏ",
+      "kana": "グンカンヤマ",
       "enName": "GUNKANYAMA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -26988,7 +26990,7 @@
     {
       "id": "20147",
       "name": "殖産高地",
-      "kana": "ｼｮｸｻﾝｺｳﾁ",
+      "kana": "ショクサンコウチ",
       "enName": "SHOKUSANKOCHI",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27008,7 +27010,7 @@
     {
       "id": "20201",
       "name": "小坂山",
-      "kana": "ｺｻｶﾔﾏ",
+      "kana": "コサカヤマ",
       "enName": "KOSAKAYAMA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27028,7 +27030,7 @@
     {
       "id": "20221",
       "name": "上足寄",
-      "kana": "ｶﾐｱｼｮﾛ",
+      "kana": "カミアショロ",
       "enName": "KAMIASHORO",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27048,7 +27050,7 @@
     {
       "id": "20251",
       "name": "西ヌプカウシ山",
-      "kana": "ﾆｼﾇﾌﾟｶｳｼﾔﾏ",
+      "kana": "ニシヌプカウシヤマ",
       "enName": "NISHINUPUKAUSHIYAMA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27068,7 +27070,7 @@
     {
       "id": "20271",
       "name": "幌安山",
-      "kana": "ﾎﾛﾔｽﾔﾏ",
+      "kana": "ホロヤスヤマ",
       "enName": "HOROYASUYAMA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27088,7 +27090,7 @@
     {
       "id": "20296",
       "name": "佐幌岳",
-      "kana": "ｻﾎﾛﾀﾞｹ",
+      "kana": "サホロダケ",
       "enName": "SAHORODAKE",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27108,7 +27110,7 @@
     {
       "id": "20306",
       "name": "三角山",
-      "kana": "ｻﾝｶｸﾔﾏ",
+      "kana": "サンカクヤマ",
       "enName": "SANKAKUYAMA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27128,7 +27130,7 @@
     {
       "id": "20536",
       "name": "帯広岳",
-      "kana": "ｵﾋﾞﾋﾛﾀﾞｹ",
+      "kana": "オビヒロダケ",
       "enName": "OBIHIRODAKE",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27148,7 +27150,7 @@
     {
       "id": "20646",
       "name": "ひょうたん沢",
-      "kana": "ﾋｮｳﾀﾝｻﾞﾜ",
+      "kana": "ヒョウタンザワ",
       "enName": "HYOTANZAWA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27168,7 +27170,7 @@
     {
       "id": "21121",
       "name": "厚真幌内",
-      "kana": "ｱﾂﾏﾎﾛﾅｲ",
+      "kana": "アツマホロナイ",
       "enName": "ATSUMA-HORONAI",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27188,7 +27190,7 @@
     {
       "id": "21146",
       "name": "花和",
-      "kana": "ﾊﾅﾜ",
+      "kana": "ハナワ",
       "enName": "HANAWA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27208,7 +27210,7 @@
     {
       "id": "21231",
       "name": "豊浦",
-      "kana": "ﾄﾖｳﾗ",
+      "kana": "トヨウラ",
       "enName": "TOYOURA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27228,7 +27230,7 @@
     {
       "id": "21232",
       "name": "虻田",
-      "kana": "ｱﾌﾞﾀ",
+      "kana": "アブタ",
       "enName": "ABUTA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27248,7 +27250,7 @@
     {
       "id": "21233",
       "name": "入江",
-      "kana": "ｲﾘｴ",
+      "kana": "イリエ",
       "enName": "IRIE",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27268,7 +27270,7 @@
     {
       "id": "21234",
       "name": "月浦",
-      "kana": "ﾂｷｳﾗ",
+      "kana": "ツキウラ",
       "enName": "TSUKIURA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27288,7 +27290,7 @@
     {
       "id": "21236",
       "name": "有珠山",
-      "kana": "ｳｽｻﾝ",
+      "kana": "ウスサン",
       "enName": "USUSAN",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27308,7 +27310,7 @@
     {
       "id": "21238",
       "name": "壮瞥",
-      "kana": "ｿｳﾍﾞﾂ",
+      "kana": "ソウベツ",
       "enName": "SOBETSU",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27328,7 +27330,7 @@
     {
       "id": "21239",
       "name": "北有珠",
-      "kana": "ｷﾀｳｽ",
+      "kana": "キタウス",
       "enName": "KITAUSU",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27348,7 +27350,7 @@
     {
       "id": "21296",
       "name": "伊達",
-      "kana": "ﾀﾞﾃ",
+      "kana": "ダテ",
       "enName": "DATE",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27369,7 +27371,7 @@
     {
       "id": "21311",
       "name": "登別山",
-      "kana": "ﾉﾎﾞﾘﾍﾞﾂﾔﾏ",
+      "kana": "ノボリベツヤマ",
       "enName": "NOBORIBETSUYAMA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27389,7 +27391,7 @@
     {
       "id": "21501",
       "name": "洞爺湖畔",
-      "kana": "ﾄｳﾔｺﾊﾝ",
+      "kana": "トウヤコハン",
       "enName": "TOYAKOHAN",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27409,7 +27411,7 @@
     {
       "id": "22071",
       "name": "仁世宇",
-      "kana": "ﾆｾｳ",
+      "kana": "ニセウ",
       "enName": "NISEU",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27427,7 +27429,7 @@
     {
       "id": "22161",
       "name": "ヌモトル山",
-      "kana": "ﾇﾓﾄﾙﾔﾏ",
+      "kana": "ヌモトルヤマ",
       "enName": "NUMOTORUYAMA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27447,7 +27449,7 @@
     {
       "id": "22211",
       "name": "笹山",
-      "kana": "ｻｻﾔﾏ",
+      "kana": "ササヤマ",
       "enName": "SASAYAMA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27465,7 +27467,7 @@
     {
       "id": "22256",
       "name": "ピセナイ山",
-      "kana": "ﾋﾟｾﾅｲﾔﾏ",
+      "kana": "ピセナイヤマ",
       "enName": "PISENAIYAMA",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27485,7 +27487,7 @@
     {
       "id": "22905",
       "name": "平取",
-      "kana": "ﾋﾞﾗﾄﾘ",
+      "kana": "ビラトリ",
       "enName": "BIRATORI",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27505,7 +27507,7 @@
     {
       "id": "23126",
       "name": "森",
-      "kana": "ﾓﾘ",
+      "kana": "モリ",
       "enName": "MORI",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27526,7 +27528,7 @@
     {
       "id": "23286",
       "name": "汐首",
-      "kana": "ｼｵｸﾋﾞ",
+      "kana": "シオクビ",
       "enName": "SHIOKUBI",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27546,7 +27548,7 @@
     {
       "id": "23287",
       "name": "蛾眉野",
-      "kana": "ｶﾞﾋﾞﾉ",
+      "kana": "ガビノ",
       "enName": "GABINO",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27566,7 +27568,7 @@
     {
       "id": "23366",
       "name": "小谷石",
-      "kana": "ｺﾀﾆｲｼ",
+      "kana": "コタニイシ",
       "enName": "KOTANIISHI",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27586,7 +27588,7 @@
     {
       "id": "23381",
       "name": "松前",
-      "kana": "ﾏﾂﾏｴ",
+      "kana": "マツマエ",
       "enName": "MATSUMAE",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27604,7 +27606,7 @@
     {
       "id": "24131",
       "name": "奥尻",
-      "kana": "ｵｸｼﾘ",
+      "kana": "オクシリ",
       "enName": "OKUSHIRI",
       "prefecture": "北海道",
       "region": "hokkaido",
@@ -27625,7 +27627,7 @@
     {
       "id": "31106",
       "name": "障子山",
-      "kana": "ｼｮｳｼﾞﾔﾏ",
+      "kana": "ショウジヤマ",
       "enName": "SHOJIYAMA",
       "prefecture": "青森県",
       "region": "tohoku",
@@ -27645,7 +27647,7 @@
     {
       "id": "31281",
       "name": "六ケ所",
-      "kana": "ﾛｯｶｼｮ",
+      "kana": "ロッカショ",
       "enName": "ROKKASHO",
       "prefecture": "青森県",
       "region": "tohoku",
@@ -27666,7 +27668,7 @@
     {
       "id": "31331",
       "name": "野辺地",
-      "kana": "ﾉﾍｼﾞ",
+      "kana": "ノヘジ",
       "enName": "NOHEJI",
       "prefecture": "青森県",
       "region": "tohoku",
@@ -27688,7 +27690,7 @@
     {
       "id": "31376",
       "name": "五所川原",
-      "kana": "ｺﾞｼｮｶﾞﾜﾗ",
+      "kana": "ゴショガワラ",
       "enName": "GOSHOGAWARA",
       "prefecture": "青森県",
       "region": "tohoku",
@@ -27706,7 +27708,7 @@
     {
       "id": "31441",
       "name": "長慶平",
-      "kana": "ﾁｮｳｹｲﾀﾞｲﾗ",
+      "kana": "チョウケイダイラ",
       "enName": "CHOKEIDAIRA",
       "prefecture": "青森県",
       "region": "tohoku",
@@ -27726,7 +27728,7 @@
     {
       "id": "31481",
       "name": "八甲田山",
-      "kana": "ﾊｯｺｳﾀﾞｻﾝ",
+      "kana": "ハッコウダサン",
       "enName": "HAKKODASAN",
       "prefecture": "青森県",
       "region": "tohoku",
@@ -27746,7 +27748,7 @@
     {
       "id": "31536",
       "name": "四兵衛森",
-      "kana": "ｼﾍｲﾓﾘ",
+      "kana": "シヘイモリ",
       "enName": "SHIHEIMORI",
       "prefecture": "青森県",
       "region": "tohoku",
@@ -27766,7 +27768,7 @@
     {
       "id": "31561",
       "name": "毛無山",
-      "kana": "ｹﾅｼﾔﾏ",
+      "kana": "ケナシヤマ",
       "enName": "KENASHIYAMA",
       "prefecture": "青森県",
       "region": "tohoku",
@@ -27786,7 +27788,7 @@
     {
       "id": "31641",
       "name": "大鰐",
-      "kana": "ｵｵﾜﾆ",
+      "kana": "オオワニ",
       "enName": "OWANI",
       "prefecture": "青森県",
       "region": "tohoku",
@@ -27804,7 +27806,7 @@
     {
       "id": "31651",
       "name": "空岱山",
-      "kana": "ｿﾗﾀﾞｲﾔﾏ",
+      "kana": "ソラダイヤマ",
       "enName": "SORADAIYAMA",
       "prefecture": "青森県",
       "region": "tohoku",
@@ -27824,7 +27826,7 @@
     {
       "id": "31661",
       "name": "休屋",
-      "kana": "ﾔｽﾐﾔ",
+      "kana": "ヤスミヤ",
       "enName": "YASUMIYA",
       "prefecture": "青森県",
       "region": "tohoku",
@@ -27845,7 +27847,7 @@
     {
       "id": "31711",
       "name": "朝日奈岳",
-      "kana": "ｱｻﾋﾅﾀﾞｹ",
+      "kana": "アサヒナダケ",
       "enName": "ASAHINADAKE",
       "prefecture": "青森県",
       "region": "tohoku",
@@ -27865,7 +27867,7 @@
     {
       "id": "32026",
       "name": "田代岳",
-      "kana": "ﾀｼﾛﾀﾞｹ",
+      "kana": "タシロダケ",
       "enName": "TASHIRODAKE",
       "prefecture": "秋田県",
       "region": "tohoku",
@@ -27885,7 +27887,7 @@
     {
       "id": "32101",
       "name": "杉沢山",
-      "kana": "ｽｷﾞｻﾜﾔﾏ",
+      "kana": "スギサワヤマ",
       "enName": "SUGISAWAYAMA",
       "prefecture": "秋田県",
       "region": "tohoku",
@@ -27905,7 +27907,7 @@
     {
       "id": "32221",
       "name": "大潟",
-      "kana": "ｵｵｶﾞﾀ",
+      "kana": "オオガタ",
       "enName": "OGATA",
       "prefecture": "秋田県",
       "region": "tohoku",
@@ -27926,7 +27928,7 @@
     {
       "id": "32251",
       "name": "森吉山",
-      "kana": "ﾓﾘﾖｼﾔﾏ",
+      "kana": "モリヨシヤマ",
       "enName": "MORIYOSHIYAMA",
       "prefecture": "秋田県",
       "region": "tohoku",
@@ -27946,7 +27948,7 @@
     {
       "id": "32336",
       "name": "男鹿本山",
-      "kana": "ｵｶﾞﾎﾝｻﾞﾝ",
+      "kana": "オガホンザン",
       "enName": "OGAHONZAN",
       "prefecture": "秋田県",
       "region": "tohoku",
@@ -27966,7 +27968,7 @@
     {
       "id": "32406",
       "name": "太平山",
-      "kana": "ﾀｲﾍｲｻﾞﾝ",
+      "kana": "タイヘイザン",
       "enName": "TAIHEIZAN",
       "prefecture": "秋田県",
       "region": "tohoku",
@@ -27986,7 +27988,7 @@
     {
       "id": "32586",
       "name": "保呂羽山",
-      "kana": "ﾎﾛﾊﾔﾏ",
+      "kana": "ホロハヤマ",
       "enName": "HOROHAYAMA",
       "prefecture": "秋田県",
       "region": "tohoku",
@@ -28006,7 +28008,7 @@
     {
       "id": "32656",
       "name": "三森山",
-      "kana": "ﾐﾂﾓﾘﾔﾏ",
+      "kana": "ミツモリヤマ",
       "enName": "MITSUMORIYAMA",
       "prefecture": "秋田県",
       "region": "tohoku",
@@ -28026,7 +28028,7 @@
     {
       "id": "32731",
       "name": "姥井戸山",
-      "kana": "ｳﾊﾞｲﾄﾞﾔﾏ",
+      "kana": "ウバイドヤマ",
       "enName": "UBAIDOYAMA",
       "prefecture": "秋田県",
       "region": "tohoku",
@@ -28046,7 +28048,7 @@
     {
       "id": "33072",
       "name": "折爪岳",
-      "kana": "ｵﾘﾂﾞﾒﾀﾞｹ",
+      "kana": "オリヅメダケ",
       "enName": "ORIZUMEDAKE",
       "prefecture": "岩手県",
       "region": "tohoku",
@@ -28066,7 +28068,7 @@
     {
       "id": "33171",
       "name": "西岳",
-      "kana": "ﾆｼﾀﾞｹ",
+      "kana": "ニシダケ",
       "enName": "NISHIDAKE",
       "prefecture": "岩手県",
       "region": "tohoku",
@@ -28086,7 +28088,7 @@
     {
       "id": "33191",
       "name": "袖山",
-      "kana": "ｿﾃﾞﾔﾏ",
+      "kana": "ソデヤマ",
       "enName": "SODEYAMA",
       "prefecture": "岩手県",
       "region": "tohoku",
@@ -28106,7 +28108,7 @@
     {
       "id": "33221",
       "name": "茶臼岳",
-      "kana": "ﾁｬｳｽﾀﾞｹ",
+      "kana": "チャウスダケ",
       "enName": "CHAUSUDAKE",
       "prefecture": "岩手県",
       "region": "tohoku",
@@ -28126,7 +28128,7 @@
     {
       "id": "33286",
       "name": "岩手山",
-      "kana": "ｲﾜﾃﾔﾏ",
+      "kana": "イワテヤマ",
       "enName": "IWATEYAMA",
       "prefecture": "岩手県",
       "region": "tohoku",
@@ -28146,7 +28148,7 @@
     {
       "id": "33306",
       "name": "岩洞",
-      "kana": "ｶﾞﾝﾄﾞｳ",
+      "kana": "ガンドウ",
       "enName": "GANDO",
       "prefecture": "岩手県",
       "region": "tohoku",
@@ -28166,7 +28168,7 @@
     {
       "id": "33316",
       "name": "大森山",
-      "kana": "ｵｵﾓﾘﾔﾏ",
+      "kana": "オオモリヤマ",
       "enName": "OMORIYAMA",
       "prefecture": "岩手県",
       "region": "tohoku",
@@ -28186,7 +28188,7 @@
     {
       "id": "33341",
       "name": "駒ケ岳",
-      "kana": "ｺﾏｶﾞﾀｹ",
+      "kana": "コマガタケ",
       "enName": "KOMAGATAKE",
       "prefecture": "岩手県",
       "region": "tohoku",
@@ -28206,7 +28208,7 @@
     {
       "id": "33386",
       "name": "害鷹森",
-      "kana": "ｶﾞｲﾀｶﾓﾘ",
+      "kana": "ガイタカモリ",
       "enName": "GAITAKAMORI",
       "prefecture": "岩手県",
       "region": "tohoku",
@@ -28226,7 +28228,7 @@
     {
       "id": "33446",
       "name": "門馬",
-      "kana": "ｶﾄﾞﾏ",
+      "kana": "カドマ",
       "enName": "KADOMA",
       "prefecture": "岩手県",
       "region": "tohoku",
@@ -28249,7 +28251,7 @@
     {
       "id": "33461",
       "name": "刈屋",
-      "kana": "ｶﾘﾔ",
+      "kana": "カリヤ",
       "enName": "KARIYA",
       "prefecture": "岩手県",
       "region": "tohoku",
@@ -28269,7 +28271,7 @@
     {
       "id": "33516",
       "name": "薬師岳",
-      "kana": "ﾔｸｼﾀﾞｹ",
+      "kana": "ヤクシダケ",
       "enName": "YAKUSHIDAKE",
       "prefecture": "岩手県",
       "region": "tohoku",
@@ -28289,7 +28291,7 @@
     {
       "id": "33556",
       "name": "黒森山",
-      "kana": "ｸﾛﾓﾘﾔﾏ",
+      "kana": "クロモリヤマ",
       "enName": "KUROMORIYAMA",
       "prefecture": "岩手県",
       "region": "tohoku",
@@ -28309,7 +28311,7 @@
     {
       "id": "33561",
       "name": "沢内",
-      "kana": "ｻﾜｳﾁ",
+      "kana": "サワウチ",
       "enName": "SAWAUCHI",
       "prefecture": "岩手県",
       "region": "tohoku",
@@ -28330,7 +28332,7 @@
     {
       "id": "33651",
       "name": "北上",
-      "kana": "ｷﾀｶﾐ",
+      "kana": "キタカミ",
       "enName": "KITAKAMI",
       "prefecture": "岩手県",
       "region": "tohoku",
@@ -28348,7 +28350,7 @@
     {
       "id": "33686",
       "name": "小鎚",
-      "kana": "ｺﾂﾞﾁ",
+      "kana": "コヅチ",
       "enName": "KOZUCHI",
       "prefecture": "岩手県",
       "region": "tohoku",
@@ -28368,7 +28370,7 @@
     {
       "id": "33746",
       "name": "五葉山",
-      "kana": "ｺﾞﾖｳｻﾝ",
+      "kana": "ゴヨウサン",
       "enName": "GOYOSAN",
       "prefecture": "岩手県",
       "region": "tohoku",
@@ -28388,7 +28390,7 @@
     {
       "id": "33766",
       "name": "岳山",
-      "kana": "ﾀﾞｹﾔﾏ",
+      "kana": "ダケヤマ",
       "enName": "DAKEYAMA",
       "prefecture": "岩手県",
       "region": "tohoku",
@@ -28408,7 +28410,7 @@
     {
       "id": "33871",
       "name": "陸前高田",
-      "kana": "ﾘｸｾﾞﾝﾀｶﾀ",
+      "kana": "リクゼンタカタ",
       "enName": "RIKUZENTAKATA",
       "prefecture": "岩手県",
       "region": "tohoku",
@@ -28430,7 +28432,7 @@
     {
       "id": "33901",
       "name": "厳美",
-      "kana": "ｹﾞﾝﾋﾞ",
+      "kana": "ゲンビ",
       "enName": "GENBI",
       "prefecture": "岩手県",
       "region": "tohoku",
@@ -28450,7 +28452,7 @@
     {
       "id": "33926",
       "name": "室根山",
-      "kana": "ﾑﾛﾈﾔﾏ",
+      "kana": "ムロネヤマ",
       "enName": "MURONEYAMA",
       "prefecture": "岩手県",
       "region": "tohoku",
@@ -28470,7 +28472,7 @@
     {
       "id": "34011",
       "name": "栗駒山",
-      "kana": "ｸﾘｺﾏﾔﾏ",
+      "kana": "クリコマヤマ",
       "enName": "KURIKOMAYAMA",
       "prefecture": "宮城県",
       "region": "tohoku",
@@ -28490,7 +28492,7 @@
     {
       "id": "34051",
       "name": "栗駒深山",
-      "kana": "ｸﾘｺﾏﾌｶﾔﾏ",
+      "kana": "クリコマフカヤマ",
       "enName": "KURIKOMA-FUKAYAMA",
       "prefecture": "宮城県",
       "region": "tohoku",
@@ -28510,7 +28512,7 @@
     {
       "id": "34101",
       "name": "花山",
-      "kana": "ﾊﾅﾔﾏ",
+      "kana": "ハナヤマ",
       "enName": "HANAYAMA",
       "prefecture": "宮城県",
       "region": "tohoku",
@@ -28530,7 +28532,7 @@
     {
       "id": "34146",
       "name": "箕輪山",
-      "kana": "ﾐﾉﾜﾔﾏ",
+      "kana": "ミノワヤマ",
       "enName": "MINOWAYAMA",
       "prefecture": "宮城県",
       "region": "tohoku",
@@ -28550,7 +28552,7 @@
     {
       "id": "34231",
       "name": "桃生",
-      "kana": "ﾓﾉｳ",
+      "kana": "モノウ",
       "enName": "MONO",
       "prefecture": "宮城県",
       "region": "tohoku",
@@ -28572,7 +28574,7 @@
     {
       "id": "34261",
       "name": "泉ケ岳",
-      "kana": "ｲｽﾞﾐｶﾞﾀﾞｹ",
+      "kana": "イズミガダケ",
       "enName": "IZUMIGADAKE",
       "prefecture": "宮城県",
       "region": "tohoku",
@@ -28590,7 +28592,7 @@
     {
       "id": "34286",
       "name": "東松島",
-      "kana": "ﾋｶﾞｼﾏﾂｼﾏ",
+      "kana": "ヒガシマツシマ",
       "enName": "HIGASHIMATSUSHIMA",
       "prefecture": "宮城県",
       "region": "tohoku",
@@ -28612,7 +28614,7 @@
     {
       "id": "34361",
       "name": "江ノ島",
-      "kana": "ｴﾉｼﾏ",
+      "kana": "エノシマ",
       "enName": "ENOSHIMA",
       "prefecture": "宮城県",
       "region": "tohoku",
@@ -28634,7 +28636,7 @@
     {
       "id": "34371",
       "name": "鷹巣山",
-      "kana": "ﾀｶﾉｽﾔﾏ",
+      "kana": "タカノスヤマ",
       "enName": "TAKANOSUYAMA",
       "prefecture": "宮城県",
       "region": "tohoku",
@@ -28654,7 +28656,7 @@
     {
       "id": "34421",
       "name": "川崎",
-      "kana": "ｶﾜｻｷ",
+      "kana": "カワサキ",
       "enName": "KAWASAKI",
       "prefecture": "宮城県",
       "region": "tohoku",
@@ -28677,7 +28679,7 @@
     {
       "id": "34431",
       "name": "岩沼",
-      "kana": "ｲﾜﾇﾏ",
+      "kana": "イワヌマ",
       "enName": "IWANUMA",
       "prefecture": "宮城県",
       "region": "tohoku",
@@ -28697,7 +28699,7 @@
     {
       "id": "34456",
       "name": "不忘山",
-      "kana": "ﾌﾎﾞｳﾔﾏ",
+      "kana": "フボウヤマ",
       "enName": "FUBOYAMA",
       "prefecture": "宮城県",
       "region": "tohoku",
@@ -28717,7 +28719,7 @@
     {
       "id": "34905",
       "name": "栗駒",
-      "kana": "ｸﾘｺﾏ",
+      "kana": "クリコマ",
       "enName": "KURIKOMA",
       "prefecture": "宮城県",
       "region": "tohoku",
@@ -28737,7 +28739,7 @@
     {
       "id": "35031",
       "name": "鳥海山",
-      "kana": "ﾁｮｳｶｲｻﾝ",
+      "kana": "チョウカイサン",
       "enName": "CHOKAISAN",
       "prefecture": "山形県",
       "region": "tohoku",
@@ -28757,7 +28759,7 @@
     {
       "id": "35061",
       "name": "上草津",
-      "kana": "ｶﾐｸｻﾂ",
+      "kana": "カミクサツ",
       "enName": "KAMIKUSATSU",
       "prefecture": "山形県",
       "region": "tohoku",
@@ -28777,7 +28779,7 @@
     {
       "id": "35066",
       "name": "差首鍋",
-      "kana": "ｻｽﾅﾍﾞ",
+      "kana": "サスナベ",
       "enName": "SASUNABE",
       "prefecture": "山形県",
       "region": "tohoku",
@@ -28798,7 +28800,7 @@
     {
       "id": "35076",
       "name": "太平山",
-      "kana": "ﾀｲﾍｲｻﾞﾝ",
+      "kana": "タイヘイザン",
       "enName": "TAIHEIZAN",
       "prefecture": "山形県",
       "region": "tohoku",
@@ -28818,7 +28820,7 @@
     {
       "id": "35191",
       "name": "温海岳",
-      "kana": "ｱﾂﾐﾀﾞｹ",
+      "kana": "アツミダケ",
       "enName": "ATSUMIDAKE",
       "prefecture": "山形県",
       "region": "tohoku",
@@ -28838,7 +28840,7 @@
     {
       "id": "35202",
       "name": "落合",
-      "kana": "ｵﾁｱｲ",
+      "kana": "オチアイ",
       "enName": "OCHIAI",
       "prefecture": "山形県",
       "region": "tohoku",
@@ -28858,7 +28860,7 @@
     {
       "id": "35256",
       "name": "荒沢",
-      "kana": "ｱﾗｻﾜ",
+      "kana": "アラサワ",
       "enName": "ARASAWA",
       "prefecture": "山形県",
       "region": "tohoku",
@@ -28878,7 +28880,7 @@
     {
       "id": "35271",
       "name": "月山",
-      "kana": "ｶﾞｯｻﾝ",
+      "kana": "ガッサン",
       "enName": "GASSAN",
       "prefecture": "山形県",
       "region": "tohoku",
@@ -28896,7 +28898,7 @@
     {
       "id": "35296",
       "name": "銀山",
-      "kana": "ｷﾞﾝｻﾞﾝ",
+      "kana": "ギンザン",
       "enName": "GINZAN",
       "prefecture": "山形県",
       "region": "tohoku",
@@ -28916,7 +28918,7 @@
     {
       "id": "35321",
       "name": "月山",
-      "kana": "ｶﾞｯｻﾝ",
+      "kana": "ガッサン",
       "enName": "GASSAN",
       "prefecture": "山形県",
       "region": "tohoku",
@@ -28934,7 +28936,7 @@
     {
       "id": "35331",
       "name": "楯岡",
-      "kana": "ﾀﾃｵｶ",
+      "kana": "タテオカ",
       "enName": "TATEOKA",
       "prefecture": "山形県",
       "region": "tohoku",
@@ -28957,7 +28959,7 @@
     {
       "id": "35416",
       "name": "白鷹山",
-      "kana": "ｼﾗﾀｶﾔﾏ",
+      "kana": "シラタカヤマ",
       "enName": "SHIRATAKAYAMA",
       "prefecture": "山形県",
       "region": "tohoku",
@@ -28977,7 +28979,7 @@
     {
       "id": "35451",
       "name": "葉山",
-      "kana": "ﾊﾔﾏ",
+      "kana": "ハヤマ",
       "enName": "HAYAMA",
       "prefecture": "山形県",
       "region": "tohoku",
@@ -28997,7 +28999,7 @@
     {
       "id": "35476",
       "name": "蔵王山",
-      "kana": "ｻﾞｵｳｻﾝ",
+      "kana": "ザオウサン",
       "enName": "ZAOSAN",
       "prefecture": "山形県",
       "region": "tohoku",
@@ -29017,7 +29019,7 @@
     {
       "id": "35536",
       "name": "山毛欅潰山",
-      "kana": "ﾌﾞﾅﾂﾌﾞﾚﾔﾏ",
+      "kana": "ブナツブレヤマ",
       "enName": "BUNATSUBUREYAMA",
       "prefecture": "山形県",
       "region": "tohoku",
@@ -29037,7 +29039,7 @@
     {
       "id": "35606",
       "name": "西吾妻山",
-      "kana": "ﾆｼｱﾂﾞﾏﾔﾏ",
+      "kana": "ニシアヅマヤマ",
       "enName": "NISHIAZUMAYAMA",
       "prefecture": "山形県",
       "region": "tohoku",
@@ -29057,7 +29059,7 @@
     {
       "id": "36006",
       "name": "茂庭",
-      "kana": "ﾓﾆﾜ",
+      "kana": "モニワ",
       "enName": "MONIWA",
       "prefecture": "福島県",
       "region": "tohoku",
@@ -29079,7 +29081,7 @@
     {
       "id": "36081",
       "name": "新地",
-      "kana": "ｼﾝﾁ",
+      "kana": "シンチ",
       "enName": "SHINCHI",
       "prefecture": "福島県",
       "region": "tohoku",
@@ -29101,7 +29103,7 @@
     {
       "id": "36091",
       "name": "稲荷峠",
-      "kana": "ｲﾅﾘﾄｳｹﾞ",
+      "kana": "イナリトウゲ",
       "enName": "INARITOGE",
       "prefecture": "福島県",
       "region": "tohoku",
@@ -29121,7 +29123,7 @@
     {
       "id": "36116",
       "name": "吾妻山",
-      "kana": "ｱﾂﾞﾏﾔﾏ",
+      "kana": "アヅマヤマ",
       "enName": "AZUMAYAMA",
       "prefecture": "福島県",
       "region": "tohoku",
@@ -29141,7 +29143,7 @@
     {
       "id": "36226",
       "name": "八木沢",
-      "kana": "ﾔｷﾞｻﾜ",
+      "kana": "ヤギサワ",
       "enName": "YAGISAWA",
       "prefecture": "福島県",
       "region": "tohoku",
@@ -29161,7 +29163,7 @@
     {
       "id": "36252",
       "name": "飯谷山",
-      "kana": "ｲｲﾀﾆﾔﾏ",
+      "kana": "イイタニヤマ",
       "enName": "IITANIYAMA",
       "prefecture": "福島県",
       "region": "tohoku",
@@ -29181,7 +29183,7 @@
     {
       "id": "36306",
       "name": "白馬石山",
-      "kana": "ｼﾗｳﾏｲｼﾔﾏ",
+      "kana": "シラウマイシヤマ",
       "enName": "SHIRAUMAISHIYAMA",
       "prefecture": "福島県",
       "region": "tohoku",
@@ -29201,7 +29203,7 @@
     {
       "id": "36341",
       "name": "金山",
-      "kana": "ｶﾈﾔﾏ",
+      "kana": "カネヤマ",
       "enName": "KANEYAMA",
       "prefecture": "福島県",
       "region": "tohoku",
@@ -29223,7 +29225,7 @@
     {
       "id": "36421",
       "name": "浅草岳",
-      "kana": "ｱｻｸｻﾀﾞｹ",
+      "kana": "アサクサダケ",
       "enName": "ASAKUSADAKE",
       "prefecture": "福島県",
       "region": "tohoku",
@@ -29243,7 +29245,7 @@
     {
       "id": "36422",
       "name": "六十里越",
-      "kana": "ﾛｸｼﾞｭｳﾘｺﾞｴ",
+      "kana": "ロクジュウリゴエ",
       "enName": "ROKUJURIGOE",
       "prefecture": "福島県",
       "region": "tohoku",
@@ -29263,7 +29265,7 @@
     {
       "id": "36436",
       "name": "吉尾峠",
-      "kana": "ﾖｼｵﾄｳｹﾞ",
+      "kana": "ヨシオトウゲ",
       "enName": "YOSHIOTOGE",
       "prefecture": "福島県",
       "region": "tohoku",
@@ -29283,7 +29285,7 @@
     {
       "id": "36446",
       "name": "博士峠",
-      "kana": "ﾊｶｾﾄｳｹﾞ",
+      "kana": "ハカセトウゲ",
       "enName": "HAKASETOGE",
       "prefecture": "福島県",
       "region": "tohoku",
@@ -29303,7 +29305,7 @@
     {
       "id": "36541",
       "name": "駒止峠",
-      "kana": "ｺﾏﾄﾞﾒﾄｳｹﾞ",
+      "kana": "コマドメトウゲ",
       "enName": "KOMADOMETOGE",
       "prefecture": "福島県",
       "region": "tohoku",
@@ -29323,7 +29325,7 @@
     {
       "id": "36551",
       "name": "田島",
-      "kana": "ﾀｼﾞﾏ",
+      "kana": "タジマ",
       "enName": "TAJIMA",
       "prefecture": "福島県",
       "region": "tohoku",
@@ -29341,7 +29343,7 @@
     {
       "id": "36596",
       "name": "川前",
-      "kana": "ｶﾜﾏｴ",
+      "kana": "カワマエ",
       "enName": "KAWAMAE",
       "prefecture": "福島県",
       "region": "tohoku",
@@ -29359,7 +29361,7 @@
     {
       "id": "36651",
       "name": "観音山",
-      "kana": "ｶﾝﾉﾝﾔﾏ",
+      "kana": "カンノンヤマ",
       "enName": "KANNONYAMA",
       "prefecture": "福島県",
       "region": "tohoku",
@@ -29379,7 +29381,7 @@
     {
       "id": "36736",
       "name": "山王峠",
-      "kana": "ｻﾝﾉｳﾄｳｹﾞ",
+      "kana": "サンノウトウゲ",
       "enName": "SANNOTOGE",
       "prefecture": "栃木県",
       "region": "kanto",
@@ -29397,7 +29399,7 @@
     {
       "id": "36766",
       "name": "古殿",
-      "kana": "ﾌﾙﾄﾞﾉ",
+      "kana": "フルドノ",
       "enName": "FURUDONO",
       "prefecture": "福島県",
       "region": "tohoku",
@@ -29419,7 +29421,7 @@
     {
       "id": "36771",
       "name": "大辷山",
-      "kana": "ｵｵﾂﾍﾞﾔﾏ",
+      "kana": "オオツベヤマ",
       "enName": "OTSUBEYAMA",
       "prefecture": "福島県",
       "region": "tohoku",
@@ -29439,7 +29441,7 @@
     {
       "id": "36776",
       "name": "上遠野",
-      "kana": "ｶﾄｵﾉ",
+      "kana": "カトオノ",
       "enName": "KATOONO",
       "prefecture": "福島県",
       "region": "tohoku",
@@ -29462,7 +29464,7 @@
     {
       "id": "36801",
       "name": "田代山",
-      "kana": "ﾀｼﾛﾔﾏ",
+      "kana": "タシロヤマ",
       "enName": "TASHIROYAMA",
       "prefecture": "福島県",
       "region": "tohoku",
@@ -29482,7 +29484,7 @@
     {
       "id": "40081",
       "name": "高萩",
-      "kana": "ﾀｶﾊｷﾞ",
+      "kana": "タカハギ",
       "enName": "TAKAHAGI",
       "prefecture": "茨城県",
       "region": "kanto",
@@ -29504,7 +29506,7 @@
     {
       "id": "40106",
       "name": "神峰山",
-      "kana": "ｶﾐﾈｻﾝ",
+      "kana": "カミネサン",
       "enName": "KAMINESAN",
       "prefecture": "茨城県",
       "region": "kanto",
@@ -29524,7 +29526,7 @@
     {
       "id": "40242",
       "name": "筑波山",
-      "kana": "ﾂｸﾊﾞｻﾝ",
+      "kana": "ツクバサン",
       "enName": "TSUKUBASAN",
       "prefecture": "茨城県",
       "region": "kanto",
@@ -29545,7 +29547,7 @@
     {
       "id": "40243",
       "name": "筑波山",
-      "kana": "ﾂｸﾊﾞｻﾝ",
+      "kana": "ツクバサン",
       "enName": "TSUKUBASAN",
       "prefecture": "茨城県",
       "region": "kanto",
@@ -29566,7 +29568,7 @@
     {
       "id": "40246",
       "name": "愛宕山",
-      "kana": "ｱﾀｺﾞｻﾝ",
+      "kana": "アタゴサン",
       "enName": "ATAGOSAN",
       "prefecture": "茨城県",
       "region": "kanto",
@@ -29586,7 +29588,7 @@
     {
       "id": "40282",
       "name": "常総",
-      "kana": "ｼﾞｮｳｿｳ",
+      "kana": "ジョウソウ",
       "enName": "JOSO",
       "prefecture": "茨城県",
       "region": "kanto",
@@ -29608,7 +29610,7 @@
     {
       "id": "41051",
       "name": "黒田原",
-      "kana": "ｸﾛﾀﾞﾜﾗ",
+      "kana": "クロダワラ",
       "enName": "KURODAWARA",
       "prefecture": "栃木県",
       "region": "kanto",
@@ -29628,7 +29630,7 @@
     {
       "id": "41081",
       "name": "八方が原",
-      "kana": "ﾊｯﾎﾟｳｶﾞﾊﾗ",
+      "kana": "ハッポウガハラ",
       "enName": "HAPPOGAHARA",
       "prefecture": "栃木県",
       "region": "kanto",
@@ -29648,7 +29650,7 @@
     {
       "id": "41101",
       "name": "八溝山",
-      "kana": "ﾔﾐｿﾞｻﾝ",
+      "kana": "ヤミゾサン",
       "enName": "YAMIZOSAN",
       "prefecture": "栃木県",
       "region": "kanto",
@@ -29668,7 +29670,7 @@
     {
       "id": "41171",
       "name": "今市",
-      "kana": "ｲﾏｲﾁ",
+      "kana": "イマイチ",
       "enName": "IMAICHI",
       "prefecture": "栃木県",
       "region": "kanto",
@@ -29690,7 +29692,7 @@
     {
       "id": "41216",
       "name": "方塞山",
-      "kana": "ﾎｳｻｲｻﾞﾝ",
+      "kana": "ホウサイザン",
       "enName": "HOSAIZAN",
       "prefecture": "栃木県",
       "region": "kanto",
@@ -29710,7 +29712,7 @@
     {
       "id": "41246",
       "name": "烏山",
-      "kana": "ｶﾗｽﾔﾏ",
+      "kana": "カラスヤマ",
       "enName": "KARASUYAMA",
       "prefecture": "栃木県",
       "region": "kanto",
@@ -29733,7 +29735,7 @@
     {
       "id": "42101",
       "name": "前武尊",
-      "kana": "ﾏｴﾎﾀｶ",
+      "kana": "マエホタカ",
       "enName": "MAEHOTAKA",
       "prefecture": "群馬県",
       "region": "kanto",
@@ -29753,7 +29755,7 @@
     {
       "id": "42102",
       "name": "高手山",
-      "kana": "ﾀｶﾃﾔﾏ",
+      "kana": "タカテヤマ",
       "enName": "TAKATEYAMA",
       "prefecture": "群馬県",
       "region": "kanto",
@@ -29773,7 +29775,7 @@
     {
       "id": "42126",
       "name": "野反湖",
-      "kana": "ﾉｿﾞﾘｺ",
+      "kana": "ノゾリコ",
       "enName": "NOZORIKO",
       "prefecture": "群馬県",
       "region": "kanto",
@@ -29793,7 +29795,7 @@
     {
       "id": "42136",
       "name": "雨見山",
-      "kana": "ｱﾏﾐﾔﾏ",
+      "kana": "アマミヤマ",
       "enName": "AMAMIYAMA",
       "prefecture": "群馬県",
       "region": "kanto",
@@ -29813,7 +29815,7 @@
     {
       "id": "42201",
       "name": "赤城山",
-      "kana": "ｱｶｷﾞﾔﾏ",
+      "kana": "アカギヤマ",
       "enName": "AKAGIYAMA",
       "prefecture": "群馬県",
       "region": "kanto",
@@ -29833,7 +29835,7 @@
     {
       "id": "42276",
       "name": "一の字山",
-      "kana": "ｲﾁﾉｼﾞﾔﾏ",
+      "kana": "イチノジヤマ",
       "enName": "ICHINOJIYAMA",
       "prefecture": "群馬県",
       "region": "kanto",
@@ -29853,7 +29855,7 @@
     {
       "id": "42301",
       "name": "伊勢崎",
-      "kana": "ｲｾｻｷ",
+      "kana": "イセサキ",
       "enName": "ISESAKI",
       "prefecture": "群馬県",
       "region": "kanto",
@@ -29874,7 +29876,7 @@
     {
       "id": "42391",
       "name": "稲含山",
-      "kana": "ｲﾅﾌｸﾐﾔﾏ",
+      "kana": "イナフクミヤマ",
       "enName": "INAFUKUMIYAMA",
       "prefecture": "群馬県",
       "region": "kanto",
@@ -29894,7 +29896,7 @@
     {
       "id": "43161",
       "name": "刈場坂",
-      "kana": "ｶﾊﾞｻｶ",
+      "kana": "カバサカ",
       "enName": "KABASAKA",
       "prefecture": "埼玉県",
       "region": "kanto",
@@ -29912,7 +29914,7 @@
     {
       "id": "44076",
       "name": "練馬",
-      "kana": "ﾈﾘﾏ",
+      "kana": "ネリマ",
       "enName": "NERIMA",
       "prefecture": "東京都",
       "region": "kanto",
@@ -29933,7 +29935,7 @@
     {
       "id": "44121",
       "name": "調布",
-      "kana": "ﾁｮｳﾌ",
+      "kana": "チョウフ",
       "enName": "CHOFU",
       "prefecture": "東京都",
       "region": "kanto",
@@ -29953,7 +29955,7 @@
     {
       "id": "44171",
       "name": "大島",
-      "kana": "ｵｵｼﾏ",
+      "kana": "オオシマ",
       "enName": "OSHIMA",
       "prefecture": "東京都",
       "region": "kanto",
@@ -29974,7 +29976,7 @@
     {
       "id": "44174",
       "name": "大島臨時",
-      "kana": "ｵｵｼﾏﾘﾝｼﾞ",
+      "kana": "オオシマリンジ",
       "enName": "OSHIMA-RINJI",
       "prefecture": "東京都",
       "region": "kanto",
@@ -29994,7 +29996,7 @@
     {
       "id": "44176",
       "name": "大島泉津",
-      "kana": "ｵｵｼﾏｾﾝﾂﾞ",
+      "kana": "オオシマセンヅ",
       "enName": "OSHIMA-SENZU",
       "prefecture": "東京都",
       "region": "kanto",
@@ -30014,7 +30016,7 @@
     {
       "id": "44186",
       "name": "大島差木地",
-      "kana": "ｵｵｼﾏｻｼｷｼﾞ",
+      "kana": "オオシマサシキジ",
       "enName": "OSHIMA-SASHIKIJI",
       "prefecture": "東京都",
       "region": "kanto",
@@ -30034,7 +30036,7 @@
     {
       "id": "44206",
       "name": "新島",
-      "kana": "ﾆｲｼﾞﾏ",
+      "kana": "ニイジマ",
       "enName": "NIIJIMA",
       "prefecture": "東京都",
       "region": "kanto",
@@ -30050,12 +30052,14 @@
       "stationType": "アメダス",
       "discontinued": true,
       "observedFrom": "1976-12-16",
-      "observedTo": "2008-11-18"
+      "observedTo": "2008-11-18",
+      "precNo": "44",
+      "blockNo": "1134"
     },
     {
       "id": "44211",
       "name": "神津島",
-      "kana": "ｺｳﾂﾞｼﾏ",
+      "kana": "コウヅシマ",
       "enName": "KOZUSHIMA",
       "prefecture": "東京都",
       "region": "kanto",
@@ -30068,12 +30072,14 @@
       "stationType": "アメダス",
       "discontinued": true,
       "observedFrom": "2000-07-05",
-      "observedTo": "2006-03-01"
+      "observedTo": "2006-03-01",
+      "precNo": "44",
+      "blockNo": "1505"
     },
     {
       "id": "44227",
       "name": "三宅島阿古",
-      "kana": "ﾐﾔｹｼﾞﾏｱｺ",
+      "kana": "ミヤケジマアコ",
       "enName": "MIYAKEJIMAAKO",
       "prefecture": "東京都",
       "region": "kanto",
@@ -30094,7 +30100,7 @@
     {
       "id": "44229",
       "name": "三宅伊豆",
-      "kana": "ﾐﾔｹｲｽﾞ",
+      "kana": "ミヤケイズ",
       "enName": "MIYAKEIZU",
       "prefecture": "東京都",
       "region": "kanto",
@@ -30115,7 +30121,7 @@
     {
       "id": "45036",
       "name": "佐原",
-      "kana": "ｻﾜﾗ",
+      "kana": "サワラ",
       "enName": "SAWARA",
       "prefecture": "茨城県",
       "region": "kanto",
@@ -30136,7 +30142,7 @@
     {
       "id": "45056",
       "name": "我孫子",
-      "kana": "ｱﾋﾞｺ",
+      "kana": "アビコ",
       "enName": "ABIKO",
       "prefecture": "千葉県",
       "region": "kanto",
@@ -30157,7 +30163,7 @@
     {
       "id": "45101",
       "name": "船橋",
-      "kana": "ﾌﾅﾊﾞｼ",
+      "kana": "フナバシ",
       "enName": "FUNABASHI",
       "prefecture": "千葉県",
       "region": "kanto",
@@ -30178,7 +30184,7 @@
     {
       "id": "45281",
       "name": "木更津",
-      "kana": "ｷｻﾗﾂﾞ",
+      "kana": "キサラヅ",
       "enName": "KISARAZU",
       "prefecture": "千葉県",
       "region": "kanto",
@@ -30199,7 +30205,7 @@
     {
       "id": "46181",
       "name": "江ノ島",
-      "kana": "ｴﾉｼﾏ",
+      "kana": "エノシマ",
       "enName": "ENOSHIMA",
       "prefecture": "神奈川県",
       "region": "kanto",
@@ -30222,7 +30228,7 @@
     {
       "id": "48096",
       "name": "南小谷",
-      "kana": "ﾐﾅﾐｵﾀﾘ",
+      "kana": "ミナミオタリ",
       "enName": "MINAMIOTARI",
       "prefecture": "長野県",
       "region": "chubu",
@@ -30242,7 +30248,7 @@
     {
       "id": "48171",
       "name": "笠岳",
-      "kana": "ｶｻﾀﾞｹ",
+      "kana": "カサダケ",
       "enName": "KASADAKE",
       "prefecture": "長野県",
       "region": "chubu",
@@ -30260,7 +30266,7 @@
     {
       "id": "48246",
       "name": "四阿屋山",
-      "kana": "ｱｽﾞﾏﾔｻﾝ",
+      "kana": "アズマヤサン",
       "enName": "AZUNAYASAM",
       "prefecture": "長野県",
       "region": "chubu",
@@ -30280,7 +30286,7 @@
     {
       "id": "48291",
       "name": "燕岳",
-      "kana": "ﾂﾊﾞｸﾛﾀﾞｹ",
+      "kana": "ツバクロダケ",
       "enName": "TSUBAKURODAKE",
       "prefecture": "長野県",
       "region": "chubu",
@@ -30298,7 +30304,7 @@
     {
       "id": "48292",
       "name": "燕岳",
-      "kana": "ﾂﾊﾞｸﾛﾀﾞｹ",
+      "kana": "ツバクロダケ",
       "enName": "TSUBAKURODAKE",
       "prefecture": "長野県",
       "region": "chubu",
@@ -30316,7 +30322,7 @@
     {
       "id": "48426",
       "name": "高ボッチ",
-      "kana": "ﾀｶﾎﾞｯﾁ",
+      "kana": "タカボッチ",
       "enName": "TAKABOTCHI",
       "prefecture": "長野県",
       "region": "chubu",
@@ -30336,7 +30342,7 @@
     {
       "id": "48451",
       "name": "茂来山",
-      "kana": "ﾓﾗｲｻﾝ",
+      "kana": "モライサン",
       "enName": "MORAISAN",
       "prefecture": "長野県",
       "region": "chubu",
@@ -30356,7 +30362,7 @@
     {
       "id": "48456",
       "name": "十石峠",
-      "kana": "ｼﾞｯｺｸﾄｳｹﾞ",
+      "kana": "ジッコクトウゲ",
       "enName": "JIKKOKUTOGE",
       "prefecture": "長野県",
       "region": "chubu",
@@ -30376,7 +30382,7 @@
     {
       "id": "48501",
       "name": "八ケ岳",
-      "kana": "ﾔﾂｶﾞﾀｹ",
+      "kana": "ヤツガタケ",
       "enName": "YATSUGATAKE",
       "prefecture": "長野県",
       "region": "chubu",
@@ -30396,7 +30402,7 @@
     {
       "id": "48541",
       "name": "奈良井",
-      "kana": "ﾅﾗｲ",
+      "kana": "ナライ",
       "enName": "NARAI",
       "prefecture": "長野県",
       "region": "chubu",
@@ -30417,7 +30423,7 @@
     {
       "id": "48596",
       "name": "御嶽山",
-      "kana": "ｵﾝﾀｹｻﾝ",
+      "kana": "オンタケサン",
       "enName": "ONTAKESAN",
       "prefecture": "長野県",
       "region": "chubu",
@@ -30435,7 +30441,7 @@
     {
       "id": "48602",
       "name": "王滝大又",
-      "kana": "ｵｳﾀｷｵｵﾏﾀ",
+      "kana": "オウタキオオマタ",
       "enName": "OUTAKI-OMATA",
       "prefecture": "長野県",
       "region": "chubu",
@@ -30455,7 +30461,7 @@
     {
       "id": "48626",
       "name": "高遠",
-      "kana": "ﾀｶﾄｳ",
+      "kana": "タカトウ",
       "enName": "TAKATO",
       "prefecture": "長野県",
       "region": "chubu",
@@ -30471,12 +30477,14 @@
       "stationType": "アメダス",
       "discontinued": true,
       "observedFrom": "1974-11-01",
-      "observedTo": "1993-02-04"
+      "observedTo": "1993-02-04",
+      "precNo": "48",
+      "blockNo": "0418"
     },
     {
       "id": "48631",
       "name": "入笠山",
-      "kana": "ﾆｭｳｶｻﾔﾏ",
+      "kana": "ニュウカサヤマ",
       "enName": "NYUKASAYAMA",
       "prefecture": "長野県",
       "region": "chubu",
@@ -30496,7 +30504,7 @@
     {
       "id": "48686",
       "name": "宮田",
-      "kana": "ﾐﾔﾀﾞ",
+      "kana": "ミヤダ",
       "enName": "MIYADA",
       "prefecture": "長野県",
       "region": "chubu",
@@ -30516,7 +30524,7 @@
     {
       "id": "48696",
       "name": "松峯",
-      "kana": "ﾏﾂﾐﾈ",
+      "kana": "マツミネ",
       "enName": "MATSUMINE",
       "prefecture": "長野県",
       "region": "chubu",
@@ -30536,7 +30544,7 @@
     {
       "id": "48721",
       "name": "摺古木山",
-      "kana": "ｽﾘｺｷﾞﾔﾏ",
+      "kana": "スリコギヤマ",
       "enName": "SURIKOGIYAMA",
       "prefecture": "長野県",
       "region": "chubu",
@@ -30554,7 +30562,7 @@
     {
       "id": "48736",
       "name": "笹山",
-      "kana": "ｻｻﾔﾏ",
+      "kana": "ササヤマ",
       "enName": "SASAYAMA",
       "prefecture": "長野県",
       "region": "chubu",
@@ -30574,7 +30582,7 @@
     {
       "id": "48761",
       "name": "摺古木山",
-      "kana": "ｽﾘｺｷﾞﾔﾏ",
+      "kana": "スリコギヤマ",
       "enName": "SURIKOGIYAMA",
       "prefecture": "長野県",
       "region": "chubu",
@@ -30592,7 +30600,7 @@
     {
       "id": "48791",
       "name": "恵那山",
-      "kana": "ｴﾅｻﾝ",
+      "kana": "エナサン",
       "enName": "ENASAN",
       "prefecture": "長野県",
       "region": "chubu",
@@ -30612,7 +30620,7 @@
     {
       "id": "48796",
       "name": "網掛山",
-      "kana": "ｱﾐｶｹﾔﾏ",
+      "kana": "アミカケヤマ",
       "enName": "AMIKAKEYAMA",
       "prefecture": "長野県",
       "region": "chubu",
@@ -30632,7 +30640,7 @@
     {
       "id": "48871",
       "name": "鶯巣",
-      "kana": "ｳｸﾞｽ",
+      "kana": "ウグス",
       "enName": "UGUSU",
       "prefecture": "長野県",
       "region": "chubu",
@@ -30652,7 +30660,7 @@
     {
       "id": "49051",
       "name": "剣ノ峰",
-      "kana": "ｹﾝﾉﾐﾈ",
+      "kana": "ケンノミネ",
       "enName": "KENNOMINE",
       "prefecture": "山梨県",
       "region": "chubu",
@@ -30672,7 +30680,7 @@
     {
       "id": "49076",
       "name": "日向山",
-      "kana": "ﾋﾅﾀﾔﾏ",
+      "kana": "ヒナタヤマ",
       "enName": "HINATAYAMA",
       "prefecture": "山梨県",
       "region": "chubu",
@@ -30692,7 +30700,7 @@
     {
       "id": "49106",
       "name": "大菩薩",
-      "kana": "ﾀﾞｲﾎﾞｻﾂ",
+      "kana": "ダイボサツ",
       "enName": "DAIBOSATSU",
       "prefecture": "山梨県",
       "region": "chubu",
@@ -30712,7 +30720,7 @@
     {
       "id": "49171",
       "name": "上野原",
-      "kana": "ｳｴﾉﾊﾗ",
+      "kana": "ウエノハラ",
       "enName": "UENOHARA",
       "prefecture": "山梨県",
       "region": "chubu",
@@ -30730,7 +30738,7 @@
     {
       "id": "49186",
       "name": "八町山",
-      "kana": "ﾊｯﾁｮｳﾔﾏ",
+      "kana": "ハッチョウヤマ",
       "enName": "HATCHOYAMA",
       "prefecture": "山梨県",
       "region": "chubu",
@@ -30750,7 +30758,7 @@
     {
       "id": "50111",
       "name": "梅ケ島",
-      "kana": "ｳﾒｶﾞｼﾏ",
+      "kana": "ウメガシマ",
       "enName": "UMEGASHIMA",
       "prefecture": "静岡県",
       "region": "chubu",
@@ -30770,7 +30778,7 @@
     {
       "id": "50211",
       "name": "熱海伊豆山",
-      "kana": "ｱﾀﾐｲｽﾞｻﾝ",
+      "kana": "アタミイズサン",
       "enName": "ATAMIIZUSAN",
       "prefecture": "静岡県",
       "region": "chubu",
@@ -30792,7 +30800,7 @@
     {
       "id": "50231",
       "name": "越木平",
-      "kana": "ｺｼｷﾀﾞｲﾗ",
+      "kana": "コシキダイラ",
       "enName": "KOSHIKIDAIRA",
       "prefecture": "静岡県",
       "region": "chubu",
@@ -30812,7 +30820,7 @@
     {
       "id": "50246",
       "name": "大山",
-      "kana": "ｵｵﾔﾏ",
+      "kana": "オオヤマ",
       "enName": "OYAMA",
       "prefecture": "静岡県",
       "region": "chubu",
@@ -30832,7 +30840,7 @@
     {
       "id": "50306",
       "name": "三倉",
-      "kana": "ﾐｸﾗ",
+      "kana": "ミクラ",
       "enName": "MIKURA",
       "prefecture": "静岡県",
       "region": "chubu",
@@ -30845,12 +30853,14 @@
       "stationType": "アメダス",
       "discontinued": true,
       "observedFrom": "1976-06-25",
-      "observedTo": "1978-01-09"
+      "observedTo": "1978-01-09",
+      "precNo": "50",
+      "blockNo": "1106"
     },
     {
       "id": "50316",
       "name": "高根山",
-      "kana": "ﾀｶﾈｻﾝ",
+      "kana": "タカネサン",
       "enName": "TAKANESAN",
       "prefecture": "静岡県",
       "region": "chubu",
@@ -30868,7 +30878,7 @@
     {
       "id": "50341",
       "name": "土肥",
-      "kana": "ﾄｲ",
+      "kana": "トイ",
       "enName": "TOI",
       "prefecture": "静岡県",
       "region": "chubu",
@@ -30886,7 +30896,7 @@
     {
       "id": "50376",
       "name": "霧山",
-      "kana": "ｷﾘﾔﾏ",
+      "kana": "キリヤマ",
       "enName": "KIRIYAMA",
       "prefecture": "静岡県",
       "region": "chubu",
@@ -30906,7 +30916,7 @@
     {
       "id": "50401",
       "name": "島田",
-      "kana": "ｼﾏﾀﾞ",
+      "kana": "シマダ",
       "enName": "SHIMADA",
       "prefecture": "静岡県",
       "region": "chubu",
@@ -30926,7 +30936,7 @@
     {
       "id": "51041",
       "name": "豊山",
-      "kana": "ﾄﾖﾔﾏ",
+      "kana": "トヨヤマ",
       "enName": "TOYOYAMA",
       "prefecture": "愛知県",
       "region": "chubu",
@@ -30948,7 +30958,7 @@
     {
       "id": "51076",
       "name": "茶臼山",
-      "kana": "ﾁｬｳｽﾔﾏ",
+      "kana": "チャウスヤマ",
       "enName": "CHAUSUYAMA",
       "prefecture": "愛知県",
       "region": "chubu",
@@ -30966,7 +30976,7 @@
     {
       "id": "51161",
       "name": "東海",
-      "kana": "ﾄｳｶｲ",
+      "kana": "トウカイ",
       "enName": "TOKAI",
       "prefecture": "愛知県",
       "region": "chubu",
@@ -30989,7 +30999,7 @@
     {
       "id": "51191",
       "name": "出来山",
-      "kana": "ﾃﾞｷﾔﾏ",
+      "kana": "デキヤマ",
       "enName": "DEKIYAMA",
       "prefecture": "愛知県",
       "region": "chubu",
@@ -31009,7 +31019,7 @@
     {
       "id": "51246",
       "name": "鳳来",
-      "kana": "ﾎｳﾗｲ",
+      "kana": "ホウライ",
       "enName": "HORAI",
       "prefecture": "愛知県",
       "region": "chubu",
@@ -31032,7 +31042,7 @@
     {
       "id": "51336",
       "name": "豊橋",
-      "kana": "ﾄﾖﾊｼ",
+      "kana": "トヨハシ",
       "enName": "TOYOHASHI",
       "prefecture": "愛知県",
       "region": "chubu",
@@ -31053,7 +31063,7 @@
     {
       "id": "52046",
       "name": "神岡",
-      "kana": "ｶﾐｵｶ",
+      "kana": "カミオカ",
       "enName": "KAMIOKA",
       "prefecture": "岐阜県",
       "region": "chubu",
@@ -31071,7 +31081,7 @@
     {
       "id": "52047",
       "name": "流葉山",
-      "kana": "ﾅｶﾞﾚﾊﾔﾏ",
+      "kana": "ナガレハヤマ",
       "enName": "NAGAREHAYAMA",
       "prefecture": "岐阜県",
       "region": "chubu",
@@ -31091,7 +31101,7 @@
     {
       "id": "52136",
       "name": "森茂",
-      "kana": "ﾓﾘﾓ",
+      "kana": "モリモ",
       "enName": "MORIMO",
       "prefecture": "岐阜県",
       "region": "chubu",
@@ -31111,7 +31121,7 @@
     {
       "id": "52151",
       "name": "十二岳",
-      "kana": "ｼﾞｭｳﾆﾀﾞｹ",
+      "kana": "ジュウニダケ",
       "enName": "JUNIDAKE",
       "prefecture": "岐阜県",
       "region": "chubu",
@@ -31131,7 +31141,7 @@
     {
       "id": "52161",
       "name": "乗鞍岳",
-      "kana": "ﾉﾘｸﾗﾀﾞｹ",
+      "kana": "ノリクラダケ",
       "enName": "NORIKURADAKE",
       "prefecture": "岐阜県",
       "region": "chubu",
@@ -31151,7 +31161,7 @@
     {
       "id": "52171",
       "name": "大日岳",
-      "kana": "ﾀﾞｲﾆﾁﾀﾞｹ",
+      "kana": "ダイニチダケ",
       "enName": "DAINICHIDAKE",
       "prefecture": "岐阜県",
       "region": "chubu",
@@ -31171,7 +31181,7 @@
     {
       "id": "52172",
       "name": "大日",
-      "kana": "ﾀﾞｲﾆﾁ",
+      "kana": "ダイニチ",
       "enName": "DAINICHI",
       "prefecture": "岐阜県",
       "region": "chubu",
@@ -31191,7 +31201,7 @@
     {
       "id": "52176",
       "name": "新渕山",
-      "kana": "ｱﾗﾌﾞﾁﾔﾏ",
+      "kana": "アラブチヤマ",
       "enName": "ARABUCHIYAMA",
       "prefecture": "岐阜県",
       "region": "chubu",
@@ -31211,7 +31221,7 @@
     {
       "id": "52191",
       "name": "船山",
-      "kana": "ﾌﾅﾔﾏ",
+      "kana": "フナヤマ",
       "enName": "FUNAYAMA",
       "prefecture": "岐阜県",
       "region": "chubu",
@@ -31229,7 +31239,7 @@
     {
       "id": "52226",
       "name": "白尾山",
-      "kana": "ｼﾗｵｻﾝ",
+      "kana": "シラオサン",
       "enName": "SHIRAOSAN",
       "prefecture": "岐阜県",
       "region": "chubu",
@@ -31249,7 +31259,7 @@
     {
       "id": "52266",
       "name": "白鳥",
-      "kana": "ｼﾛﾄﾘ",
+      "kana": "シロトリ",
       "enName": "SHIROTORI",
       "prefecture": "岐阜県",
       "region": "chubu",
@@ -31272,7 +31282,7 @@
     {
       "id": "52326",
       "name": "蕪山",
-      "kana": "ｶﾌﾞﾗﾔﾏ",
+      "kana": "カブラヤマ",
       "enName": "KABURAYAMA",
       "prefecture": "岐阜県",
       "region": "chubu",
@@ -31292,7 +31302,7 @@
     {
       "id": "52426",
       "name": "三界山",
-      "kana": "ｻﾝｶﾞｲﾔﾏ",
+      "kana": "サンガイヤマ",
       "enName": "SANGAIYAMA",
       "prefecture": "岐阜県",
       "region": "chubu",
@@ -31312,7 +31322,7 @@
     {
       "id": "52441",
       "name": "権現山",
-      "kana": "ｺﾞﾝｹﾞﾝﾔﾏ",
+      "kana": "ゴンゲンヤマ",
       "enName": "GONGENYAMA",
       "prefecture": "岐阜県",
       "region": "chubu",
@@ -31332,7 +31342,7 @@
     {
       "id": "52442",
       "name": "小津",
-      "kana": "ｵﾂﾞ",
+      "kana": "オヅ",
       "enName": "OZU",
       "prefecture": "岐阜県",
       "region": "chubu",
@@ -31352,7 +31362,7 @@
     {
       "id": "52451",
       "name": "平井",
-      "kana": "ﾋﾗｲ",
+      "kana": "ヒライ",
       "enName": "HIRAI",
       "prefecture": "岐阜県",
       "region": "chubu",
@@ -31372,7 +31382,7 @@
     {
       "id": "52481",
       "name": "黒川",
-      "kana": "ｸﾛｶﾜ",
+      "kana": "クロカワ",
       "enName": "KUROKAWA",
       "prefecture": "岐阜県",
       "region": "chubu",
@@ -31393,7 +31403,7 @@
     {
       "id": "52546",
       "name": "柄石峠",
-      "kana": "ｶﾞﾗｲｼﾄｳｹﾞ",
+      "kana": "ガライシトウゲ",
       "enName": "GARAISHITOGE",
       "prefecture": "岐阜県",
       "region": "chubu",
@@ -31413,7 +31423,7 @@
     {
       "id": "52561",
       "name": "中津川",
-      "kana": "ﾅｶﾂｶﾞﾜ",
+      "kana": "ナカツガワ",
       "enName": "NAKATSUGAWA",
       "prefecture": "岐阜県",
       "region": "chubu",
@@ -31434,7 +31444,7 @@
     {
       "id": "52626",
       "name": "三森山",
-      "kana": "ﾐﾂﾓﾘｻﾝ",
+      "kana": "ミツモリサン",
       "enName": "MITSUMORISAN",
       "prefecture": "岐阜県",
       "region": "chubu",
@@ -31454,7 +31464,7 @@
     {
       "id": "52641",
       "name": "上石津",
-      "kana": "ｶﾐｲｼﾂﾞ",
+      "kana": "カミイシヅ",
       "enName": "KAMIISHIZU",
       "prefecture": "岐阜県",
       "region": "chubu",
@@ -31472,7 +31482,7 @@
     {
       "id": "53056",
       "name": "雲母峰",
-      "kana": "ｷﾗﾗﾐﾈ",
+      "kana": "キララミネ",
       "enName": "KIRARAMINE",
       "prefecture": "三重県",
       "region": "kinki",
@@ -31492,7 +31502,7 @@
     {
       "id": "53171",
       "name": "国見山",
-      "kana": "ｸﾆﾐﾔﾏ",
+      "kana": "クニミヤマ",
       "enName": "KUNIMIYAMA",
       "prefecture": "三重県",
       "region": "kinki",
@@ -31512,7 +31522,7 @@
     {
       "id": "53191",
       "name": "松阪",
-      "kana": "ﾏﾂｻﾞｶ",
+      "kana": "マツザカ",
       "enName": "MATSUZAKA",
       "prefecture": "三重県",
       "region": "kinki",
@@ -31532,7 +31542,7 @@
     {
       "id": "53286",
       "name": "大台",
-      "kana": "ｵｵﾀﾞｲ",
+      "kana": "オオダイ",
       "enName": "ODAI",
       "prefecture": "三重県",
       "region": "kinki",
@@ -31552,7 +31562,7 @@
     {
       "id": "53306",
       "name": "磯部",
-      "kana": "ｲｿﾍﾞ",
+      "kana": "イソベ",
       "enName": "ISOBE",
       "prefecture": "三重県",
       "region": "kinki",
@@ -31572,7 +31582,7 @@
     {
       "id": "53377",
       "name": "八幡峠",
-      "kana": "ﾊﾁﾏﾝﾄｳｹﾞ",
+      "kana": "ハチマントウゲ",
       "enName": "HACHIMANTOGE",
       "prefecture": "三重県",
       "region": "kinki",
@@ -31592,7 +31602,7 @@
     {
       "id": "53421",
       "name": "熊野",
-      "kana": "ｸﾏﾉ",
+      "kana": "クマノ",
       "enName": "KUMANO",
       "prefecture": "三重県",
       "region": "kinki",
@@ -31615,7 +31625,7 @@
     {
       "id": "54096",
       "name": "鷲ケ巣山",
-      "kana": "ﾜｼｶﾞｽﾔﾏ",
+      "kana": "ワシガスヤマ",
       "enName": "WASHIGASUYAMA",
       "prefecture": "新潟県",
       "region": "chubu",
@@ -31635,7 +31645,7 @@
     {
       "id": "54167",
       "name": "秋津",
-      "kana": "ｱｷﾂ",
+      "kana": "アキツ",
       "enName": "AKITSU",
       "prefecture": "新潟県",
       "region": "chubu",
@@ -31657,7 +31667,7 @@
     {
       "id": "54251",
       "name": "二王子岳",
-      "kana": "ﾆﾉｳｼﾞﾀﾞｹ",
+      "kana": "ニノウジダケ",
       "enName": "NINOJIDAKE",
       "prefecture": "新潟県",
       "region": "chubu",
@@ -31677,7 +31687,7 @@
     {
       "id": "54356",
       "name": "宝珠山",
-      "kana": "ﾎｳｼｭｻﾝ",
+      "kana": "ホウシュサン",
       "enName": "HOSHUSAN",
       "prefecture": "新潟県",
       "region": "chubu",
@@ -31697,7 +31707,7 @@
     {
       "id": "54386",
       "name": "寺泊",
-      "kana": "ﾃﾗﾄﾞﾏﾘ",
+      "kana": "テラドマリ",
       "enName": "TERADOMARI",
       "prefecture": "新潟県",
       "region": "chubu",
@@ -31718,7 +31728,7 @@
     {
       "id": "54461",
       "name": "粟ヶ岳",
-      "kana": "ｱﾜｶﾞﾀｹ",
+      "kana": "アワガタケ",
       "enName": "AWAGATAKE",
       "prefecture": "新潟県",
       "region": "chubu",
@@ -31738,7 +31748,7 @@
     {
       "id": "54471",
       "name": "鍵取",
-      "kana": "ｶｷﾞﾄﾘ",
+      "kana": "カギトリ",
       "enName": "KAGITORI",
       "prefecture": "新潟県",
       "region": "chubu",
@@ -31758,7 +31768,7 @@
     {
       "id": "54511",
       "name": "守門岳",
-      "kana": "ｽﾓﾝﾀﾞｹ",
+      "kana": "スモンダケ",
       "enName": "SUMONDAKE",
       "prefecture": "新潟県",
       "region": "chubu",
@@ -31778,7 +31788,7 @@
     {
       "id": "54596",
       "name": "桜坂峠",
-      "kana": "ｻｸﾗｻﾞｶﾄｳｹﾞ",
+      "kana": "サクラザカトウゲ",
       "enName": "SAKURAZAKATOGE",
       "prefecture": "新潟県",
       "region": "chubu",
@@ -31798,7 +31808,7 @@
     {
       "id": "54696",
       "name": "枝折峠",
-      "kana": "ｼｵﾘﾄｳｹﾞ",
+      "kana": "シオリトウゲ",
       "enName": "SHIORITOGE",
       "prefecture": "新潟県",
       "region": "chubu",
@@ -31818,7 +31828,7 @@
     {
       "id": "54736",
       "name": "光ケ原",
-      "kana": "ﾋｶﾘｶﾞﾊﾗ",
+      "kana": "ヒカリガハラ",
       "enName": "HIKARIGAHARA",
       "prefecture": "新潟県",
       "region": "chubu",
@@ -31838,7 +31848,7 @@
     {
       "id": "54756",
       "name": "大沢峠",
-      "kana": "ｵｵｻﾜﾄｳｹﾞ",
+      "kana": "オオサワトウゲ",
       "enName": "OSAWATOGE",
       "prefecture": "新潟県",
       "region": "chubu",
@@ -31858,7 +31868,7 @@
     {
       "id": "54891",
       "name": "袴岳",
-      "kana": "ﾊｶﾏﾀﾞｹ",
+      "kana": "ハカマダケ",
       "enName": "HAKAMADAKE",
       "prefecture": "新潟県",
       "region": "chubu",
@@ -31878,7 +31888,7 @@
     {
       "id": "55061",
       "name": "宇奈月",
-      "kana": "ｳﾅﾂﾞｷ",
+      "kana": "ウナヅキ",
       "enName": "UNAZUKI",
       "prefecture": "富山県",
       "region": "chubu",
@@ -31891,12 +31901,14 @@
       "stationType": "アメダス",
       "discontinued": true,
       "observedFrom": "1974-11-01",
-      "observedTo": "1978-11-09"
+      "observedTo": "1978-11-09",
+      "precNo": "55",
+      "blockNo": "0548"
     },
     {
       "id": "55062",
       "name": "嘉例沢",
-      "kana": "ｶﾚｲｻﾞﾜ",
+      "kana": "カレイザワ",
       "enName": "KAREIZAWA",
       "prefecture": "富山県",
       "region": "chubu",
@@ -31916,7 +31928,7 @@
     {
       "id": "55161",
       "name": "上市",
-      "kana": "ｶﾐｲﾁ",
+      "kana": "カミイチ",
       "enName": "KAMIICHI",
       "prefecture": "富山県",
       "region": "chubu",
@@ -31934,7 +31946,7 @@
     {
       "id": "55216",
       "name": "小谷",
-      "kana": "ｵﾀﾆ",
+      "kana": "オタニ",
       "enName": "OTANI",
       "prefecture": "富山県",
       "region": "chubu",
@@ -31954,7 +31966,7 @@
     {
       "id": "55226",
       "name": "立山",
-      "kana": "ﾀﾃﾔﾏ",
+      "kana": "タテヤマ",
       "enName": "TATEYAMA",
       "prefecture": "富山県",
       "region": "chubu",
@@ -31974,7 +31986,7 @@
     {
       "id": "55246",
       "name": "細尾峠",
-      "kana": "ﾎｿｵﾄｳｹﾞ",
+      "kana": "ホソオトウゲ",
       "enName": "HOSOOTOGE",
       "prefecture": "富山県",
       "region": "chubu",
@@ -31994,7 +32006,7 @@
     {
       "id": "55251",
       "name": "平",
-      "kana": "ﾀｲﾗ",
+      "kana": "タイラ",
       "enName": "TAIRA",
       "prefecture": "富山県",
       "region": "chubu",
@@ -32014,7 +32026,7 @@
     {
       "id": "55261",
       "name": "谷折",
-      "kana": "ﾀﾆｵﾘ",
+      "kana": "タニオリ",
       "enName": "TANIORI",
       "prefecture": "富山県",
       "region": "chubu",
@@ -32034,7 +32046,7 @@
     {
       "id": "55266",
       "name": "細入",
-      "kana": "ﾎｿｲﾘ",
+      "kana": "ホソイリ",
       "enName": "HOSOIRI",
       "prefecture": "富山県",
       "region": "chubu",
@@ -32054,7 +32066,7 @@
     {
       "id": "56091",
       "name": "木原岳",
-      "kana": "ｷﾊﾗﾀﾞｹ",
+      "kana": "キハラダケ",
       "enName": "KIHARADAKE",
       "prefecture": "石川県",
       "region": "chubu",
@@ -32074,7 +32086,7 @@
     {
       "id": "56092",
       "name": "穴水",
-      "kana": "ｱﾅﾐｽﾞ",
+      "kana": "アナミズ",
       "enName": "ANAMIZU",
       "prefecture": "石川県",
       "region": "chubu",
@@ -32094,7 +32106,7 @@
     {
       "id": "56191",
       "name": "宝達山",
-      "kana": "ﾎｳﾀﾞﾂｻﾝ",
+      "kana": "ホウダツサン",
       "enName": "HODATSUSAN",
       "prefecture": "石川県",
       "region": "chubu",
@@ -32114,7 +32126,7 @@
     {
       "id": "56226",
       "name": "金沢",
-      "kana": "ｶﾅｻﾞﾜ",
+      "kana": "カナザワ",
       "enName": "KANAZAWA",
       "prefecture": "石川県",
       "region": "chubu",
@@ -32135,7 +32147,7 @@
     {
       "id": "56231",
       "name": "医王山",
-      "kana": "ｲｵｳｾﾞﾝ",
+      "kana": "イオウゼン",
       "enName": "IOZEN",
       "prefecture": "石川県",
       "region": "chubu",
@@ -32153,7 +32165,7 @@
     {
       "id": "57081",
       "name": "勝山",
-      "kana": "ｶﾂﾔﾏ",
+      "kana": "カツヤマ",
       "enName": "KATSUYAMA",
       "prefecture": "福井県",
       "region": "chubu",
@@ -32174,7 +32186,7 @@
     {
       "id": "57131",
       "name": "タイラ山",
-      "kana": "ﾀｲﾗﾔﾏ",
+      "kana": "タイラヤマ",
       "enName": "TAIRAYAMA",
       "prefecture": "福井県",
       "region": "chubu",
@@ -32194,7 +32206,7 @@
     {
       "id": "57151",
       "name": "春日野",
-      "kana": "ｶｽｶﾞﾉ",
+      "kana": "カスガノ",
       "enName": "KASUGANO",
       "prefecture": "福井県",
       "region": "chubu",
@@ -32214,7 +32226,7 @@
     {
       "id": "57161",
       "name": "板垣",
-      "kana": "ｲﾀｶﾞｷ",
+      "kana": "イタガキ",
       "enName": "ITAGAKI",
       "prefecture": "福井県",
       "region": "chubu",
@@ -32234,7 +32246,7 @@
     {
       "id": "57306",
       "name": "川上",
-      "kana": "ｶﾜｶﾐ",
+      "kana": "カワカミ",
       "enName": "KAWAKAMI",
       "prefecture": "福井県",
       "region": "chubu",
@@ -32254,7 +32266,7 @@
     {
       "id": "60086",
       "name": "荒川",
-      "kana": "ｱﾗｶﾜ",
+      "kana": "アラカワ",
       "enName": "ARAKAWA",
       "prefecture": "滋賀県",
       "region": "kinki",
@@ -32274,7 +32286,7 @@
     {
       "id": "60101",
       "name": "山東",
-      "kana": "ｻﾝﾄｳ",
+      "kana": "サントウ",
       "enName": "SANTO",
       "prefecture": "滋賀県",
       "region": "kinki",
@@ -32293,7 +32305,7 @@
     {
       "id": "60171",
       "name": "君ケ畑台地",
-      "kana": "ｷﾐｶﾞﾊﾀﾀﾞｲﾁ",
+      "kana": "キミガハタダイチ",
       "enName": "KIMIGAHATADAICHI",
       "prefecture": "滋賀県",
       "region": "kinki",
@@ -32313,7 +32325,7 @@
     {
       "id": "60172",
       "name": "霜ケ原",
-      "kana": "ｼﾓｶﾞﾊﾗ",
+      "kana": "シモガハラ",
       "enName": "SHIMOGAHARA",
       "prefecture": "滋賀県",
       "region": "kinki",
@@ -32333,7 +32345,7 @@
     {
       "id": "60181",
       "name": "大津",
-      "kana": "ｵｵﾂ",
+      "kana": "オオツ",
       "enName": "OTSU",
       "prefecture": "滋賀県",
       "region": "kinki",
@@ -32351,7 +32363,7 @@
     {
       "id": "61131",
       "name": "仏坂",
-      "kana": "ﾌｯｻｶ",
+      "kana": "フッサカ",
       "enName": "FUSSAKA",
       "prefecture": "京都府",
       "region": "kinki",
@@ -32371,7 +32383,7 @@
     {
       "id": "61132",
       "name": "三岳",
-      "kana": "ﾐﾀｹ",
+      "kana": "ミタケ",
       "enName": "MITAKE",
       "prefecture": "京都府",
       "region": "kinki",
@@ -32391,7 +32403,7 @@
     {
       "id": "61146",
       "name": "浅原山",
-      "kana": "ｱｻﾊﾗﾔﾏ",
+      "kana": "アサハラヤマ",
       "enName": "ASAHARAYAMA",
       "prefecture": "京都府",
       "region": "kinki",
@@ -32411,7 +32423,7 @@
     {
       "id": "61161",
       "name": "知井",
-      "kana": "ﾁｲ",
+      "kana": "チイ",
       "enName": "CHII",
       "prefecture": "京都府",
       "region": "kinki",
@@ -32431,7 +32443,7 @@
     {
       "id": "61191",
       "name": "綾部",
-      "kana": "ｱﾔﾍﾞ",
+      "kana": "アヤベ",
       "enName": "AYABE",
       "prefecture": "京都府",
       "region": "kinki",
@@ -32451,7 +32463,7 @@
     {
       "id": "61202",
       "name": "胡麻",
-      "kana": "ｺﾞﾏ",
+      "kana": "ゴマ",
       "enName": "GOMA",
       "prefecture": "京都府",
       "region": "kinki",
@@ -32471,7 +32483,7 @@
     {
       "id": "61226",
       "name": "妙高山",
-      "kana": "ﾐｮｳｺｳｻﾝ",
+      "kana": "ミョウコウサン",
       "enName": "MYOKOSAN",
       "prefecture": "兵庫県",
       "region": "kinki",
@@ -32489,7 +32501,7 @@
     {
       "id": "61256",
       "name": "花背峠",
-      "kana": "ﾊﾅｾﾄｳｹﾞ",
+      "kana": "ハナセトウゲ",
       "enName": "HANASETOGE",
       "prefecture": "京都府",
       "region": "kinki",
@@ -32509,7 +32521,7 @@
     {
       "id": "61271",
       "name": "園部",
-      "kana": "ｿﾉﾍﾞ",
+      "kana": "ソノベ",
       "enName": "SONOBE",
       "prefecture": "京都府",
       "region": "kinki",
@@ -32530,7 +32542,7 @@
     {
       "id": "61336",
       "name": "鷲峰山",
-      "kana": "ｼﾞﾕﾌﾞｻﾝ",
+      "kana": "ジユブサン",
       "enName": "JUBUSAN",
       "prefecture": "京都府",
       "region": "kinki",
@@ -32548,7 +32560,7 @@
     {
       "id": "61337",
       "name": "鷲峰山",
-      "kana": "ｼﾞｭﾌﾞｻﾝ",
+      "kana": "ジュブサン",
       "enName": "JUBUSAN",
       "prefecture": "京都府",
       "region": "kinki",
@@ -32566,7 +32578,7 @@
     {
       "id": "62036",
       "name": "箕面",
-      "kana": "ﾐﾉｵ",
+      "kana": "ミノオ",
       "enName": "MINO",
       "prefecture": "大阪府",
       "region": "kinki",
@@ -32586,7 +32598,7 @@
     {
       "id": "63031",
       "name": "温泉",
-      "kana": "ｵﾝｾﾝ",
+      "kana": "オンセン",
       "enName": "ONSEN",
       "prefecture": "兵庫県",
       "region": "kinki",
@@ -32604,7 +32616,7 @@
     {
       "id": "63041",
       "name": "三川山",
-      "kana": "ﾐｶﾜﾔﾏ",
+      "kana": "ミカワヤマ",
       "enName": "MIKAWAYAMA",
       "prefecture": "兵庫県",
       "region": "kinki",
@@ -32624,7 +32636,7 @@
     {
       "id": "63076",
       "name": "村岡",
-      "kana": "ﾑﾗｵｶ",
+      "kana": "ムラオカ",
       "enName": "MURAOKA",
       "prefecture": "兵庫県",
       "region": "kinki",
@@ -32646,7 +32658,7 @@
     {
       "id": "63081",
       "name": "八鹿",
-      "kana": "ﾖｳｶ",
+      "kana": "ヨウカ",
       "enName": "YOKA",
       "prefecture": "兵庫県",
       "region": "kinki",
@@ -32664,7 +32676,7 @@
     {
       "id": "63266",
       "name": "笠形山",
-      "kana": "ｶｻｶﾞﾀﾔﾏ",
+      "kana": "カサガタヤマ",
       "enName": "KASAGATAYAMA",
       "prefecture": "兵庫県",
       "region": "kinki",
@@ -32684,7 +32696,7 @@
     {
       "id": "63301",
       "name": "佐用",
-      "kana": "ｻﾖｳ",
+      "kana": "サヨウ",
       "enName": "SAYO",
       "prefecture": "兵庫県",
       "region": "kinki",
@@ -32702,7 +32714,7 @@
     {
       "id": "63376",
       "name": "的場山",
-      "kana": "ﾏﾄﾊﾞﾔﾏ",
+      "kana": "マトバヤマ",
       "enName": "MATOBAYAMA",
       "prefecture": "兵庫県",
       "region": "kinki",
@@ -32722,7 +32734,7 @@
     {
       "id": "63412",
       "name": "名塩",
-      "kana": "ﾅｼﾞｵ",
+      "kana": "ナジオ",
       "enName": "NAJIO",
       "prefecture": "兵庫県",
       "region": "kinki",
@@ -32742,7 +32754,7 @@
     {
       "id": "63471",
       "name": "六甲山",
-      "kana": "ﾛｯｺｳｻﾝ",
+      "kana": "ロッコウサン",
       "enName": "ROKKOSAN",
       "prefecture": "兵庫県",
       "region": "kinki",
@@ -32762,7 +32774,7 @@
     {
       "id": "63476",
       "name": "芦屋",
-      "kana": "ｱｼﾔ",
+      "kana": "アシヤ",
       "enName": "ASHIYA",
       "prefecture": "兵庫県",
       "region": "kinki",
@@ -32782,7 +32794,7 @@
     {
       "id": "63501",
       "name": "明石",
-      "kana": "ｱｶｼ",
+      "kana": "アカシ",
       "enName": "AKASHI",
       "prefecture": "兵庫県",
       "region": "kinki",
@@ -32803,7 +32815,7 @@
     {
       "id": "63506",
       "name": "神戸塩屋",
-      "kana": "ｺｳﾍﾞｼｵﾔ",
+      "kana": "コウベシオヤ",
       "enName": "KOBESHIOYA",
       "prefecture": "兵庫県",
       "region": "kinki",
@@ -32823,7 +32835,7 @@
     {
       "id": "63511",
       "name": "神戸",
-      "kana": "ｺｳﾍﾞ",
+      "kana": "コウベ",
       "enName": "KOBE",
       "prefecture": "兵庫県",
       "region": "kinki",
@@ -32844,7 +32856,7 @@
     {
       "id": "63512",
       "name": "神戸",
-      "kana": "ｺｳﾍﾞ",
+      "kana": "コウベ",
       "enName": "KOBE",
       "prefecture": "兵庫県",
       "region": "kinki",
@@ -32865,7 +32877,7 @@
     {
       "id": "63541",
       "name": "淡路町",
-      "kana": "ｱﾜｼﾞﾁｮｳ",
+      "kana": "アワジチョウ",
       "enName": "AWAJICHO",
       "prefecture": "兵庫県",
       "region": "kinki",
@@ -32885,7 +32897,7 @@
     {
       "id": "63576",
       "name": "洲本",
-      "kana": "ｽﾓﾄ",
+      "kana": "スモト",
       "enName": "SUMOTO",
       "prefecture": "兵庫県",
       "region": "kinki",
@@ -32906,7 +32918,7 @@
     {
       "id": "63586",
       "name": "福良",
-      "kana": "ﾌｸﾗ",
+      "kana": "フクラ",
       "enName": "FUKURA",
       "prefecture": "兵庫県",
       "region": "kinki",
@@ -32926,7 +32938,7 @@
     {
       "id": "63587",
       "name": "南淡",
-      "kana": "ﾅﾝﾀﾞﾝ",
+      "kana": "ナンダン",
       "enName": "NANDAN",
       "prefecture": "兵庫県",
       "region": "kinki",
@@ -32947,7 +32959,7 @@
     {
       "id": "64096",
       "name": "壷坂",
-      "kana": "ﾂﾎﾞｻｶ",
+      "kana": "ツボサカ",
       "enName": "TSUBOSAKA",
       "prefecture": "奈良県",
       "region": "kinki",
@@ -32967,7 +32979,7 @@
     {
       "id": "64106",
       "name": "高見山",
-      "kana": "ﾀｶﾐﾔﾏ",
+      "kana": "タカミヤマ",
       "enName": "TAKAMIYAMA",
       "prefecture": "奈良県",
       "region": "kinki",
@@ -32987,7 +32999,7 @@
     {
       "id": "64107",
       "name": "高見",
-      "kana": "ﾀｶﾐ",
+      "kana": "タカミ",
       "enName": "TAKAMI",
       "prefecture": "奈良県",
       "region": "kinki",
@@ -33007,7 +33019,7 @@
     {
       "id": "64126",
       "name": "五條",
-      "kana": "ｺﾞｼﾞｮｳ",
+      "kana": "ゴジョウ",
       "enName": "GOJO",
       "prefecture": "奈良県",
       "region": "kinki",
@@ -33028,7 +33040,7 @@
     {
       "id": "64156",
       "name": "天辻",
-      "kana": "ﾃﾝﾂｼﾞ",
+      "kana": "テンツジ",
       "enName": "TENTSUJI",
       "prefecture": "和歌山県",
       "region": "kinki",
@@ -33046,7 +33058,7 @@
     {
       "id": "64166",
       "name": "山上ケ岳",
-      "kana": "ｻﾝｼﾞｮｳｶﾞﾀｹ",
+      "kana": "サンジョウガタケ",
       "enName": "SANJOGATAKE",
       "prefecture": "奈良県",
       "region": "kinki",
@@ -33066,7 +33078,7 @@
     {
       "id": "64186",
       "name": "荒神岳",
-      "kana": "ｺｳｼﾞﾝﾀﾞｹ",
+      "kana": "コウジンダケ",
       "enName": "KOJINDAKE",
       "prefecture": "奈良県",
       "region": "kinki",
@@ -33086,7 +33098,7 @@
     {
       "id": "64211",
       "name": "日出岳",
-      "kana": "ﾋﾃﾞｶﾞﾀｹ",
+      "kana": "ヒデガタケ",
       "enName": "HIDEGADAKE",
       "prefecture": "三重県",
       "region": "kinki",
@@ -33104,7 +33116,7 @@
     {
       "id": "64226",
       "name": "上野地",
-      "kana": "ｳｴﾉｼﾞ",
+      "kana": "ウエノジ",
       "enName": "UENOJI",
       "prefecture": "奈良県",
       "region": "kinki",
@@ -33124,7 +33136,7 @@
     {
       "id": "64261",
       "name": "玉置山",
-      "kana": "ﾀﾏｷﾔﾏ",
+      "kana": "タマキヤマ",
       "enName": "TAMAKIYAMA",
       "prefecture": "奈良県",
       "region": "kinki",
@@ -33144,7 +33156,7 @@
     {
       "id": "65051",
       "name": "岩出",
-      "kana": "ｲﾜﾃﾞ",
+      "kana": "イワデ",
       "enName": "IWADE",
       "prefecture": "和歌山県",
       "region": "kinki",
@@ -33164,7 +33176,7 @@
     {
       "id": "65126",
       "name": "護摩壇山",
-      "kana": "ｺﾞﾏﾀﾞﾝｻﾞﾝ",
+      "kana": "ゴマダンザン",
       "enName": "GOMADANZAN",
       "prefecture": "和歌山県",
       "region": "kinki",
@@ -33182,7 +33194,7 @@
     {
       "id": "65161",
       "name": "竜神",
-      "kana": "ﾘｭｳｼﾞﾝ",
+      "kana": "リュウジン",
       "enName": "RYUJIN",
       "prefecture": "和歌山県",
       "region": "kinki",
@@ -33203,7 +33215,7 @@
     {
       "id": "65196",
       "name": "御坊",
-      "kana": "ｺﾞﾎﾞｳ",
+      "kana": "ゴボウ",
       "enName": "GOBO",
       "prefecture": "和歌山県",
       "region": "kinki",
@@ -33226,7 +33238,7 @@
     {
       "id": "65211",
       "name": "虎ケ峰峠",
-      "kana": "ﾄﾗｶﾞﾐﾈﾄｳｹﾞ",
+      "kana": "トラガミネトウゲ",
       "enName": "TORAGAMINETOGE",
       "prefecture": "和歌山県",
       "region": "kinki",
@@ -33246,7 +33258,7 @@
     {
       "id": "65286",
       "name": "白浜",
-      "kana": "ｼﾗﾊﾏ",
+      "kana": "シラハマ",
       "enName": "SHIRAHAMA",
       "prefecture": "和歌山県",
       "region": "kinki",
@@ -33267,7 +33279,7 @@
     {
       "id": "65287",
       "name": "白浜",
-      "kana": "ｼﾗﾊﾏ",
+      "kana": "シラハマ",
       "enName": "SHIRAHAMA",
       "prefecture": "和歌山県",
       "region": "kinki",
@@ -33288,7 +33300,7 @@
     {
       "id": "66111",
       "name": "大空山",
-      "kana": "ｵｵｿﾞﾗﾔﾏ",
+      "kana": "オオゾラヤマ",
       "enName": "OZORAYAMA",
       "prefecture": "岡山県",
       "region": "chugoku",
@@ -33308,7 +33320,7 @@
     {
       "id": "66126",
       "name": "那岐山",
-      "kana": "ﾅｷﾞｻﾝ",
+      "kana": "ナギサン",
       "enName": "NAGISAN",
       "prefecture": "岡山県",
       "region": "chugoku",
@@ -33328,7 +33340,7 @@
     {
       "id": "66216",
       "name": "新見",
-      "kana": "ﾆｲﾐ",
+      "kana": "ニイミ",
       "enName": "NIIMI",
       "prefecture": "岡山県",
       "region": "chugoku",
@@ -33346,7 +33358,7 @@
     {
       "id": "66236",
       "name": "天子山",
-      "kana": "ｱﾏｺﾞﾔﾏ",
+      "kana": "アマゴヤマ",
       "enName": "AMAGOYAMA",
       "prefecture": "岡山県",
       "region": "chugoku",
@@ -33366,7 +33378,7 @@
     {
       "id": "66286",
       "name": "大平山",
-      "kana": "ｵｵﾋﾗﾔﾏ",
+      "kana": "オオヒラヤマ",
       "enName": "OHIRAYAMA",
       "prefecture": "岡山県",
       "region": "chugoku",
@@ -33386,7 +33398,7 @@
     {
       "id": "66436",
       "name": "笠岡",
-      "kana": "ｶｻｵｶ",
+      "kana": "カサオカ",
       "enName": "KASAOKA",
       "prefecture": "岡山県",
       "region": "chugoku",
@@ -33404,7 +33416,7 @@
     {
       "id": "67031",
       "name": "道後山",
-      "kana": "ﾄﾞｳｺﾞﾔﾏ",
+      "kana": "ドウゴヤマ",
       "enName": "DOGOYAMA",
       "prefecture": "広島県",
       "region": "chugoku",
@@ -33422,7 +33434,7 @@
     {
       "id": "67051",
       "name": "安田山",
-      "kana": "ﾔｽﾀﾞﾔﾏ",
+      "kana": "ヤスダヤマ",
       "enName": "YASUDAYAMA",
       "prefecture": "広島県",
       "region": "chugoku",
@@ -33442,7 +33454,7 @@
     {
       "id": "67096",
       "name": "犬伏山",
-      "kana": "ｲﾇﾌﾞｾﾔﾏ",
+      "kana": "イヌブセヤマ",
       "enName": "INUBUSEYAMA",
       "prefecture": "広島県",
       "region": "chugoku",
@@ -33462,7 +33474,7 @@
     {
       "id": "67216",
       "name": "海見山",
-      "kana": "ｶｲｹﾝｻﾞﾝ",
+      "kana": "カイケンザン",
       "enName": "KAIKENZAN",
       "prefecture": "広島県",
       "region": "chugoku",
@@ -33482,7 +33494,7 @@
     {
       "id": "67356",
       "name": "恵下谷山",
-      "kana": "ｴｹﾞﾀﾆﾔﾏ",
+      "kana": "エゲタニヤマ",
       "enName": "EGETANIYAMA",
       "prefecture": "広島県",
       "region": "chugoku",
@@ -33502,7 +33514,7 @@
     {
       "id": "67381",
       "name": "河内",
-      "kana": "ｺｳﾁ",
+      "kana": "コウチ",
       "enName": "KOCHI",
       "prefecture": "広島県",
       "region": "chugoku",
@@ -33522,7 +33534,7 @@
     {
       "id": "67581",
       "name": "久比",
-      "kana": "ｸﾋﾞ",
+      "kana": "クビ",
       "enName": "KUBI",
       "prefecture": "広島県",
       "region": "chugoku",
@@ -33545,7 +33557,7 @@
     {
       "id": "68031",
       "name": "西ノ島",
-      "kana": "ﾆｼﾉｼﾏ",
+      "kana": "ニシノシマ",
       "enName": "NISHINOSHIMA",
       "prefecture": "島根県",
       "region": "chugoku",
@@ -33565,7 +33577,7 @@
     {
       "id": "68321",
       "name": "吾妻山",
-      "kana": "ｱﾂﾞﾏﾔﾏ",
+      "kana": "アヅマヤマ",
       "enName": "AZUMAYAMA",
       "prefecture": "広島県",
       "region": "chugoku",
@@ -33583,7 +33595,7 @@
     {
       "id": "68396",
       "name": "原山",
-      "kana": "ﾊﾗﾔﾏ",
+      "kana": "ハラヤマ",
       "enName": "HARAYAMA",
       "prefecture": "島根県",
       "region": "chugoku",
@@ -33603,7 +33615,7 @@
     {
       "id": "68461",
       "name": "益田",
-      "kana": "ﾏｽﾀﾞ",
+      "kana": "マスダ",
       "enName": "MASUDA",
       "prefecture": "島根県",
       "region": "chugoku",
@@ -33621,7 +33633,7 @@
     {
       "id": "68476",
       "name": "聖山",
-      "kana": "ﾋｼﾞﾘﾔﾏ",
+      "kana": "ヒジリヤマ",
       "enName": "HIJIRIYAMA",
       "prefecture": "広島県",
       "region": "chugoku",
@@ -33639,7 +33651,7 @@
     {
       "id": "68511",
       "name": "十種峯",
-      "kana": "ﾄｸｻｶﾞﾐﾈ",
+      "kana": "トクサガミネ",
       "enName": "TOKUSAGAMINE",
       "prefecture": "島根県",
       "region": "chugoku",
@@ -33659,7 +33671,7 @@
     {
       "id": "68546",
       "name": "六日市",
-      "kana": "ﾑｲｶｲﾁ",
+      "kana": "ムイカイチ",
       "enName": "MUIKAICHI",
       "prefecture": "島根県",
       "region": "chugoku",
@@ -33682,7 +33694,7 @@
     {
       "id": "69051",
       "name": "鳥取",
-      "kana": "ﾄﾂﾄﾘ",
+      "kana": "トツトリ",
       "enName": "TOTTORI",
       "prefecture": "鳥取県",
       "region": "chugoku",
@@ -33703,7 +33715,7 @@
     {
       "id": "69106",
       "name": "菅俵原",
-      "kana": "ｽｹﾞﾀﾜﾗ",
+      "kana": "スゲタワラ",
       "enName": "SUGETAWARA",
       "prefecture": "鳥取県",
       "region": "chugoku",
@@ -33723,7 +33735,7 @@
     {
       "id": "69121",
       "name": "霊石山",
-      "kana": "ﾚｲｾｷｻﾝ",
+      "kana": "レイセキサン",
       "enName": "REISEKISAN",
       "prefecture": "鳥取県",
       "region": "chugoku",
@@ -33743,7 +33755,7 @@
     {
       "id": "69151",
       "name": "大山",
-      "kana": "ﾀﾞｲｾﾝ",
+      "kana": "ダイセン",
       "enName": "DAISEN",
       "prefecture": "鳥取県",
       "region": "chugoku",
@@ -33761,7 +33773,7 @@
     {
       "id": "69221",
       "name": "古峠山",
-      "kana": "ｺﾄｳﾔﾏ",
+      "kana": "コトウヤマ",
       "enName": "KOTOYAMA",
       "prefecture": "鳥取県",
       "region": "chugoku",
@@ -33781,7 +33793,7 @@
     {
       "id": "69276",
       "name": "日南",
-      "kana": "ﾆﾁﾅﾝ",
+      "kana": "ニチナン",
       "enName": "NICHINANN",
       "prefecture": "鳥取県",
       "region": "chugoku",
@@ -33801,7 +33813,7 @@
     {
       "id": "71041",
       "name": "大山寺",
-      "kana": "ﾀｲｻﾝｼﾞ",
+      "kana": "タイサンジ",
       "enName": "TAISANJI",
       "prefecture": "徳島県",
       "region": "shikoku",
@@ -33821,7 +33833,7 @@
     {
       "id": "71086",
       "name": "穴吹",
-      "kana": "ｱﾅﾌﾞｷ",
+      "kana": "アナブキ",
       "enName": "ANABUKI",
       "prefecture": "徳島県",
       "region": "shikoku",
@@ -33842,7 +33854,7 @@
     {
       "id": "71146",
       "name": "江田山",
-      "kana": "ｴﾀﾞﾔﾏ",
+      "kana": "エダヤマ",
       "enName": "EDAYAMA",
       "prefecture": "徳島県",
       "region": "shikoku",
@@ -33862,7 +33874,7 @@
     {
       "id": "71151",
       "name": "旭丸",
-      "kana": "ｱｻﾋﾏﾙ",
+      "kana": "アサヒマル",
       "enName": "ASAHIMARU",
       "prefecture": "徳島県",
       "region": "shikoku",
@@ -33882,7 +33894,7 @@
     {
       "id": "71191",
       "name": "京上",
-      "kana": "ｷｮｳｼﾞｮｳ",
+      "kana": "キョウジョウ",
       "enName": "KYOJO",
       "prefecture": "徳島県",
       "region": "shikoku",
@@ -33905,7 +33917,7 @@
     {
       "id": "71221",
       "name": "太竜寺山",
-      "kana": "ﾀｲﾘｭｳｼﾞﾔﾏ",
+      "kana": "タイリュウジヤマ",
       "enName": "TAIRYUJIYAMA",
       "prefecture": "徳島県",
       "region": "shikoku",
@@ -33925,7 +33937,7 @@
     {
       "id": "71316",
       "name": "宍喰",
-      "kana": "ｼｼｸｲ",
+      "kana": "シシクイ",
       "enName": "SHISHIKUI",
       "prefecture": "徳島県",
       "region": "shikoku",
@@ -33948,7 +33960,7 @@
     {
       "id": "73136",
       "name": "新居浜",
-      "kana": "ﾆｲﾊﾏ",
+      "kana": "ニイハマ",
       "enName": "NIIHAMA",
       "prefecture": "愛媛県",
       "region": "shikoku",
@@ -33969,7 +33981,7 @@
     {
       "id": "73246",
       "name": "成就社",
-      "kana": "ｼﾞﾖｳｼﾞﾕｼﾔ",
+      "kana": "ジヨウジユシヤ",
       "enName": "JOJUSHA",
       "prefecture": "愛媛県",
       "region": "shikoku",
@@ -33987,7 +33999,7 @@
     {
       "id": "73391",
       "name": "三崎",
-      "kana": "ﾐｻｷ",
+      "kana": "ミサキ",
       "enName": "MISAKI",
       "prefecture": "愛媛県",
       "region": "shikoku",
@@ -34010,7 +34022,7 @@
     {
       "id": "74176",
       "name": "成山",
-      "kana": "ﾅﾘﾔﾏ",
+      "kana": "ナリヤマ",
       "enName": "NARIYAMA",
       "prefecture": "高知県",
       "region": "shikoku",
@@ -34030,7 +34042,7 @@
     {
       "id": "74186",
       "name": "南国",
-      "kana": "ﾅﾝｺﾞｸ",
+      "kana": "ナンゴク",
       "enName": "NANGOKU",
       "prefecture": "高知県",
       "region": "shikoku",
@@ -34053,7 +34065,7 @@
     {
       "id": "74196",
       "name": "芸西",
-      "kana": "ｹﾞｲｾｲ",
+      "kana": "ゲイセイ",
       "enName": "GEISEI",
       "prefecture": "高知県",
       "region": "shikoku",
@@ -34073,7 +34085,7 @@
     {
       "id": "74236",
       "name": "鳥形山",
-      "kana": "ﾄﾘｶﾞﾀﾔﾏ",
+      "kana": "トリガタヤマ",
       "enName": "TORIGATAYAMA",
       "prefecture": "高知県",
       "region": "shikoku",
@@ -34091,7 +34103,7 @@
     {
       "id": "74386",
       "name": "堂ケ森",
-      "kana": "ﾄﾞｳｶﾞﾓﾘ",
+      "kana": "ドウガモリ",
       "enName": "DOGAMORI",
       "prefecture": "高知県",
       "region": "shikoku",
@@ -34111,7 +34123,7 @@
     {
       "id": "81141",
       "name": "篠生",
-      "kana": "ｼﾉﾌﾞ",
+      "kana": "シノブ",
       "enName": "SHINOBU",
       "prefecture": "山口県",
       "region": "chugoku",
@@ -34129,7 +34141,7 @@
     {
       "id": "81191",
       "name": "鍋提峠",
-      "kana": "ﾅﾍﾞｻｹﾞﾄｳｹﾞ",
+      "kana": "ナベサゲトウゲ",
       "enName": "NABESAGETOGE",
       "prefecture": "山口県",
       "region": "chugoku",
@@ -34149,7 +34161,7 @@
     {
       "id": "81211",
       "name": "瀬戸原",
-      "kana": "ｾﾄﾊﾞﾗ",
+      "kana": "セトバラ",
       "enName": "SETOBARA",
       "prefecture": "山口県",
       "region": "chugoku",
@@ -34169,7 +34181,7 @@
     {
       "id": "81227",
       "name": "長野山",
-      "kana": "ﾅｶﾞﾉﾔﾏ",
+      "kana": "ナガノヤマ",
       "enName": "NAGANOYAMA",
       "prefecture": "山口県",
       "region": "chugoku",
@@ -34189,7 +34201,7 @@
     {
       "id": "81276",
       "name": "桜山",
-      "kana": "ｻｸﾗﾔﾏ",
+      "kana": "サクラヤマ",
       "enName": "SAKURAYAMA",
       "prefecture": "山口県",
       "region": "chugoku",
@@ -34209,7 +34221,7 @@
     {
       "id": "81396",
       "name": "周東",
-      "kana": "ｼｭｳﾄｳ",
+      "kana": "シュウトウ",
       "enName": "SHUTO",
       "prefecture": "山口県",
       "region": "chugoku",
@@ -34229,7 +34241,7 @@
     {
       "id": "82066",
       "name": "小倉",
-      "kana": "ｺｸﾗ",
+      "kana": "コクラ",
       "enName": "KOKURA",
       "prefecture": "福岡県",
       "region": "kyushu",
@@ -34249,7 +34261,7 @@
     {
       "id": "82067",
       "name": "曽根",
-      "kana": "ｿﾈ",
+      "kana": "ソネ",
       "enName": "SONE",
       "prefecture": "福岡県",
       "region": "kyushu",
@@ -34271,7 +34283,7 @@
     {
       "id": "82096",
       "name": "頂吉",
-      "kana": "ｶｸﾞﾒﾖｼ",
+      "kana": "カグメヨシ",
       "enName": "KAGUMEYOSHI",
       "prefecture": "福岡県",
       "region": "kyushu",
@@ -34291,7 +34303,7 @@
     {
       "id": "82131",
       "name": "篠栗",
-      "kana": "ｻｻｸﾞﾘ",
+      "kana": "ササグリ",
       "enName": "SASAGURI",
       "prefecture": "福岡県",
       "region": "kyushu",
@@ -34311,7 +34323,7 @@
     {
       "id": "82246",
       "name": "九千部山",
-      "kana": "ｸｾﾝﾌﾞﾔﾏ",
+      "kana": "クセンブヤマ",
       "enName": "KUSEMBUYAMA",
       "prefecture": "佐賀県",
       "region": "kyushu",
@@ -34329,7 +34341,7 @@
     {
       "id": "82271",
       "name": "英彦山",
-      "kana": "ﾋｺｻﾝ",
+      "kana": "ヒコサン",
       "enName": "HIKOSAN",
       "prefecture": "福岡県",
       "region": "kyushu",
@@ -34347,7 +34359,7 @@
     {
       "id": "82281",
       "name": "久留米",
-      "kana": "ｸﾙﾒ",
+      "kana": "クルメ",
       "enName": "KURUME",
       "prefecture": "福岡県",
       "region": "kyushu",
@@ -34365,7 +34377,7 @@
     {
       "id": "83046",
       "name": "中津",
-      "kana": "ﾅｶﾂ",
+      "kana": "ナカツ",
       "enName": "NAKATSU",
       "prefecture": "大分県",
       "region": "kyushu",
@@ -34386,7 +34398,7 @@
     {
       "id": "83136",
       "name": "伏木",
-      "kana": "ﾌｼｷ",
+      "kana": "フシキ",
       "enName": "FUSHIKI",
       "prefecture": "大分県",
       "region": "kyushu",
@@ -34406,7 +34418,7 @@
     {
       "id": "83161",
       "name": "別府",
-      "kana": "ﾍﾞｯﾌﾟ",
+      "kana": "ベップ",
       "enName": "BEPPU",
       "prefecture": "大分県",
       "region": "kyushu",
@@ -34426,7 +34438,7 @@
     {
       "id": "83241",
       "name": "釈迦岳",
-      "kana": "ｼｬｶﾀﾞｹ",
+      "kana": "シャカダケ",
       "enName": "SHAKADAKE",
       "prefecture": "大分県",
       "region": "kyushu",
@@ -34446,7 +34458,7 @@
     {
       "id": "83261",
       "name": "湯平",
-      "kana": "ﾕﾉﾋﾗ",
+      "kana": "ユノヒラ",
       "enName": "YUNOHIRA",
       "prefecture": "大分県",
       "region": "kyushu",
@@ -34466,7 +34478,7 @@
     {
       "id": "83331",
       "name": "温見",
-      "kana": "ﾇｸﾐ",
+      "kana": "ヌクミ",
       "enName": "NUKUMI",
       "prefecture": "大分県",
       "region": "kyushu",
@@ -34486,7 +34498,7 @@
     {
       "id": "83386",
       "name": "出羽",
-      "kana": "ｲｽﾞﾙﾊ",
+      "kana": "イズルハ",
       "enName": "IZURUHA",
       "prefecture": "大分県",
       "region": "kyushu",
@@ -34506,7 +34518,7 @@
     {
       "id": "83416",
       "name": "倉木",
-      "kana": "ｸﾗｷ",
+      "kana": "クラキ",
       "enName": "KURAKI",
       "prefecture": "大分県",
       "region": "kyushu",
@@ -34526,7 +34538,7 @@
     {
       "id": "84011",
       "name": "佐須奈",
-      "kana": "ｻｽﾅ",
+      "kana": "サスナ",
       "enName": "SASUNA",
       "prefecture": "長崎県",
       "region": "kyushu",
@@ -34549,7 +34561,7 @@
     {
       "id": "84181",
       "name": "松浦",
-      "kana": "ﾏﾂｳﾗ",
+      "kana": "マツウラ",
       "enName": "MATSUURA",
       "prefecture": "長崎県",
       "region": "kyushu",
@@ -34570,7 +34582,7 @@
     {
       "id": "84182",
       "name": "松浦",
-      "kana": "ﾏﾂｳﾗ",
+      "kana": "マツウラ",
       "enName": "MATSUURA",
       "prefecture": "長崎県",
       "region": "kyushu",
@@ -34591,7 +34603,7 @@
     {
       "id": "84226",
       "name": "国見山",
-      "kana": "ｸﾆﾐﾔﾏ",
+      "kana": "クニミヤマ",
       "enName": "KUNIMIYAMA",
       "prefecture": "佐賀県",
       "region": "kyushu",
@@ -34609,7 +34621,7 @@
     {
       "id": "84236",
       "name": "小値賀",
-      "kana": "ｵﾁﾞｶ",
+      "kana": "オヂカ",
       "enName": "OJIKA",
       "prefecture": "長崎県",
       "region": "kyushu",
@@ -34631,7 +34643,7 @@
     {
       "id": "84286",
       "name": "頭ヶ島",
-      "kana": "ｶｼﾗｶﾞｼﾏ",
+      "kana": "カシラガシマ",
       "enName": "KASHIRAGASHIMA",
       "prefecture": "長崎県",
       "region": "kyushu",
@@ -34653,7 +34665,7 @@
     {
       "id": "84336",
       "name": "上五島",
-      "kana": "ｶﾐｺﾞﾄｳ",
+      "kana": "カミゴトウ",
       "enName": "KAMIGOTO",
       "prefecture": "長崎県",
       "region": "kyushu",
@@ -34674,7 +34686,7 @@
     {
       "id": "84356",
       "name": "大瀬戸",
-      "kana": "ｵｵｾﾄ",
+      "kana": "オオセト",
       "enName": "OSETO",
       "prefecture": "長崎県",
       "region": "kyushu",
@@ -34696,7 +34708,7 @@
     {
       "id": "84376",
       "name": "五家原岳",
-      "kana": "ｺﾞｶﾊﾗﾀﾞｹ",
+      "kana": "ゴカハラダケ",
       "enName": "GOKAHARADAKE",
       "prefecture": "長崎県",
       "region": "kyushu",
@@ -34716,7 +34728,7 @@
     {
       "id": "84451",
       "name": "百花台",
-      "kana": "ﾋｬｯｶﾀﾞｲ",
+      "kana": "ヒャッカダイ",
       "enName": "HYAKKADAI",
       "prefecture": "長崎県",
       "region": "kyushu",
@@ -34736,7 +34748,7 @@
     {
       "id": "84516",
       "name": "雲仙岳",
-      "kana": "ｳﾝｾﾞﾝﾀﾞｹ",
+      "kana": "ウンゼンダケ",
       "enName": "UNZENDAKE",
       "prefecture": "長崎県",
       "region": "kyushu",
@@ -34757,7 +34769,7 @@
     {
       "id": "84517",
       "name": "普賢岳",
-      "kana": "ﾌｹﾞﾝﾀﾞｹ",
+      "kana": "フゲンダケ",
       "enName": "FUGENDAKE",
       "prefecture": "長崎県",
       "region": "kyushu",
@@ -34777,7 +34789,7 @@
     {
       "id": "84518",
       "name": "千々石",
-      "kana": "ﾁﾁﾞﾜ",
+      "kana": "チヂワ",
       "enName": "CHIJIWA",
       "prefecture": "長崎県",
       "region": "kyushu",
@@ -34797,7 +34809,7 @@
     {
       "id": "84521",
       "name": "島原",
-      "kana": "ｼﾏﾊﾞﾗ",
+      "kana": "シマバラ",
       "enName": "SHIMABARA",
       "prefecture": "長崎県",
       "region": "kyushu",
@@ -34818,7 +34830,7 @@
     {
       "id": "84522",
       "name": "深江",
-      "kana": "ﾌｶｴ",
+      "kana": "フカエ",
       "enName": "FUKAE",
       "prefecture": "長崎県",
       "region": "kyushu",
@@ -34838,7 +34850,7 @@
     {
       "id": "84596",
       "name": "野母崎",
-      "kana": "ﾉﾓｻﾞｷ",
+      "kana": "ノモザキ",
       "enName": "NOMOZAKI",
       "prefecture": "長崎県",
       "region": "kyushu",
@@ -34861,7 +34873,7 @@
     {
       "id": "85031",
       "name": "枝去木",
-      "kana": "ｴｻﾞﾙｷﾞ",
+      "kana": "エザルギ",
       "enName": "EZARUGI",
       "prefecture": "佐賀県",
       "region": "kyushu",
@@ -34884,7 +34896,7 @@
     {
       "id": "85032",
       "name": "和多田",
-      "kana": "ﾜﾀﾀﾞ",
+      "kana": "ワタダ",
       "enName": "WATADA",
       "prefecture": "佐賀県",
       "region": "kyushu",
@@ -34904,7 +34916,7 @@
     {
       "id": "85091",
       "name": "権現山",
-      "kana": "ｺﾞﾝｹﾞﾝﾔﾏ",
+      "kana": "ゴンゲンヤマ",
       "enName": "GONGENYAMA",
       "prefecture": "佐賀県",
       "region": "kyushu",
@@ -34924,7 +34936,7 @@
     {
       "id": "85126",
       "name": "八幡岳",
-      "kana": "ﾊﾁﾏﾝﾀﾞｹ",
+      "kana": "ハチマンダケ",
       "enName": "HACHIMANDAKE",
       "prefecture": "佐賀県",
       "region": "kyushu",
@@ -34944,7 +34956,7 @@
     {
       "id": "85131",
       "name": "大町",
-      "kana": "ｵｵﾏﾁ",
+      "kana": "オオマチ",
       "enName": "OMACHI",
       "prefecture": "佐賀県",
       "region": "kyushu",
@@ -34964,7 +34976,7 @@
     {
       "id": "85181",
       "name": "嬉野",
-      "kana": "ｳﾚｼﾉ",
+      "kana": "ウレシノ",
       "enName": "URESHINO",
       "prefecture": "佐賀県",
       "region": "kyushu",
@@ -34982,7 +34994,7 @@
     {
       "id": "85201",
       "name": "多良岳",
-      "kana": "ﾀﾗﾀﾞｹ",
+      "kana": "タラダケ",
       "enName": "TARADAKE",
       "prefecture": "佐賀県",
       "region": "kyushu",
@@ -35002,7 +35014,7 @@
     {
       "id": "86106",
       "name": "鞍岳",
-      "kana": "ｸﾗﾀﾞｹ",
+      "kana": "クラダケ",
       "enName": "KURADAKE",
       "prefecture": "熊本県",
       "region": "kyushu",
@@ -35022,7 +35034,7 @@
     {
       "id": "86151",
       "name": "俵山",
-      "kana": "ﾀﾜﾗﾔﾏ",
+      "kana": "タワラヤマ",
       "enName": "TAWARAYAMA",
       "prefecture": "熊本県",
       "region": "kyushu",
@@ -35042,7 +35054,7 @@
     {
       "id": "86156",
       "name": "阿蘇山",
-      "kana": "ｱｿｻﾝ",
+      "kana": "アソサン",
       "enName": "ASOSAN",
       "prefecture": "熊本県",
       "region": "kyushu",
@@ -35064,7 +35076,7 @@
     {
       "id": "86196",
       "name": "間の谷山",
-      "kana": "ﾏﾉﾀﾆﾔﾏ",
+      "kana": "マノタニヤマ",
       "enName": "MANOTANIYAMA",
       "prefecture": "熊本県",
       "region": "kyushu",
@@ -35084,7 +35096,7 @@
     {
       "id": "86296",
       "name": "大金峰",
-      "kana": "ﾀﾞｲｷﾝﾎﾟｳ",
+      "kana": "ダイキンポウ",
       "enName": "DAIKIMPO",
       "prefecture": "熊本県",
       "region": "kyushu",
@@ -35104,7 +35116,7 @@
     {
       "id": "86351",
       "name": "五木",
-      "kana": "ｲﾂｷ",
+      "kana": "イツキ",
       "enName": "ITSUKI",
       "prefecture": "熊本県",
       "region": "kyushu",
@@ -35122,7 +35134,7 @@
     {
       "id": "86356",
       "name": "五家荘",
-      "kana": "ｺﾞｶﾉｼﾖｳ",
+      "kana": "ゴカノシヨウ",
       "enName": "GOKANOSHO",
       "prefecture": "熊本県",
       "region": "kyushu",
@@ -35142,7 +35154,7 @@
     {
       "id": "86406",
       "name": "屋形山",
-      "kana": "ﾔｶﾀﾔﾏ",
+      "kana": "ヤカタヤマ",
       "enName": "YAKATAYAMA",
       "prefecture": "熊本県",
       "region": "kyushu",
@@ -35162,7 +35174,7 @@
     {
       "id": "86416",
       "name": "茶臼峠",
-      "kana": "ﾁｬｳｽﾄｳｹﾞ",
+      "kana": "チャウストウゲ",
       "enName": "CHAUSUTOGE",
       "prefecture": "熊本県",
       "region": "kyushu",
@@ -35182,7 +35194,7 @@
     {
       "id": "86466",
       "name": "戦山",
-      "kana": "ｲｸｻﾔﾏ",
+      "kana": "イクサヤマ",
       "enName": "IKUSAYAMA",
       "prefecture": "熊本県",
       "region": "kyushu",
@@ -35202,7 +35214,7 @@
     {
       "id": "86476",
       "name": "多良木",
-      "kana": "ﾀﾗｷ",
+      "kana": "タラキ",
       "enName": "TARAKI",
       "prefecture": "熊本県",
       "region": "kyushu",
@@ -35220,7 +35232,7 @@
     {
       "id": "86511",
       "name": "一里山",
-      "kana": "ｲﾁﾘﾔﾏ",
+      "kana": "イチリヤマ",
       "enName": "ICHIRIYAMA",
       "prefecture": "熊本県",
       "region": "kyushu",
@@ -35240,7 +35252,7 @@
     {
       "id": "86526",
       "name": "白髪岳",
-      "kana": "ｼﾗｶﾞﾀﾞｹ",
+      "kana": "シラガダケ",
       "enName": "SHIRAGADAKE",
       "prefecture": "熊本県",
       "region": "kyushu",
@@ -35260,7 +35272,7 @@
     {
       "id": "87046",
       "name": "見立",
-      "kana": "ﾐﾀﾃ",
+      "kana": "ミタテ",
       "enName": "MITATE",
       "prefecture": "宮崎県",
       "region": "kyushu",
@@ -35280,7 +35292,7 @@
     {
       "id": "87091",
       "name": "大中尾",
-      "kana": "ｵﾅｺ",
+      "kana": "オナコ",
       "enName": "ONAKO",
       "prefecture": "宮崎県",
       "region": "kyushu",
@@ -35300,7 +35312,7 @@
     {
       "id": "87126",
       "name": "中小屋",
-      "kana": "ﾅｶｺﾞﾔ",
+      "kana": "ナカゴヤ",
       "enName": "NAKAGOYA",
       "prefecture": "宮崎県",
       "region": "kyushu",
@@ -35320,7 +35332,7 @@
     {
       "id": "87156",
       "name": "上椎葉",
-      "kana": "ｶﾐｼｲﾊﾞ",
+      "kana": "カミシイバ",
       "enName": "KAMISHIIBA",
       "prefecture": "宮崎県",
       "region": "kyushu",
@@ -35340,7 +35352,7 @@
     {
       "id": "87166",
       "name": "猪原",
-      "kana": "ｲﾉﾊﾗ",
+      "kana": "イノハラ",
       "enName": "INOHARA",
       "prefecture": "宮崎県",
       "region": "kyushu",
@@ -35360,7 +35372,7 @@
     {
       "id": "87207",
       "name": "矢櫃岳",
-      "kana": "ﾔﾋﾞﾂﾀﾞｹ",
+      "kana": "ヤビツダケ",
       "enName": "YABITSUDAKE",
       "prefecture": "宮崎県",
       "region": "kyushu",
@@ -35380,7 +35392,7 @@
     {
       "id": "87292",
       "name": "高鍋",
-      "kana": "ﾀｶﾅﾍﾞ",
+      "kana": "タカナベ",
       "enName": "TAKANABE",
       "prefecture": "宮崎県",
       "region": "kyushu",
@@ -35401,7 +35413,7 @@
     {
       "id": "87351",
       "name": "小林",
-      "kana": "ｺﾊﾞﾔｼ",
+      "kana": "コバヤシ",
       "enName": "KOBAYASHI",
       "prefecture": "宮崎県",
       "region": "kyushu",
@@ -35422,7 +35434,7 @@
     {
       "id": "87356",
       "name": "高原",
-      "kana": "ﾀｶﾊﾙ",
+      "kana": "タカハル",
       "enName": "TAKAHARU",
       "prefecture": "宮崎県",
       "region": "kyushu",
@@ -35442,7 +35454,7 @@
     {
       "id": "87386",
       "name": "霧島御池",
-      "kana": "ｷﾘｼﾏﾐｲｹ",
+      "kana": "キリシマミイケ",
       "enName": "KIRISHIMAMIIKE",
       "prefecture": "宮崎県",
       "region": "kyushu",
@@ -35462,7 +35474,7 @@
     {
       "id": "87391",
       "name": "山田",
-      "kana": "ﾔﾏﾀﾞ",
+      "kana": "ヤマダ",
       "enName": "YAMADA",
       "prefecture": "宮崎県",
       "region": "kyushu",
@@ -35482,7 +35494,7 @@
     {
       "id": "87411",
       "name": "青島",
-      "kana": "ｱｵｼﾏ",
+      "kana": "アオシマ",
       "enName": "AOSHIMA",
       "prefecture": "宮崎県",
       "region": "kyushu",
@@ -35505,7 +35517,7 @@
     {
       "id": "87436",
       "name": "鰐塚山",
-      "kana": "ﾜﾆﾂｶﾔﾏ",
+      "kana": "ワニツカヤマ",
       "enName": "WANITSUKAYAMA",
       "prefecture": "宮崎県",
       "region": "kyushu",
@@ -35525,7 +35537,7 @@
     {
       "id": "88076",
       "name": "古原野",
-      "kana": "ｺﾊﾙﾉ",
+      "kana": "コハルノ",
       "enName": "KOHARUNO",
       "prefecture": "鹿児島県",
       "region": "kyushu",
@@ -35545,7 +35557,7 @@
     {
       "id": "88086",
       "name": "魚野越",
-      "kana": "ｳｵﾉｺﾞｴ",
+      "kana": "ウオノゴエ",
       "enName": "UONOGOE",
       "prefecture": "鹿児島県",
       "region": "kyushu",
@@ -35565,7 +35577,7 @@
     {
       "id": "88106",
       "name": "宮之城",
-      "kana": "ﾐﾔﾉｼﾞｮｳ",
+      "kana": "ミヤノジョウ",
       "enName": "MIYANOJO",
       "prefecture": "鹿児島県",
       "region": "kyushu",
@@ -35586,7 +35598,7 @@
     {
       "id": "88146",
       "name": "川内",
-      "kana": "ｾﾝﾀﾞｲ",
+      "kana": "センダイ",
       "enName": "SENDAI",
       "prefecture": "鹿児島県",
       "region": "kyushu",
@@ -35604,7 +35616,7 @@
     {
       "id": "88161",
       "name": "矢止岳",
-      "kana": "ﾔﾄﾞﾒﾀﾞｹ",
+      "kana": "ヤドメダケ",
       "enName": "YADOMEDAKE",
       "prefecture": "鹿児島県",
       "region": "kyushu",
@@ -35624,7 +35636,7 @@
     {
       "id": "88176",
       "name": "霧島牧園",
-      "kana": "ｷﾘｼﾏﾏｷｿﾞﾉ",
+      "kana": "キリシママキゾノ",
       "enName": "KIRISHIMAMAKIZONO",
       "prefecture": "鹿児島県",
       "region": "kyushu",
@@ -35644,7 +35656,7 @@
     {
       "id": "88311",
       "name": "権現ケ尾",
-      "kana": "ｺﾞﾝｹﾞﾝｶﾞｵ",
+      "kana": "ゴンゲンガオ",
       "enName": "GONGENGAO",
       "prefecture": "鹿児島県",
       "region": "kyushu",
@@ -35664,7 +35676,7 @@
     {
       "id": "88326",
       "name": "高峠",
-      "kana": "ﾀｶﾄｳｹﾞ",
+      "kana": "タカトウゲ",
       "enName": "TAKATOGE",
       "prefecture": "鹿児島県",
       "region": "kyushu",
@@ -35684,7 +35696,7 @@
     {
       "id": "88391",
       "name": "吉ケ別府",
-      "kana": "ﾖｼｶﾞﾍﾞｯﾌﾟ",
+      "kana": "ヨシガベップ",
       "enName": "YOSHIGABEPPU",
       "prefecture": "鹿児島県",
       "region": "kyushu",
@@ -35702,7 +35714,7 @@
     {
       "id": "88431",
       "name": "喜入",
-      "kana": "ｷｲﾚ",
+      "kana": "キイレ",
       "enName": "KIIRE",
       "prefecture": "鹿児島県",
       "region": "kyushu",
@@ -35720,7 +35732,7 @@
     {
       "id": "88441",
       "name": "鹿屋",
-      "kana": "ｶﾉﾔ",
+      "kana": "カノヤ",
       "enName": "KANOYA",
       "prefecture": "鹿児島県",
       "region": "kyushu",
@@ -35738,7 +35750,7 @@
     {
       "id": "88446",
       "name": "肝属川",
-      "kana": "ｷﾓﾂｷｶﾞﾜ",
+      "kana": "キモツキガワ",
       "enName": "KIMOTSUKIGAWA",
       "prefecture": "鹿児島県",
       "region": "kyushu",
@@ -35761,7 +35773,7 @@
     {
       "id": "88501",
       "name": "甫与志岳",
-      "kana": "ﾎﾖｼﾀﾞｹ",
+      "kana": "ホヨシダケ",
       "enName": "HOYOSHIDAKE",
       "prefecture": "鹿児島県",
       "region": "kyushu",
@@ -35779,7 +35791,7 @@
     {
       "id": "88502",
       "name": "甫与志岳",
-      "kana": "ﾎﾖｼﾀﾞｹ",
+      "kana": "ホヨシダケ",
       "enName": "HOYOSHIDAKE",
       "prefecture": "鹿児島県",
       "region": "kyushu",
@@ -35797,7 +35809,7 @@
     {
       "id": "88631",
       "name": "中種子",
-      "kana": "ﾅｶﾀﾈ",
+      "kana": "ナカタネ",
       "enName": "NAKATANE",
       "prefecture": "鹿児島県",
       "region": "kyushu",
@@ -35817,7 +35829,7 @@
     {
       "id": "91051",
       "name": "与那覇岳",
-      "kana": "ﾖﾅﾊﾀﾞｹ",
+      "kana": "ヨナハダケ",
       "enName": "YONAHADAKE",
       "prefecture": "沖縄県",
       "region": "okinawa",
@@ -35837,7 +35849,7 @@
     {
       "id": "91071",
       "name": "呉我山",
-      "kana": "ｺﾞｶﾞﾔﾏ",
+      "kana": "ゴガヤマ",
       "enName": "GOGAYAMA",
       "prefecture": "沖縄県",
       "region": "okinawa",
@@ -35857,7 +35869,7 @@
     {
       "id": "91106",
       "name": "名護",
-      "kana": "ﾅｺﾞ",
+      "kana": "ナゴ",
       "enName": "NAGO",
       "prefecture": "沖縄県",
       "region": "okinawa",
@@ -35878,7 +35890,7 @@
     {
       "id": "91126",
       "name": "金武",
-      "kana": "ｷﾝ",
+      "kana": "キン",
       "enName": "KIN",
       "prefecture": "沖縄県",
       "region": "okinawa",
@@ -35899,7 +35911,7 @@
     {
       "id": "91131",
       "name": "金武",
-      "kana": "ｷﾝ",
+      "kana": "キン",
       "enName": "KIN",
       "prefecture": "沖縄県",
       "region": "okinawa",
@@ -35917,7 +35929,7 @@
     {
       "id": "91216",
       "name": "慶良間",
-      "kana": "ｹﾗﾏ",
+      "kana": "ケラマ",
       "enName": "KERAMA",
       "prefecture": "沖縄県",
       "region": "okinawa",
@@ -35939,7 +35951,7 @@
     {
       "id": "93011",
       "name": "伊良部",
-      "kana": "ｲﾗﾌﾞ",
+      "kana": "イラブ",
       "enName": "IRABU",
       "prefecture": "沖縄県",
       "region": "okinawa",
@@ -35962,7 +35974,7 @@
     {
       "id": "93061",
       "name": "多良間",
-      "kana": "ﾀﾗﾏ",
+      "kana": "タラマ",
       "enName": "TARAMA",
       "prefecture": "沖縄県",
       "region": "okinawa",
@@ -35985,7 +35997,7 @@
     {
       "id": "94061",
       "name": "西表島",
-      "kana": "ｲﾘｵﾓﾃｼﾞﾏ",
+      "kana": "イリオモテジマ",
       "enName": "IRIOMOTEJIMA",
       "prefecture": "沖縄県",
       "region": "okinawa",
@@ -36006,7 +36018,7 @@
     {
       "id": "94082",
       "name": "真栄里",
-      "kana": "ﾏｴｻﾞﾄ",
+      "kana": "マエザト",
       "enName": "MAEZATO",
       "prefecture": "沖縄県",
       "region": "okinawa",
@@ -36028,7 +36040,7 @@
     {
       "id": "94121",
       "name": "志多阿原",
-      "kana": "ｼﾀｱﾊﾞﾙ",
+      "kana": "シタアバル",
       "enName": "SHITAABARU",
       "prefecture": "沖縄県",
       "region": "okinawa",

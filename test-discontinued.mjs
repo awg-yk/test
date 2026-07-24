@@ -41,7 +41,7 @@ data.discontinuedStations.forEach((s) => {
   assert(typeof s.lat === "number" && s.lat > 20 && s.lat < 46, `${s.name}: 緯度が日本国内の範囲`);
   assert(typeof s.lon === "number" && s.lon > 122 && s.lon < 154, `${s.name}: 経度が日本国内の範囲`);
   // フェーズ19: block_numbers.json（etrnの地点選択ページのスクレイピング結果）と突き合わせて
-  // 一意に一致した361件だけprecNo/blockNoを確定している。両方揃うか、両方とも無いかのどちらか。
+  // 一意に一致した367件だけprecNo/blockNoを確定している。両方揃うか、両方とも無いかのどちらか。
   assert(
     (s.precNo && s.blockNo) || (!s.precNo && !s.blockNo),
     `${s.name}: precNo/blockNoは両方揃うか両方とも無いかのどちらか`
@@ -52,7 +52,7 @@ const ids = data.discontinuedStations.map((s) => s.id);
 assert(new Set(ids).size === ids.length, "discontinuedStations内でidの重複がない");
 
 const withLink = data.discontinuedStations.filter((s) => s.precNo && s.blockNo);
-assert(withLink.length === 361, `precNo/blockNoが確定している廃止済み観測所は361件 (実際: ${withLink.length})`);
+assert(withLink.length === 367, `precNo/blockNoが確定している廃止済み観測所は367件 (実際: ${withLink.length})`);
 
 console.log("\nAll discontinued data-integrity checks passed.");
 
