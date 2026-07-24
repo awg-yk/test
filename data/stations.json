@@ -25912,7 +25912,9 @@
       "stationType": "気象官署",
       "discontinued": true,
       "observedFrom": "1961-01-01",
-      "observedTo": "1976-12-31"
+      "observedTo": "1976-12-31",
+      "precNo": "40",
+      "blockNo": "1082"
     },
     {
       "id": "H650",
@@ -26056,7 +26058,9 @@
       "stationType": "気象官署",
       "discontinued": true,
       "observedFrom": "1961-01-01",
-      "observedTo": "2017-12-11"
+      "observedTo": "2017-12-11",
+      "precNo": "86",
+      "blockNo": "47821"
     },
     {
       "id": "H894",
@@ -28893,7 +28897,9 @@
       "stationType": "アメダス",
       "discontinued": true,
       "observedFrom": "1974-11-01",
-      "observedTo": "1984-10-01"
+      "observedTo": "1984-10-01",
+      "precNo": "35",
+      "blockNo": "0269"
     },
     {
       "id": "35296",
@@ -28931,7 +28937,9 @@
       "stationType": "アメダス",
       "discontinued": true,
       "observedFrom": "1985-06-28",
-      "observedTo": "2009-11-02"
+      "observedTo": "2009-11-02",
+      "precNo": "35",
+      "blockNo": "0269"
     },
     {
       "id": "35331",
@@ -29542,7 +29550,9 @@
       "stationType": "アメダス",
       "discontinued": true,
       "observedFrom": "1976-02-28",
-      "observedTo": "1981-08-20"
+      "observedTo": "1981-08-20",
+      "precNo": "40",
+      "blockNo": "1082"
     },
     {
       "id": "40243",
@@ -29563,7 +29573,9 @@
       "stationType": "アメダス",
       "discontinued": true,
       "observedFrom": "1981-08-21",
-      "observedTo": "2001-12-06"
+      "observedTo": "2001-12-06",
+      "precNo": "40",
+      "blockNo": "1082"
     },
     {
       "id": "40246",
@@ -30299,7 +30311,9 @@
       "stationType": "アメダス",
       "discontinued": true,
       "observedFrom": "1974-11-01",
-      "observedTo": "1978-09-19"
+      "observedTo": "1978-09-19",
+      "precNo": "48",
+      "blockNo": "0403"
     },
     {
       "id": "48292",
@@ -30317,7 +30331,9 @@
       "stationType": "アメダス",
       "discontinued": true,
       "observedFrom": "1979-07-05",
-      "observedTo": "2009-05-20"
+      "observedTo": "2009-05-20",
+      "precNo": "48",
+      "blockNo": "0403"
     },
     {
       "id": "48426",
@@ -30557,7 +30573,9 @@
       "stationType": "アメダス",
       "discontinued": true,
       "observedFrom": "1974-11-01",
-      "observedTo": "1982-10-27"
+      "observedTo": "1982-10-27",
+      "precNo": "48",
+      "blockNo": "0423"
     },
     {
       "id": "48736",
@@ -30595,7 +30613,9 @@
       "stationType": "アメダス",
       "discontinued": true,
       "observedFrom": "1983-06-17",
-      "observedTo": "2005-05-10"
+      "observedTo": "2005-05-10",
+      "precNo": "48",
+      "blockNo": "0423"
     },
     {
       "id": "48791",
@@ -32555,7 +32575,9 @@
       "stationType": "アメダス",
       "discontinued": true,
       "observedFrom": "1974-11-01",
-      "observedTo": "1979-12-01"
+      "observedTo": "1979-12-01",
+      "precNo": "61",
+      "blockNo": "0599"
     },
     {
       "id": "61337",
@@ -32573,7 +32595,9 @@
       "stationType": "アメダス",
       "discontinued": true,
       "observedFrom": "1980-07-19",
-      "observedTo": "2009-11-20"
+      "observedTo": "2009-11-20",
+      "precNo": "61",
+      "blockNo": "0599"
     },
     {
       "id": "62036",
@@ -33274,7 +33298,9 @@
       "stationType": "アメダス",
       "discontinued": true,
       "observedFrom": "1974-11-01",
-      "observedTo": "1978-02-27"
+      "observedTo": "1978-02-27",
+      "precNo": "65",
+      "blockNo": "0650"
     },
     {
       "id": "65287",
@@ -33295,7 +33321,9 @@
       "stationType": "アメダス",
       "discontinued": true,
       "observedFrom": "1978-02-28",
-      "observedTo": "2009-09-01"
+      "observedTo": "2009-09-01",
+      "precNo": "65",
+      "blockNo": "0650"
     },
     {
       "id": "66111",
@@ -35071,7 +35099,9 @@
       "stationType": "アメダス",
       "discontinued": true,
       "observedFrom": "1974-11-01",
-      "observedTo": "2017-12-11"
+      "observedTo": "2017-12-11",
+      "precNo": "86",
+      "blockNo": "47821"
     },
     {
       "id": "86196",
@@ -35786,7 +35816,9 @@
       "stationType": "アメダス",
       "discontinued": true,
       "observedFrom": "1974-11-01",
-      "observedTo": "1976-10-31"
+      "observedTo": "1976-10-31",
+      "precNo": "88",
+      "blockNo": "0894"
     },
     {
       "id": "88502",
@@ -35804,7 +35836,9 @@
       "stationType": "アメダス",
       "discontinued": true,
       "observedFrom": "1976-11-01",
-      "observedTo": "2009-11-20"
+      "observedTo": "2009-11-20",
+      "precNo": "88",
+      "blockNo": "0894"
     },
     {
       "id": "88631",
@@ -35906,7 +35940,9 @@
       "stationType": "アメダス",
       "discontinued": true,
       "observedFrom": "1977-03-04",
-      "observedTo": "2007-12-19"
+      "observedTo": "2007-12-19",
+      "precNo": "91",
+      "blockNo": "1064"
     },
     {
       "id": "91131",
@@ -35924,7 +35960,9 @@
       "stationType": "アメダス",
       "discontinued": true,
       "observedFrom": "1975-05-30",
-      "observedTo": "1977-03-03"
+      "observedTo": "1977-03-03",
+      "precNo": "91",
+      "blockNo": "1064"
     },
     {
       "id": "91216",
