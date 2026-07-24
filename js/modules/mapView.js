@@ -34,9 +34,12 @@ const STATION_TYPE_COLORS = {
   アメダス: "#E8A33D", // --color-amber
 };
 const DEFAULT_MARKER_COLOR = "#5B6672"; // --color-ink-soft
+const DISCONTINUED_MARKER_COLOR = "#9AA1AA"; // --color-border-strong寄りの薄いグレー（フェーズ16）
 
-/** 観測所種別からマーカー色を返す（テスト容易にするため独立関数） */
+/** 観測所種別からマーカー色を返す（テスト容易にするため独立関数）。
+ *  廃止済み観測所は種別に関わらずグレー表示にする（フェーズ16）。 */
 export function getMarkerColor(station) {
+  if (station?.discontinued) return DISCONTINUED_MARKER_COLOR;
   return STATION_TYPE_COLORS[station?.stationType] ?? DEFAULT_MARKER_COLOR;
 }
 
@@ -57,7 +60,11 @@ export function buildPopupHtml(station, { elementLabelMap } = {}) {
   const jmaLink = buildJmaStationLink(station);
   const prefectureLink = buildJmaPrefectureLink(station);
   let jmaLinkHtml;
-  if (jmaLink) {
+  if (station.discontinued) {
+    jmaLinkHtml = `<span class="map-popup__no-link">廃止済み観測所（観測期間: ${escapeHtml(
+      station.observedFrom ?? "?"
+    )} 〜 ${escapeHtml(station.observedTo ?? "?")}）。地点番号未確定のため気象庁ページへのリンクはありません。</span>`;
+  } else if (jmaLink) {
     jmaLinkHtml = `<a href="${jmaLink}" target="_blank" rel="noopener noreferrer">気象庁の観測データを見る ↗</a>`;
   } else if (prefectureLink) {
     jmaLinkHtml = `<a href="${prefectureLink}" target="_blank" rel="noopener noreferrer">都道府県の地点選択ページを開く ↗</a><br><span class="map-popup__no-link">（気象庁側に同名で複数の地点番号${escapeHtml(

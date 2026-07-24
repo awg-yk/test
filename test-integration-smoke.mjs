@@ -195,4 +195,49 @@ kanshoCheckbox.checked = false;
 kanshoCheckbox.dispatchEvent(new win.Event("change"));
 await wait(50);
 
+// --- 「廃止済み観測所を含める」チェックボックス（フェーズ16） ----------------
+// ここまでのテストで北海道フィルタがオンのままなので、クリーンな状態に戻す
+hokkaidoCheckbox.checked = false;
+hokkaidoCheckbox.dispatchEvent(new win.Event("change"));
+await wait(50);
+
+const discontinuedCount = JSON.parse(stationsJson).discontinuedStations.length;
+const statusBeforeDiscontinued = doc.querySelector("#status-count").textContent;
+assert(
+  statusBeforeDiscontinued.includes("全 1287 件中"),
+  `既定では廃止済み観測所を含まない (実際: ${statusBeforeDiscontinued})`
+);
+
+const discontinuedCheckbox = doc.querySelector("#discontinued-filter-container input[type=checkbox]");
+assert(!!discontinuedCheckbox, "「廃止済み観測所を含める」チェックボックスが描画されている");
+
+discontinuedCheckbox.checked = true;
+discontinuedCheckbox.dispatchEvent(new win.Event("change"));
+await wait(50);
+
+const statusAfterDiscontinued = doc.querySelector("#status-count").textContent;
+assert(
+  statusAfterDiscontinued.includes(`全 ${1287 + discontinuedCount} 件中`),
+  `チェックすると母数に廃止済み観測所(${discontinuedCount}件)が加算される (実際: ${statusAfterDiscontinued})`
+);
+
+// 50件/ページの1ページ目に廃止済み観測所が含まれるとは限らないため、検索で1件に絞ってから確認する
+searchInput.value = "阿蘇山";
+searchInput.dispatchEvent(new win.Event("input"));
+await wait(300);
+const asosanRow = doc.querySelector("#station-table-container tbody tr");
+assert(!!asosanRow, "検索で廃止済み観測所（阿蘇山）がヒットする");
+assert(
+  asosanRow.classList.contains("station-table__row--discontinued"),
+  "廃止済み観測所を含めた状態では、検索結果にも廃止済み観測所が現れる"
+);
+assert(!!asosanRow.querySelector(".station-table__discontinued-badge"), "「廃止」バッジが表示される");
+
+searchInput.value = "";
+searchInput.dispatchEvent(new win.Event("input"));
+await wait(300);
+discontinuedCheckbox.checked = false;
+discontinuedCheckbox.dispatchEvent(new win.Event("change"));
+await wait(50);
+
 console.log("\nAll integration smoke tests passed.");

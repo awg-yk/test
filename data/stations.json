@@ -25871,5 +25871,422 @@
       "precNo": "91",
       "blockNo": "1354"
     }
+  ],
+  "discontinuedStations": [
+    {
+      "id": "H429",
+      "name": "森",
+      "kana": "モリ",
+      "prefecture": "北海道",
+      "region": "hokkaido",
+      "lat": 42.1017,
+      "lon": 140.5617,
+      "elements": [
+        "temperature",
+        "precipitation",
+        "wind",
+        "humidity",
+        "sunshine"
+      ],
+      "stationType": "気象官署",
+      "discontinued": true,
+      "observedFrom": "1961-01-01",
+      "observedTo": "2002-02-28"
+    },
+    {
+      "id": "H627",
+      "name": "筑波山",
+      "kana": "ツクバサン",
+      "prefecture": "茨城県",
+      "region": "kanto",
+      "lat": 36.2183,
+      "lon": 140.0967,
+      "elements": [
+        "temperature",
+        "precipitation",
+        "wind",
+        "humidity",
+        "sunshine",
+        "snow"
+      ],
+      "stationType": "気象官署",
+      "discontinued": true,
+      "observedFrom": "1961-01-01",
+      "observedTo": "1976-12-31"
+    },
+    {
+      "id": "H650",
+      "name": "亀山",
+      "kana": "カメヤマ",
+      "prefecture": "三重県",
+      "region": "kinki",
+      "lat": 34.8517,
+      "lon": 136.4633,
+      "elements": [
+        "temperature",
+        "precipitation",
+        "wind",
+        "humidity",
+        "sunshine"
+      ],
+      "stationType": "気象官署",
+      "discontinued": true,
+      "observedFrom": "1961-01-01",
+      "observedTo": "1966-12-31"
+    },
+    {
+      "id": "H673",
+      "name": "富崎",
+      "kana": "トミサキ",
+      "prefecture": "千葉県",
+      "region": "kanto",
+      "lat": 34.92,
+      "lon": 139.83,
+      "elements": [
+        "temperature",
+        "precipitation",
+        "wind",
+        "humidity",
+        "sunshine"
+      ],
+      "stationType": "気象官署",
+      "discontinued": true,
+      "observedFrom": "1961-01-01",
+      "observedTo": "1968-12-31"
+    },
+    {
+      "id": "H676",
+      "name": "新島",
+      "kana": "ニイジマ",
+      "prefecture": "東京都",
+      "region": "kanto",
+      "lat": 34.37,
+      "lon": 139.2467,
+      "elements": [
+        "temperature",
+        "precipitation",
+        "wind",
+        "humidity",
+        "sunshine"
+      ],
+      "stationType": "気象官署",
+      "discontinued": true,
+      "observedFrom": "1961-01-01",
+      "observedTo": "1966-12-31"
+    },
+    {
+      "id": "H751",
+      "name": "伊吹山",
+      "kana": "イブキヤマ",
+      "prefecture": "滋賀県",
+      "region": "kinki",
+      "lat": 35.4183,
+      "lon": 136.4133,
+      "elements": [
+        "temperature",
+        "precipitation",
+        "wind",
+        "humidity",
+        "sunshine",
+        "snow"
+      ],
+      "stationType": "気象官署",
+      "discontinued": true,
+      "observedFrom": "1961-01-01",
+      "observedTo": "2001-03-31"
+    },
+    {
+      "id": "H763",
+      "name": "防府",
+      "kana": "ホウフ",
+      "prefecture": "山口県",
+      "region": "chugoku",
+      "lat": 34.0517,
+      "lon": 131.53,
+      "elements": [
+        "temperature",
+        "precipitation",
+        "wind",
+        "humidity",
+        "sunshine"
+      ],
+      "stationType": "気象官署",
+      "discontinued": true,
+      "observedFrom": "1961-01-01",
+      "observedTo": "1966-12-31"
+    },
+    {
+      "id": "H816",
+      "name": "富江",
+      "kana": "トミエ",
+      "prefecture": "長崎県",
+      "region": "kyushu",
+      "lat": 32.62,
+      "lon": 128.7633,
+      "elements": [
+        "temperature",
+        "precipitation",
+        "wind",
+        "humidity",
+        "sunshine"
+      ],
+      "stationType": "気象官署",
+      "discontinued": true,
+      "observedFrom": "1961-01-01",
+      "observedTo": "1962-12-31"
+    },
+    {
+      "id": "H821",
+      "name": "阿蘇山",
+      "kana": "アソサン",
+      "prefecture": "熊本県",
+      "region": "kyushu",
+      "lat": 32.88,
+      "lon": 131.0733,
+      "elements": [
+        "temperature",
+        "precipitation",
+        "wind",
+        "humidity",
+        "sunshine",
+        "snow"
+      ],
+      "stationType": "気象官署",
+      "discontinued": true,
+      "observedFrom": "1961-01-01",
+      "observedTo": "2017-12-11"
+    },
+    {
+      "id": "H894",
+      "name": "剣山",
+      "kana": "ツルギサン",
+      "prefecture": "徳島県",
+      "region": "shikoku",
+      "lat": 33.8533,
+      "lon": 134.0967,
+      "elements": [
+        "temperature",
+        "precipitation",
+        "wind",
+        "humidity",
+        "sunshine",
+        "snow"
+      ],
+      "stationType": "気象官署",
+      "discontinued": true,
+      "observedFrom": "1961-01-01",
+      "observedTo": "2001-03-31"
+    },
+    {
+      "id": "H941",
+      "name": "沖永良部",
+      "kana": "オキノエラブ",
+      "prefecture": "鹿児島県",
+      "region": "kyushu",
+      "lat": 27.3367,
+      "lon": 128.58,
+      "elements": [
+        "temperature",
+        "precipitation",
+        "wind",
+        "humidity",
+        "sunshine"
+      ],
+      "stationType": "気象官署",
+      "discontinued": true,
+      "observedFrom": "1961-01-01",
+      "observedTo": "1969-12-31"
+    },
+    {
+      "id": "H963",
+      "name": "鳥島",
+      "kana": "トリシマ",
+      "prefecture": "東京都",
+      "region": "kanto",
+      "lat": 30.4867,
+      "lon": 140.2967,
+      "elements": [
+        "temperature",
+        "precipitation",
+        "wind",
+        "humidity",
+        "sunshine"
+      ],
+      "stationType": "気象官署",
+      "discontinued": true,
+      "observedFrom": "1961-01-01",
+      "observedTo": "1965-12-31"
+    },
+    {
+      "id": "H3160",
+      "name": "筑波山",
+      "kana": "ツクバサン",
+      "prefecture": "茨城県",
+      "region": "kanto",
+      "lat": 36.225,
+      "lon": 140.0983,
+      "elements": [
+        "temperature",
+        "precipitation",
+        "wind",
+        "sunshine"
+      ],
+      "stationType": "アメダス",
+      "discontinued": true,
+      "observedFrom": "1976-02-28",
+      "observedTo": "2001-12-06"
+    },
+    {
+      "id": "H20",
+      "name": "船泊",
+      "kana": "フナドマリ",
+      "prefecture": "北海道",
+      "region": "hokkaido",
+      "lat": 45.4367,
+      "lon": 141.035,
+      "elements": [
+        "temperature",
+        "precipitation",
+        "wind",
+        "sunshine"
+      ],
+      "stationType": "アメダス",
+      "discontinued": true,
+      "observedFrom": "1977-10-21",
+      "observedTo": "2003-10-16"
+    },
+    {
+      "id": "H960",
+      "name": "計根別",
+      "kana": "ケネベツ",
+      "prefecture": "北海道",
+      "region": "hokkaido",
+      "lat": 43.485,
+      "lon": 144.8083,
+      "elements": [
+        "temperature",
+        "precipitation",
+        "wind",
+        "sunshine"
+      ],
+      "stationType": "アメダス",
+      "discontinued": true,
+      "observedFrom": "1977-10-18",
+      "observedTo": "2003-10-16"
+    },
+    {
+      "id": "H2560",
+      "name": "川崎",
+      "kana": "カワサキ",
+      "prefecture": "宮城県",
+      "region": "tohoku",
+      "lat": 38.18,
+      "lon": 140.6317,
+      "elements": [
+        "temperature",
+        "precipitation",
+        "wind",
+        "sunshine"
+      ],
+      "stationType": "アメダス",
+      "discontinued": true,
+      "observedFrom": "1976-11-26",
+      "observedTo": "2005-10-26"
+    },
+    {
+      "id": "H8280",
+      "name": "金武",
+      "kana": "キン",
+      "prefecture": "沖縄県",
+      "region": "okinawa",
+      "lat": 26.4567,
+      "lon": 127.8567,
+      "elements": [
+        "temperature",
+        "precipitation",
+        "wind",
+        "sunshine"
+      ],
+      "stationType": "アメダス",
+      "discontinued": true,
+      "observedFrom": "1977-03-04",
+      "observedTo": "2007-12-19"
+    },
+    {
+      "id": "H3640",
+      "name": "新木場",
+      "kana": "シンキバ",
+      "prefecture": "東京都",
+      "region": "kanto",
+      "lat": 35.635,
+      "lon": 139.8383,
+      "elements": [
+        "temperature",
+        "precipitation",
+        "wind",
+        "sunshine"
+      ],
+      "stationType": "アメダス",
+      "discontinued": true,
+      "observedFrom": "1976-12-13",
+      "observedTo": "2009-05-28"
+    },
+    {
+      "id": "H6020",
+      "name": "白浜",
+      "kana": "シラハマ",
+      "prefecture": "和歌山県",
+      "region": "kinki",
+      "lat": 33.6783,
+      "lon": 135.3467,
+      "elements": [
+        "temperature",
+        "precipitation",
+        "wind",
+        "sunshine"
+      ],
+      "stationType": "アメダス",
+      "discontinued": true,
+      "observedFrom": "1978-02-28",
+      "observedTo": "2009-09-01"
+    },
+    {
+      "id": "H8340",
+      "name": "伊良部",
+      "kana": "イラブ",
+      "prefecture": "沖縄県",
+      "region": "okinawa",
+      "lat": 24.8267,
+      "lon": 125.1717,
+      "elements": [
+        "temperature",
+        "precipitation",
+        "wind",
+        "sunshine"
+      ],
+      "stationType": "アメダス",
+      "discontinued": true,
+      "observedFrom": "1978-02-02",
+      "observedTo": "2009-09-15"
+    },
+    {
+      "id": "H8360",
+      "name": "多良間",
+      "kana": "タラマ",
+      "prefecture": "沖縄県",
+      "region": "okinawa",
+      "lat": 24.665,
+      "lon": 124.6967,
+      "elements": [
+        "temperature",
+        "precipitation",
+        "wind",
+        "sunshine"
+      ],
+      "stationType": "アメダス",
+      "discontinued": true,
+      "observedFrom": "1978-02-04",
+      "observedTo": "2009-09-15"
+    }
   ]
 }

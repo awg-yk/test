@@ -60,15 +60,45 @@ function renderNameCell(station) {
   return h("span", { class: "station-table__name" }, station.name);
 }
 
+/** フォーマット済みの観測期間（YYYY-MM-DD → 「1961年1月〜2002年2月」等）。欠測は「?」で埋める */
+function formatPeriod(isoDate) {
+  if (!isoDate) return "?";
+  const [y, m] = isoDate.split("-");
+  return `${y}年${Number(m)}月`;
+}
+
+/** 地点名セルの本体に、廃止済み観測所であれば「廃止」タグと観測期間を添える（フェーズ16） */
+function renderNameCellWithStatus(station) {
+  const nameCell = renderNameCell(station);
+  if (!station.discontinued) return nameCell;
+
+  return h("div", {}, [
+    nameCell,
+    h("span", { class: "station-table__discontinued-badge" }, "廃止"),
+    h(
+      "span",
+      { class: "station-table__discontinued-period" },
+      `観測期間: ${formatPeriod(station.observedFrom)}〜${formatPeriod(station.observedTo)}`
+    ),
+  ]);
+}
+
 /** 行クリック（または行にフォーカスしてEnter/Space）で observeStation を選択状態にする。
  *  地図のマーカーをクリックしたときと同じ store.selectedStationId を介した相互連携（フェーズ15）。 */
 function renderRow(station, elementLabelMap, regionLabelMap, selectedStationId, onSelectStation) {
   const isSelected = station.id === selectedStationId;
   const selectRow = () => onSelectStation?.(station.id);
+  const rowClass = [
+    "station-table__row",
+    isSelected && "station-table__row--selected",
+    station.discontinued && "station-table__row--discontinued",
+  ]
+    .filter(Boolean)
+    .join(" ");
   return h(
     "tr",
     {
-      class: `station-table__row${isSelected ? " station-table__row--selected" : ""}`,
+      class: rowClass,
       tabindex: "0",
       "aria-selected": isSelected ? "true" : "false",
       onClick: selectRow,
@@ -81,7 +111,7 @@ function renderRow(station, elementLabelMap, regionLabelMap, selectedStationId, 
     },
     [
       h("td", {}, h("span", { class: "station-table__id mono" }, station.id)),
-      h("td", {}, renderNameCell(station)),
+      h("td", {}, renderNameCellWithStatus(station)),
       h("td", {}, h("span", { class: "station-table__kana" }, station.kana ?? "")),
       h("td", {}, station.prefecture),
       h("td", {}, regionLabelMap.get(station.region) ?? station.region),

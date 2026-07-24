@@ -26,13 +26,25 @@ assert(csv.startsWith("\uFEFF"), "CSVの先頭にUTF-8 BOMが付与される（E
 const lines = csv.replace(/^\uFEFF/, "").trim().split("\r\n");
 assert(lines.length === sample.length + 1, `ヘッダー行 + データ${sample.length}行 = ${sample.length + 1}行`);
 assert(
-  lines[0] === "観測所ID,地点名,かな,都道府県,地方,緯度,経度,標高(m),種別,観測要素,気象庁ページURL",
+  lines[0] === "観測所ID,地点名,かな,都道府県,地方,緯度,経度,標高(m),種別,観測要素,気象庁ページURL,状態,観測期間",
   `ヘッダー行が想定通り (実際: ${lines[0]})`
 );
 assert(lines[1].includes(sample[0].name), "1行目のデータに地点名が含まれる");
 assert(lines[1].includes(regionLabelMap.get(sample[0].region)), "1行目のデータに地方名（日本語ラベル）が含まれる");
 assert(lines[1].includes(String(sample[0].alt)), "1行目のデータに標高が含まれる");
 assert(lines[1].includes("stats/etrn/index.php"), "1行目のデータに気象庁ページのURLが含まれる");
+
+assert(lines[1].endsWith(",現役,"), "現役観測所は「状態」列が「現役」、「観測期間」列は空になる (実際: " + lines[1] + ")");
+
+// 廃止済み観測所（フェーズ16）のCSV行
+const discontinuedSample = data.discontinuedStations.slice(0, 1);
+const discontinuedCsv = stationsToCsv(discontinuedSample, { elementLabelMap, regionLabelMap });
+const discontinuedLines = discontinuedCsv.replace(/^\uFEFF/, "").trim().split("\r\n");
+assert(discontinuedLines[1].includes("廃止済み"), "廃止済み観測所は「状態」列が「廃止済み」になる");
+assert(
+  discontinuedLines[1].includes(discontinuedSample[0].observedFrom),
+  "廃止済み観測所は「観測期間」列に開始年月日が含まれる"
+);
 
 // カンマを含む地点名でもCSVとして壊れないこと（ダブルクォートで囲まれる）
 const trickyStation = { ...sample[0], name: "テスト, 地点" };

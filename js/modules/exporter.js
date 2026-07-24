@@ -49,6 +49,8 @@ const CSV_HEADER = [
   "種別",
   "観測要素",
   "気象庁ページURL",
+  "状態",
+  "観測期間",
 ];
 
 function toCsvCell(value) {
@@ -82,6 +84,8 @@ export function stationsToCsv(stations, { elementLabelMap, regionLabelMap } = {}
       station.stationType ?? "",
       elementNames,
       buildJmaStationLink(station) ?? buildJmaPrefectureLink(station) ?? "",
+      station.discontinued ? "廃止済み" : "現役",
+      station.discontinued ? `${station.observedFrom ?? "?"} 〜 ${station.observedTo ?? "?"}` : "",
     ];
   });
 
