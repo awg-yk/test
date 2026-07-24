@@ -10,6 +10,8 @@
  *   mode  - 観測要素の合成モード。"AND"（既定値）のときは省略してURLを短く保つ
  *   q     - キーワード検索文字列
  *   page  - 表示中のページ番号。1（既定値）のときは省略
+ *   discontinued - 廃止済み観測所を含めるか。既定は含める(true)なので、除外している(false)ときだけ
+ *                  "0" を付与する（フェーズ16で追加、フェーズ21で既定を反転）
  *
  * 「絞り込みなし」の状態はパラメータを一切付けない（＝トップページと同じURL）。
  * 都道府県名や検索語に含まれる日本語・カンマ等は URLSearchParams が自動でエンコードする。
@@ -21,6 +23,7 @@ const PARAM_MODE = "mode";
 const PARAM_TYPE = "type";
 const PARAM_KEYWORD = "q";
 const PARAM_PAGE = "page";
+const PARAM_DISCONTINUED = "discontinued";
 
 // URLを短く保つため、種別名は短いコードで表現する（フェーズ9）
 const STATION_TYPE_TO_CODE = { 気象官署: "kansho", アメダス: "amedas" };
@@ -55,7 +58,9 @@ export function parseStateFromUrl(search) {
   const pageRaw = Number.parseInt(params.get(PARAM_PAGE) ?? "1", 10);
   const page = Number.isFinite(pageRaw) && pageRaw >= 1 ? pageRaw : 1;
 
-  return { prefectures, elements, elementLogic, stationTypes, keyword, page };
+  const includeDiscontinued = params.get(PARAM_DISCONTINUED) !== "0";
+
+  return { prefectures, elements, elementLogic, stationTypes, keyword, page, includeDiscontinued };
 }
 
 /**
@@ -85,6 +90,9 @@ export function buildQueryString(state) {
   }
   if (state.page && state.page > 1) {
     params.set(PARAM_PAGE, String(state.page));
+  }
+  if (!state.includeDiscontinued) {
+    params.set(PARAM_DISCONTINUED, "0");
   }
 
   return params.toString();

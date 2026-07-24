@@ -12,6 +12,7 @@
  *     stationCounts?: Map<elementId, number>,     // 要素ごとの該当観測所数（表示用・省略可）
  *     initialSelected?: Set<string>,              // 初期選択（URLクエリ復元用。省略時は未選択）
  *     initialMode?: "AND" | "OR",                 // 初期モード（省略時はAND）
+ *     clearButtonSlot?: HTMLElement,              // 「選択をクリア」の描画先（省略時はパネル本文内。フェーズ23）
  *     onChange: (selected: Set<string>, mode: "AND" | "OR") => void,
  *   }) -> { updateCounts(newCounts: Map<elementId, number>): void }
  *
@@ -29,7 +30,15 @@
 
 import { h } from "../utils/helpers.js";
 
-export function initElementFilter({ container, elements, stationCounts, initialSelected, initialMode, onChange }) {
+export function initElementFilter({
+  container,
+  elements,
+  stationCounts,
+  initialSelected,
+  initialMode,
+  clearButtonSlot,
+  onChange,
+}) {
   container.innerHTML = "";
 
   const selected = new Set(initialSelected ?? []); // 選択中の観測要素ID
@@ -94,7 +103,13 @@ export function initElementFilter({ container, elements, stationCounts, initialS
     "選択をクリア"
   );
 
-  controls.append(modeGroup, clearButton);
+  controls.append(modeGroup);
+  if (clearButtonSlot) {
+    clearButtonSlot.innerHTML = "";
+    clearButtonSlot.append(clearButton);
+  } else {
+    controls.append(clearButton);
+  }
   container.append(controls);
 
   // --- 観測要素チェックボックス一覧 ----------------------------------

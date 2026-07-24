@@ -10,12 +10,23 @@
 import { h } from "../utils/helpers.js";
 import { buildJmaStationLink, buildJmaPrefectureLink } from "./exporter.js";
 
-/** 観測要素タグは要素ごとに色分けする（CSS側の .tag--<id> と対応。凡例は観測要素フィルタのドット） */
+/**
+ * 観測要素タグは要素ごとに色分けする（CSS側の .tag--<id> と対応。凡例は観測要素フィルタのドット）。
+ * 観測所ごとに観測している要素が異なるため、単純に並べると要素が抜けた分だけ後続のタグが
+ * 詰めて表示され、列が揃って見えない。elementLabelMap の並び順（=観測要素マスタの並び順）で
+ * 6要素ぶんの枠を必ず用意し、観測していない要素は見えないプレースホルダーにすることで
+ * どの行でも同じ要素が同じ横位置に来るようにしている。
+ */
 function renderElementTags(elementIds, elementLabelMap) {
+  const owned = new Set(elementIds);
   const wrap = h("div", { class: "element-tags" });
-  elementIds.forEach((id) => {
-    const label = elementLabelMap.get(id) ?? id;
-    wrap.append(h("span", { class: `tag tag--${id}` }, label));
+  [...elementLabelMap.keys()].forEach((id) => {
+    if (owned.has(id)) {
+      const label = elementLabelMap.get(id) ?? id;
+      wrap.append(h("span", { class: `tag tag--${id}` }, label));
+    } else {
+      wrap.append(h("span", { class: "tag tag--empty", "aria-hidden": "true" }));
+    }
   });
   return wrap;
 }
@@ -60,19 +71,68 @@ function renderNameCell(station) {
   return h("span", { class: "station-table__name" }, station.name);
 }
 
-function renderRow(station, elementLabelMap, regionLabelMap) {
-  return h("tr", {}, [
-    h("td", {}, h("span", { class: "station-table__id mono" }, station.id)),
-    h("td", {}, renderNameCell(station)),
-    h("td", {}, h("span", { class: "station-table__kana" }, station.kana ?? "")),
-    h("td", {}, station.prefecture),
-    h("td", {}, regionLabelMap.get(station.region) ?? station.region),
-    h("td", { class: "station-table__num" }, h("span", { class: "mono" }, formatNumber(station.alt, 0))),
-    h("td", { class: "station-table__num" }, h("span", { class: "mono" }, formatNumber(station.lat, 4))),
-    h("td", { class: "station-table__num" }, h("span", { class: "mono" }, formatNumber(station.lon, 4))),
-    h("td", {}, renderElementTags(station.elements, elementLabelMap)),
-    h("td", {}, h("span", { class: "badge-type" }, station.stationType)),
+/** フォーマット済みの観測期間（YYYY-MM-DD → 「1961年1月〜2002年2月」等）。欠測は「?」で埋める */
+function formatPeriod(isoDate) {
+  if (!isoDate) return "?";
+  const [y, m] = isoDate.split("-");
+  return `${y}年${Number(m)}月`;
+}
+
+/** 地点名セルの本体に、廃止済み観測所であれば「廃止」タグと観測期間を添える（フェーズ16） */
+function renderNameCellWithStatus(station) {
+  const nameCell = renderNameCell(station);
+  if (!station.discontinued) return nameCell;
+
+  return h("div", {}, [
+    nameCell,
+    h("span", { class: "station-table__discontinued-badge" }, "廃止"),
+    h(
+      "span",
+      { class: "station-table__discontinued-period" },
+      `観測期間: ${formatPeriod(station.observedFrom)}〜${formatPeriod(station.observedTo)}`
+    ),
   ]);
+}
+
+/** 行クリック（または行にフォーカスしてEnter/Space）で observeStation を選択状態にする。
+ *  地図のマーカーをクリックしたときと同じ store.selectedStationId を介した相互連携（フェーズ15）。 */
+function renderRow(station, elementLabelMap, regionLabelMap, selectedStationId, onSelectStation) {
+  const isSelected = station.id === selectedStationId;
+  const selectRow = () => onSelectStation?.(station.id);
+  const rowClass = [
+    "station-table__row",
+    isSelected && "station-table__row--selected",
+    station.discontinued && "station-table__row--discontinued",
+  ]
+    .filter(Boolean)
+    .join(" ");
+  return h(
+    "tr",
+    {
+      class: rowClass,
+      tabindex: "0",
+      "aria-selected": isSelected ? "true" : "false",
+      onClick: selectRow,
+      onKeydown: (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          selectRow();
+        }
+      },
+    },
+    [
+      h("td", {}, h("span", { class: "station-table__id mono" }, station.id)),
+      h("td", {}, renderNameCellWithStatus(station)),
+      h("td", {}, h("span", { class: "station-table__kana" }, station.kana ?? "")),
+      h("td", {}, station.prefecture),
+      h("td", {}, regionLabelMap.get(station.region) ?? station.region),
+      h("td", { class: "station-table__num" }, h("span", { class: "mono" }, formatNumber(station.alt, 0))),
+      h("td", { class: "station-table__num" }, h("span", { class: "mono" }, formatNumber(station.lat, 4))),
+      h("td", { class: "station-table__num" }, h("span", { class: "mono" }, formatNumber(station.lon, 4))),
+      h("td", {}, renderElementTags(station.elements, elementLabelMap)),
+      h("td", {}, h("span", { class: "badge-type" }, station.stationType)),
+    ]
+  );
 }
 
 /** 数値を固定小数桁で表示する（欠測は「—」）。緯度経度は4桁≒10m精度で十分 */
@@ -80,7 +140,11 @@ function formatNumber(value, digits) {
   return typeof value === "number" ? value.toFixed(digits) : "—";
 }
 
-export function renderStationTable(container, stations, { elementLabelMap, regionLabelMap }) {
+export function renderStationTable(
+  container,
+  stations,
+  { elementLabelMap, regionLabelMap, selectedStationId = null, onSelectStation } = {}
+) {
   container.innerHTML = "";
 
   if (stations.length === 0) {
@@ -103,12 +167,18 @@ export function renderStationTable(container, stations, { elementLabelMap, regio
   ]));
 
   const tbody = h("tbody", {});
+  let selectedRow = null;
   stations.forEach((station) => {
-    tbody.append(renderRow(station, elementLabelMap, regionLabelMap));
+    const row = renderRow(station, elementLabelMap, regionLabelMap, selectedStationId, onSelectStation);
+    if (station.id === selectedStationId) selectedRow = row;
+    tbody.append(row);
   });
 
   table.append(thead, tbody);
   container.append(table);
+
+  // 地図のマーカークリックで選択された行を、一覧のスクロール位置に入れる（jsdomにはscrollIntoViewが無いため任意呼び出し）
+  selectedRow?.scrollIntoView?.({ block: "nearest" });
 }
 
 export function renderLoading(container, message = "観測所データを読み込み中...") {

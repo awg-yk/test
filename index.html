@@ -8,25 +8,10 @@
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
-  <!-- 地図表示: Leaflet本体 + マーカークラスタリングプラグイン（CDN。整合性検証のためSRIハッシュを付与） -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H"
-    crossorigin="anonymous"
-  />
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"
-    integrity="sha384-pmjIAcz2bAn0xukfxADbZIb3t8oRT9Sv0rvO+BR5Csr6Dhqq+nZs59P0pPKQJkEV"
-    crossorigin="anonymous"
-  />
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"
-    integrity="sha384-wgw+aLYNQ7dlhK47ZPK7FRACiq7ROZwgFNg0m04avm4CaXS+Z9Y7nMu8yNjBKYC+"
-    crossorigin="anonymous"
-  />
+  <!-- 地図表示: Leaflet本体 + マーカークラスタリングプラグイン（vendor/leaflet に同梱。フェーズ18でCDN依存を解消） -->
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="vendor/leaflet/MarkerCluster.css" />
+  <link rel="stylesheet" href="vendor/leaflet/MarkerCluster.Default.css" />
   <link rel="stylesheet" href="css/map.css" />
 </head>
 <body>
@@ -47,42 +32,79 @@
 
     <div class="status-bar">
       <span id="status-count" class="status-bar__count" role="status" aria-live="polite">読み込み中...</span>
-      <div class="status-bar__right">
-        <button type="button" id="copy-link-btn" class="btn btn--secondary btn--small" aria-live="polite">この条件のURLをコピー</button>
-      </div>
     </div>
 
     <div class="filter-panels">
       <section class="panel">
         <div class="panel__header">
-          <h2 class="panel__title">地域で絞り込む</h2>
-          <p class="panel__note">地方単位・都道府県単位で一括選択できます。何も選択しない場合は全観測所を表示します。南極（昭和基地）もここから選べます。（　）内の件数は、観測要素・種別・検索語による絞り込みを反映した件数です。</p>
+          <h2 class="panel__title">
+            地域で絞り込む
+            <span class="panel__info" tabindex="0">
+              <span class="panel__info-icon" aria-hidden="true">i</span>
+              <span class="u-visually-hidden">説明を表示</span>
+              <p class="panel__note" role="tooltip">地方単位・都道府県単位で一括選択できます。何も選択しない場合は全観測所を表示します。南極（昭和基地）もここから選べます。（　）内の件数は、観測要素・種別・検索語による絞り込みを反映した件数です。</p>
+            </span>
+          </h2>
         </div>
         <div class="panel__body">
           <div id="region-selector-container"></div>
         </div>
       </section>
 
-      <section class="panel">
-        <div class="panel__header">
-          <h2 class="panel__title">観測要素で絞り込む</h2>
-          <p class="panel__note">気温・降水量・積雪などで絞り込めます。複数選択時は「すべて含む(AND)」「いずれか含む(OR)」を切り替えられます。（　）内の件数は、地域・種別・検索語による絞り込みを反映した件数です（例: 北海道だけを選ぶと北海道内の件数になります）。</p>
-        </div>
-        <div class="panel__body">
-          <div id="element-filter-container"></div>
-        </div>
-      </section>
-    </div>
+      <div class="filter-panels__row">
+        <section class="panel">
+          <div class="panel__header">
+            <h2 class="panel__title">
+              観測要素で絞り込む
+              <span class="panel__info" tabindex="0">
+                <span class="panel__info-icon" aria-hidden="true">i</span>
+                <span class="u-visually-hidden">説明を表示</span>
+                <p class="panel__note" role="tooltip">気温・降水量・積雪などで絞り込めます。複数選択時は「すべて含む(AND)」「いずれか含む(OR)」を切り替えられます。（　）内の件数は、地域・種別・検索語による絞り込みを反映した件数です（例: 北海道だけを選ぶと北海道内の件数になります）。</p>
+              </span>
+              <span id="element-filter-clear-container" class="panel__header-clear"></span>
+            </h2>
+          </div>
+          <div class="panel__body">
+            <div id="element-filter-container"></div>
+          </div>
+        </section>
 
-    <section class="panel" style="margin-bottom: var(--space-4);">
-      <div class="panel__header">
-        <h2 class="panel__title">種別で絞り込む</h2>
-        <p class="panel__note">気象官署・アメダスで絞り込めます。何も選択しない場合は両方を表示します。（　）内の件数は、地域・観測要素・検索語による絞り込みを反映した件数です。</p>
+        <div class="filter-panels__row-right">
+          <section class="panel">
+            <div class="panel__header">
+              <h2 class="panel__title">
+                種別で絞り込む
+                <span class="panel__info" tabindex="0">
+                  <span class="panel__info-icon" aria-hidden="true">i</span>
+                  <span class="u-visually-hidden">説明を表示</span>
+                  <p class="panel__note" role="tooltip">気象官署・アメダスで絞り込めます。何も選択しない場合は両方を表示します。（　）内の件数は、地域・観測要素・検索語による絞り込みを反映した件数です。</p>
+                </span>
+                <span id="type-filter-clear-container" class="panel__header-clear"></span>
+              </h2>
+            </div>
+            <div class="panel__body">
+              <div id="type-filter-container"></div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel__header">
+              <h2 class="panel__title">
+                廃止済み観測所
+                <span class="panel__info" tabindex="0">
+                  <span class="panel__info-icon" aria-hidden="true">i</span>
+                  <span class="u-visually-hidden">説明を表示</span>
+                  <p class="panel__note" role="tooltip">現在は運用されていない、過去の観測所です。気象庁の観測所履歴資料をもとに収録しています（緯度経度・観測期間は判明している範囲）。506地点のうち386地点は気象庁ページへの直接リンクも確認済みです（残る120地点は地点番号が未確定のためリンクはありません）。一覧・地図には既定で含まれています。（　）内の件数は、地域・観測要素・種別・検索語による絞り込みを反映した件数です。</p>
+                </span>
+              </h2>
+            </div>
+            <div class="panel__body">
+              <div id="discontinued-filter-container"></div>
+            </div>
+          </section>
+        </div>
       </div>
-      <div class="panel__body">
-        <div id="type-filter-container"></div>
-      </div>
-    </section>
+    </div>
 
     <section class="panel" style="margin-bottom: var(--space-4);">
       <div class="panel__body">
@@ -92,13 +114,19 @@
 
     <section class="panel map-panel" style="margin-bottom: var(--space-4);">
       <div class="panel__header">
-        <h2 class="panel__title">地図で見る</h2>
-        <p class="panel__note">
-          現在の絞り込み結果を地図上に表示します。マーカーをクリックすると地点名・観測要素・気象庁リンクを確認できます。
-          ページをスクロールしただけで地図が動かないよう、<strong>拡大縮小・移動には Ctrl（macOSは⌘）キー</strong>が必要です
-          （Ctrl＋ホイールで拡大縮小、Ctrl＋ドラッグで移動。タッチ端末では2本指）。
-          Ctrlなしで使える操作として、左上の ＋／− ボタン、ダブルクリックでの拡大、右上の「検索結果に合わせる」ボタンがあります。
-        </p>
+        <h2 class="panel__title">
+          地図で見る
+          <span class="panel__info" tabindex="0">
+            <span class="panel__info-icon" aria-hidden="true">i</span>
+            <span class="u-visually-hidden">説明を表示</span>
+            <p class="panel__note" role="tooltip">
+              現在の絞り込み結果を地図上に表示します。マーカーをクリックすると地点名・観測要素・気象庁リンクを確認できます。
+              ページをスクロールしただけで地図が動かないよう、<strong>拡大縮小・移動には Ctrl（macOSは⌘）キー</strong>が必要です
+              （Ctrl＋ホイールで拡大縮小、Ctrl＋ドラッグで移動。タッチ端末では2本指）。
+              Ctrlなしで使える操作として、左上の ＋／− ボタン、ダブルクリックでの拡大、右上の「検索結果に合わせる」ボタンがあります。
+            </p>
+          </span>
+        </h2>
       </div>
       <div class="panel__body map-panel__body">
         <div id="map-view-container" class="map-view"></div>
@@ -106,14 +134,21 @@
       <div class="map-legend">
         <span class="map-legend__item"><span class="map-legend__dot map-legend__dot--kansho"></span>気象官署</span>
         <span class="map-legend__item"><span class="map-legend__dot map-legend__dot--amedas"></span>アメダス</span>
+        <span class="map-legend__item"><span class="map-legend__dot map-legend__dot--discontinued"></span>廃止済み</span>
       </div>
     </section>
 
     <section class="panel">
       <div class="panel__header panel__header--with-actions">
         <div>
-          <h2 class="panel__title">観測所一覧</h2>
-          <p class="panel__note">気象庁「アメダス観測所表」に基づく全国1,286地点（気象官署56地点＋アメダス1,230地点）に、南極・昭和基地を加えた1,287地点を収録しています。<strong>地点名をクリックすると、気象庁「過去の気象データ検索」がその地点を選択した状態で開きます</strong>（年月・データ種別を選ぶと日別値・月別値・平年値などを閲覧できます）。地点名の後ろに「*」が付く7地点は、気象庁側に同名で複数の地点番号があり自動判定を保留しているため、都道府県の地点選択ページへ案内します。観測要素は色分けして表示しています（色の対応は「観測要素で絞り込む」の各項目のドットと同じです）。</p>
+          <h2 class="panel__title">
+            観測所一覧
+            <span class="panel__info" tabindex="0">
+              <span class="panel__info-icon" aria-hidden="true">i</span>
+              <span class="u-visually-hidden">説明を表示</span>
+              <p class="panel__note" role="tooltip">気象庁「アメダス観測所表」に基づく全国1,286地点（気象官署56地点＋アメダス1,230地点）に、南極・昭和基地を加えた1,287地点を収録しています。<strong>地点名をクリックすると、気象庁「過去の気象データ検索」がその地点を選択した状態で開きます</strong>（年月・データ種別を選ぶと日別値・月別値・平年値などを閲覧できます）。地点名の後ろに「*」が付く7地点は、気象庁側に同名で複数の地点番号があり自動判定を保留しているため、都道府県の地点選択ページへ案内します。観測要素は色分けして表示しています（色の対応は「観測要素で絞り込む」の各項目のドットと同じです）。現在は運用されていない過去の観測所506地点も既定で一覧・地図に含まれています（「廃止」タグと観測期間を表示。うち386地点は気象庁ページへのリンクも確認済みです）。含めたくない場合は「廃止済みの観測地点を含めない」をオンにしてください。</p>
+            </span>
+          </h2>
         </div>
         <div class="panel__actions">
           <button type="button" id="export-csv-btn" class="btn btn--primary">選択結果をCSVでダウンロード</button>
@@ -134,17 +169,9 @@
     <p>観測所データ: 気象庁「アメダス観測所表」（<a href="https://www.jma.go.jp/bosai/amedas/const/amedastable.json" target="_blank" rel="noopener noreferrer">amedastable.json</a>）をもとに作成。都道府県境界データ: <a href="https://github.com/dataofjapan/land" target="_blank" rel="noopener noreferrer">dataofjapan/land</a>（緯度経度から都道府県を判定するために使用）。本サイトは気象庁の非公式ツールであり、気象庁が提供・保証するものではありません。</p>
   </footer>
 
-  <!-- 地図表示: main.js(モジュール)より先に読み込み、window.L を用意する（SRIハッシュ付き） -->
-  <script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH"
-    crossorigin="anonymous"
-  ></script>
-  <script
-    src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"
-    integrity="sha384-eXVCORTRlv4FUUgS/xmOyr66XBVraen8ATNLMESp92FKXLAMiKkerixTiBvXriZr"
-    crossorigin="anonymous"
-  ></script>
+  <!-- 地図表示: main.js(モジュール)より先に読み込み、window.L を用意する（vendor/leaflet に同梱。フェーズ18でCDN依存を解消） -->
+  <script src="vendor/leaflet/leaflet.js"></script>
+  <script src="vendor/leaflet/leaflet.markercluster.js"></script>
   <script type="module" src="js/main.js"></script>
 </body>
 </html>

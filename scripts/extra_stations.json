@@ -22,7 +22,7 @@
       "region": "antarctica",
       "lat": -69.006944,
       "lon": 39.583889,
-      "alt": 18,
+      "alt": 28,
       "elements": ["temperature", "wind", "sunshine", "snow", "humidity"],
       "stationType": "気象官署",
       "precNo": "99",

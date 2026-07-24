@@ -71,29 +71,37 @@
   border-radius: var(--radius-md);
 }
 
-.status-bar__right {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  flex-wrap: wrap;
-}
-
 .status-bar__count {
   font-family: var(--font-mono);
   font-weight: 700;
   color: var(--color-slate);
 }
 
+/* 地域パネル（横5×縦2の全幅グリッド）を上段に、観測要素・種別・廃止済み観測所を
+   その下に配置する（フェーズ22）。観測要素を左、種別・廃止済み観測所を右列に
+   縦積みで配置する（フェーズ24）。 */
 .filter-panels {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
+  display: flex;
+  flex-direction: column;
   gap: var(--space-4);
   margin-bottom: var(--space-4);
+}
+
+.filter-panels__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
   align-items: start;
 }
 
+.filter-panels__row-right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
 @media (max-width: 900px) {
-  .filter-panels {
+  .filter-panels__row {
     grid-template-columns: 1fr;
   }
 }
@@ -126,13 +134,95 @@
 }
 
 .panel__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
   font-size: 14px;
 }
 
+/* 説明文（panel__note）は既定では隠しておき、隣の「i」アイコンにカーソルを
+   合わせた（またはフォーカスした）ときだけ吹き出しとして表示する（フェーズ22）。 */
+.panel__info {
+  position: relative;
+  display: inline-flex;
+}
+
+.panel__info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-border-strong);
+  color: #fff;
+  font-size: 11px;
+  font-style: italic;
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1;
+  cursor: help;
+  user-select: none;
+}
+
+.panel__info:hover .panel__info-icon,
+.panel__info:focus .panel__info-icon,
+.panel__info:focus-within .panel__info-icon {
+  background: var(--color-teal);
+}
+
 .panel__note {
-  margin-top: var(--space-1);
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  left: 0;
+  z-index: 20;
+  width: max-content;
+  max-width: 340px;
+  margin: 0;
+  padding: var(--space-3);
+  background: var(--color-slate);
+  color: #fff;
   font-size: 12px;
-  color: var(--color-ink-soft);
+  line-height: 1.7;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-card);
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s ease;
+}
+
+.panel__info:hover .panel__note,
+.panel__info:focus .panel__note,
+.panel__info:focus-within .panel__note {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* パネルタイトル内に埋め込む「選択をクリア」ボタン（観測要素・種別パネル、iアイコンの右隣。
+   フェーズ23）。本来の配置（パネル本文内、margin-left:autoで右寄せ）を打ち消し、
+   見出しの流れの中に収まる小さめのボタンにする。 */
+.panel__header-clear {
+  display: inline-flex;
+  font-weight: 400;
+}
+
+.panel__header-clear .element-controls__clear {
+  margin-left: 0;
+  font-size: 11px;
+  padding: 2px 8px;
+}
+
+.u-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .panel__body {

@@ -9,6 +9,7 @@
  */
 import { JSDOM } from "jsdom";
 import { readFileSync } from "fs";
+import { regionSelectorKey } from "./js/modules/filterEngine.js";
 
 const html = readFileSync("./index.html", "utf-8");
 const stationsJson = readFileSync("./data/stations.json", "utf-8");
@@ -77,7 +78,7 @@ await wait(300); // デバウンス(200ms)待ち
 
 const rowsAfterSearch = doc.querySelectorAll("#station-table-container tbody tr");
 assert(rowsAfterSearch.length > 0, "「東京」検索でヒットする観測所がある");
-assert(rowsAfterSearch.length < 50, "「東京」検索で全1,287件よりずっと少ない件数に絞り込まれる");
+assert(rowsAfterSearch.length < 50, "「東京」検索で全件よりずっと少ない件数に絞り込まれる");
 
 const firstRowText = rowsAfterSearch[0].textContent;
 assert(firstRowText.includes("東京") || firstRowText.includes("都"), "絞り込み結果に「東京」関連の文字列が含まれる");
@@ -101,8 +102,11 @@ await wait(50);
 const rowsAfterTypeFilter = [...doc.querySelectorAll("#station-table-container tbody tr")];
 assert(rowsAfterTypeFilter.length > 0, "種別で絞り込んでも観測所が表示される");
 
-// 気象官署56地点 + 南極・昭和基地 = 57地点
-const kanshoCount = JSON.parse(stationsJson).stations.filter((s) => s.stationType === "気象官署").length;
+// 気象官署56地点 + 南極・昭和基地 = 57地点。既定では廃止済み観測所も母集団に含まれる（フェーズ21）。
+const stationsData = JSON.parse(stationsJson);
+const kanshoCount = [...stationsData.stations, ...stationsData.discontinuedStations].filter(
+  (s) => s.stationType === "気象官署"
+).length;
 const statusTextAfterTypeFilter = doc.querySelector("#status-count").textContent;
 assert(
   statusTextAfterTypeFilter.includes(`絞り込み ${kanshoCount}件`),
@@ -120,7 +124,9 @@ const elementLabelOf = (id) =>
 
 const tempLabelNationwide = elementLabelOf("temperature");
 
+// 北海道は地域選択UI上、宗谷・上川など14地域を持つ1枚のカードになっている（フェーズ23・24）
 const hokkaidoCheckbox = doc.querySelector("#region-selector-container #region-hokkaido");
+assert(!!hokkaidoCheckbox, "北海道のカードが描画されている");
 hokkaidoCheckbox.checked = true;
 hokkaidoCheckbox.dispatchEvent(new win.Event("change"));
 await wait(50);
@@ -131,8 +137,10 @@ assert(
   `北海道を選ぶと観測要素の件数表示が変わる (全国: ${tempLabelNationwide} → 北海道: ${tempLabelHokkaido})`
 );
 
-const expectedHokkaidoTemp = JSON.parse(stationsJson).stations.filter(
-  (s) => s.prefecture === "北海道" && s.elements.includes("temperature")
+// 北海道カードが選択済みなので、regionSelectorKey が地域名（＝北海道かつprecNo確定済み）に
+// 解決される観測所だけが該当する（precNo未確定の廃止済み観測所は選択対象に含まれない）
+const expectedHokkaidoTemp = [...stationsData.stations, ...stationsData.discontinuedStations].filter(
+  (s) => s.prefecture === "北海道" && regionSelectorKey(s) !== s.prefecture && s.elements.includes("temperature")
 ).length;
 assert(
   tempLabelHokkaido.includes(`(${expectedHokkaidoTemp})`),
@@ -154,10 +162,95 @@ assert(
   `地点名リンクの遷移先がetrnの地点選択済みページ (実際: ${firstNameLink.getAttribute("href")})`
 );
 
-const firstTag = doc.querySelector("#station-table-container tbody .tag");
+const firstTag = doc.querySelector("#station-table-container tbody .tag:not(.tag--empty)");
 assert(
   /tag--(temperature|precipitation|snow|wind|humidity|sunshine)/.test(firstTag.className),
   `観測要素タグに要素ごとの色クラスが付く (実際: ${firstTag.className})`
 );
+
+// --- 一覧の行クリックで選択状態になる（マーカー⇔一覧行の相互連携。フェーズ15） -------
+const rowsForSelection = [...doc.querySelectorAll("#station-table-container tbody tr")];
+const secondRow = rowsForSelection[1];
+secondRow.dispatchEvent(new win.Event("click", { bubbles: true }));
+await wait(10);
+
+const selectedRows = doc.querySelectorAll("#station-table-container tbody tr.station-table__row--selected");
+assert(selectedRows.length === 1, "行クリックで選択行が1件だけハイライトされる");
+assert(selectedRows[0].getAttribute("aria-selected") === "true", "選択された行にaria-selected=trueが付く");
+
+// 別の行をクリックすると選択が移る（同時に2件ハイライトされない）
+// renderStationTable は毎回テーブル全体を作り直すため、行はDOM参照ではなく地点コードで追跡する
+const thirdRow = doc.querySelectorAll("#station-table-container tbody tr")[2];
+const thirdRowStationId = thirdRow.querySelector(".station-table__id").textContent;
+thirdRow.dispatchEvent(new win.Event("click", { bubbles: true }));
+await wait(10);
+const selectedRowsAfter = doc.querySelectorAll("#station-table-container tbody tr.station-table__row--selected");
+assert(
+  selectedRowsAfter.length === 1 &&
+    selectedRowsAfter[0].querySelector(".station-table__id").textContent === thirdRowStationId,
+  "別の行をクリックすると選択がそちらに移る"
+);
+
+// 絞り込み条件を変えると選択状態は解除される（表示から外れた地点の選択が残らないように）
+kanshoCheckbox.checked = true;
+kanshoCheckbox.dispatchEvent(new win.Event("change"));
+await wait(50);
+assert(
+  doc.querySelectorAll("#station-table-container tbody tr.station-table__row--selected").length === 0,
+  "絞り込み条件を変えると選択状態が解除される"
+);
+kanshoCheckbox.checked = false;
+kanshoCheckbox.dispatchEvent(new win.Event("change"));
+await wait(50);
+
+// --- 「廃止済みの観測地点を含めない」チェックボックス（フェーズ16・21） ------
+// ここまでのテストで北海道フィルタがオンのままなので、クリーンな状態に戻す
+hokkaidoCheckbox.checked = false;
+hokkaidoCheckbox.dispatchEvent(new win.Event("change"));
+await wait(50);
+
+const discontinuedCount = stationsData.discontinuedStations.length;
+const statusBeforeDiscontinued = doc.querySelector("#status-count").textContent;
+assert(
+  statusBeforeDiscontinued.includes(`全 ${1287 + discontinuedCount} 件中`),
+  `既定では廃止済み観測所を含む (実際: ${statusBeforeDiscontinued})`
+);
+
+const discontinuedCheckbox = doc.querySelector("#discontinued-filter-container input[type=checkbox]");
+assert(!!discontinuedCheckbox, "「廃止済みの観測地点を含めない」チェックボックスが描画されている");
+assert(discontinuedCheckbox.checked === false, "既定ではチェックが外れている（＝廃止済みを含む）");
+
+// 50件/ページの1ページ目に廃止済み観測所が含まれるとは限らないため、検索で1件に絞ってから確認する
+searchInput.value = "阿蘇山";
+searchInput.dispatchEvent(new win.Event("input"));
+await wait(300);
+const asosanRow = doc.querySelector("#station-table-container tbody tr");
+assert(!!asosanRow, "既定の状態で検索すると廃止済み観測所（阿蘇山）がヒットする");
+assert(
+  asosanRow.classList.contains("station-table__row--discontinued"),
+  "廃止済み観測所を含む既定状態では、検索結果にも廃止済み観測所が現れる"
+);
+assert(!!asosanRow.querySelector(".station-table__discontinued-badge"), "「廃止」バッジが表示される");
+
+discontinuedCheckbox.checked = true;
+discontinuedCheckbox.dispatchEvent(new win.Event("change"));
+await wait(50);
+
+const statusAfterDiscontinued = doc.querySelector("#status-count").textContent;
+assert(
+  statusAfterDiscontinued.includes("全 1287 件"),
+  `チェックすると廃止済み観測所が母数から除かれる (実際: ${statusAfterDiscontinued})`
+);
+assert(
+  doc.querySelectorAll("#station-table-container tbody tr").length === 0,
+  "「含めない」をチェックした状態で検索すると廃止済み観測所（阿蘇山）はヒットしなくなる"
+);
+
+searchInput.value = "";
+searchInput.dispatchEvent(new win.Event("input"));
+await wait(300);
+discontinuedCheckbox.checked = false;
+discontinuedCheckbox.dispatchEvent(new win.Event("change"));
+await wait(50);
 
 console.log("\nAll integration smoke tests passed.");

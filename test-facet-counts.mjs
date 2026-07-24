@@ -17,9 +17,8 @@ global.window = dom.window;
 global.document = dom.window.document;
 global.Node = dom.window.Node;
 
-const { buildFacetCounts, computeVisibleStations, buildElementCounts } = await import(
-  "./js/modules/filterEngine.js"
-);
+const { buildFacetCounts, computeVisibleStations, buildElementCounts, regionSelectorKey, getHokkaidoArea } =
+  await import("./js/modules/filterEngine.js");
 const data = JSON.parse(readFileSync("./data/stations.json", "utf-8"));
 
 function assert(cond, msg) {
@@ -38,9 +37,16 @@ const noFilters = {
 // --- 絞り込みなしのときは全観測所ベースの件数 -----------------------------
 
 const base = buildFacetCounts(data.stations, noFilters);
+// 北海道は都道府県名ではなく、宗谷・上川など14地域（precNo由来）単位で集計される（フェーズ23）
+const ishikariStations = data.stations.filter((s) => regionSelectorKey(s) === "石狩");
+assert(ishikariStations.length > 0, "石狩地域（札幌など）に該当する観測所がある（テストの前提）");
 assert(
-  base.prefectureCounts.get("北海道") === data.stations.filter((s) => s.prefecture === "北海道").length,
-  "絞り込みなしの都道府県件数は全観測所ベース"
+  base.prefectureCounts.get("石狩") === ishikariStations.length,
+  "絞り込みなしの地域件数は全観測所ベース（北海道は地域単位）"
+);
+assert(
+  base.prefectureCounts.get("北海道") === undefined,
+  "北海道は都道府県名そのものではキー化されない（宗谷・上川などに分割されるため）"
 );
 assert(
   base.elementCounts.get("temperature") === buildElementCounts(data.stations).get("temperature"),
@@ -49,14 +55,14 @@ assert(
 
 // --- 地域を絞ると観測要素・種別の件数がそれに追随する ----------------------
 
-const hokkaidoOnly = { ...noFilters, selectedPrefectures: new Set(["北海道"]) };
+const hokkaidoOnly = { ...noFilters, selectedPrefectures: new Set(["石狩"]) };
 const hokkaido = buildFacetCounts(data.stations, hokkaidoOnly);
-const hokkaidoStations = data.stations.filter((s) => s.prefecture === "北海道");
+const hokkaidoStations = ishikariStations;
 
 assert(
   hokkaido.elementCounts.get("temperature") ===
     hokkaidoStations.filter((s) => s.elements.includes("temperature")).length,
-  "北海道だけ選ぶと観測要素の件数が北海道内の件数になる"
+  "石狩地域だけ選ぶと観測要素の件数が石狩地域内の件数になる"
 );
 assert(
   hokkaido.elementCounts.get("temperature") < base.elementCounts.get("temperature"),
@@ -65,7 +71,7 @@ assert(
 assert(
   hokkaido.stationTypeCounts.get("気象官署") ===
     hokkaidoStations.filter((s) => s.stationType === "気象官署").length,
-  "北海道だけ選ぶと種別の件数も北海道内の件数になる"
+  "石狩地域だけ選ぶと種別の件数も石狩地域内の件数になる"
 );
 assert(
   hokkaido.prefectureCounts.get("東京都") === base.prefectureCounts.get("東京都"),
@@ -77,13 +83,35 @@ assert(
 const snowOnly = { ...noFilters, selectedElements: new Set(["snow"]) };
 const snow = buildFacetCounts(data.stations, snowOnly);
 assert(
-  snow.prefectureCounts.get("北海道") === hokkaidoStations.filter((s) => s.elements.includes("snow")).length,
-  "積雪で絞ると都道府県の件数が積雪観測地点の件数になる"
+  snow.prefectureCounts.get("石狩") === ishikariStations.filter((s) => s.elements.includes("snow")).length,
+  "積雪で絞ると地域の件数が積雪観測地点の件数になる"
 );
 assert(
   snow.elementCounts.get("snow") === base.elementCounts.get("snow"),
   "自分自身の軸（観測要素）の選択は、その軸の件数には影響しない"
 );
+
+// --- 北海道の14地域分割（フェーズ23）---------------------------------------
+
+const allHokkaidoStations = data.stations.filter((s) => s.prefecture === "北海道");
+const HOKKAIDO_AREAS = [
+  "宗谷", "上川", "留萌", "石狩", "空知", "後志", "オホーツク",
+  "根室", "釧路", "十勝", "胆振", "日高", "渡島", "檜山",
+];
+assert(
+  allHokkaidoStations.every((s) => HOKKAIDO_AREAS.includes(getHokkaidoArea(s))),
+  "北海道の全観測所（precNo確定済み）が14地域のいずれかに分類される"
+);
+const areaTotal = HOKKAIDO_AREAS.reduce(
+  (sum, area) => sum + data.stations.filter((s) => regionSelectorKey(s) === area).length,
+  0
+);
+assert(areaTotal === allHokkaidoStations.length, "14地域の合計は北海道の観測所数と一致する");
+assert(getHokkaidoArea({ prefecture: "東京都", precNo: "11" }) === null, "北海道以外の観測所はnullを返す");
+
+const soyaOnly = { ...noFilters, selectedPrefectures: new Set(["宗谷"]) };
+const soyaCount = computeVisibleStations(data.stations, soyaOnly).length;
+assert(soyaCount > 0 && soyaCount < allHokkaidoStations.length, "宗谷地域だけで絞り込むと北海道全体よりは少なくなる");
 
 // --- キーワード検索はすべての軸の件数に効く --------------------------------
 

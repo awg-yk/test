@@ -25,7 +25,33 @@
   vertical-align: middle;
 }
 
+.station-table tbody tr {
+  cursor: pointer;
+}
+
 .station-table tbody tr:hover {
+  background: var(--color-teal-soft);
+}
+
+.station-table tbody tr:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: -2px;
+}
+
+/* 地図のマーカーと相互連携して選択された行（フェーズ15） */
+.station-table tbody tr.station-table__row--selected,
+.station-table tbody tr.station-table__row--selected:hover {
+  background: var(--color-amber-soft);
+  box-shadow: inset 3px 0 0 var(--color-amber);
+}
+
+/* 廃止済み観測所の行（フェーズ16） */
+.station-table tbody tr.station-table__row--discontinued {
+  background: var(--color-bg);
+  color: var(--color-ink-soft);
+}
+
+.station-table tbody tr.station-table__row--discontinued:hover {
   background: var(--color-teal-soft);
 }
 
@@ -63,15 +89,18 @@
   white-space: nowrap;
 }
 
+/* 6要素ぶんの枠を固定幅で用意し、観測していない要素は透明なプレースホルダーにすることで
+   どの行でも同じ要素が同じ列（横位置）に揃って見えるようにする */
 .element-tags {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(6, 62px);
   gap: var(--space-1);
 }
 
 .tag {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   padding: 2px 8px;
   border-radius: 999px;
   font-size: 11px;
@@ -80,6 +109,10 @@
   color: var(--color-teal);
   border: 1px solid rgba(28, 124, 140, 0.25);
   white-space: nowrap;
+}
+
+.tag--empty {
+  visibility: hidden;
 }
 
 /* ---------------------------------------------------------
@@ -170,10 +203,18 @@
 .region-controls {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: var(--space-2);
   padding-bottom: var(--space-3);
   margin-bottom: var(--space-3);
   border-bottom: 1px solid var(--color-border);
+}
+
+.region-controls__all-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
 }
 
 .region-controls__label {
@@ -200,14 +241,27 @@
 
 .region-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: var(--space-3);
+}
+
+@media (max-width: 1100px) {
+  .region-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 640px) {
   .region-list {
     grid-template-columns: 1fr;
   }
+}
+
+/* 沖縄・南極（各1選択肢だけで縦に短い）を1列にまとめて重ねて表示する（フェーズ23） */
+.region-group-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
 }
 
 .region-group {
@@ -370,6 +424,44 @@
 
 .element-item__label {
   flex: 1;
+}
+
+/* 廃止済み観測所フィルタ（単一チェックボックス。フェーズ16） */
+.discontinued-filter__label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 4px 6px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--color-ink);
+}
+
+.discontinued-filter__checkbox {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--color-teal);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* 一覧の「廃止」タグ・観測期間（フェーズ16） */
+.station-table__discontinued-badge {
+  display: inline-block;
+  margin-left: var(--space-2);
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  background: var(--color-slate-soft);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+.station-table__discontinued-period {
+  display: block;
+  font-size: 11px;
+  color: var(--color-ink-soft);
 }
 
 /* 観測要素フィルタの色ドット（一覧テーブルのタグ色の凡例を兼ねる） */

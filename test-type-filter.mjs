@@ -89,4 +89,25 @@ assert(
   "0件になった種別には element-item--empty が付く"
 );
 
+// clearButtonSlot を渡すと、そちらに「選択をクリア」ボタンが描画される（フェーズ23）
+{
+  const bodyContainer = document.createElement("div");
+  const headerSlot = document.createElement("span");
+  let slotLastSelected = null;
+  initTypeFilter({
+    container: bodyContainer,
+    stationTypes: ["気象官署", "アメダス"],
+    initialSelected: new Set(["気象官署"]),
+    clearButtonSlot: headerSlot,
+    onChange: (sel) => {
+      slotLastSelected = sel;
+    },
+  });
+  assert(!bodyContainer.querySelector(".element-controls__clear"), "clearButtonSlot指定時はパネル本文側にクリアボタンが無い");
+  const slotClearButton = headerSlot.querySelector(".element-controls__clear");
+  assert(!!slotClearButton, "clearButtonSlotの中にクリアボタンが描画される");
+  slotClearButton.dispatchEvent(new dom.window.Event("click"));
+  assert(slotLastSelected.size === 0, "スロット内のクリアボタンでも選択解除が機能する");
+}
+
 console.log("\nAll type-filter tests passed.");

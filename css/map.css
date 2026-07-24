@@ -113,6 +113,10 @@
   background: var(--color-amber);
 }
 
+.map-legend__dot--discontinued {
+  background: #9AA1AA;
+}
+
 /* Leaflet ポップアップの中身（デザイントークンに合わせる） */
 .map-popup {
   font-family: var(--font-ui);

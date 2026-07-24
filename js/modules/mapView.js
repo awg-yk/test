@@ -24,7 +24,8 @@
  *     右上の「検索結果に合わせる」ボタン、地図フォーカス中の矢印キー
  *
  * 前提: Leaflet / Leaflet.markercluster は index.html 側で
- *       CDN から読み込み、window.L としてグローバルに存在すること。
+ *       vendor/leaflet/ から読み込み、window.L としてグローバルに存在すること
+ *       （フェーズ18でCDN依存を解消し、npm配布物をリポジトリに同梱する方式に変更した）。
  */
 
 import { buildJmaStationLink, buildJmaPrefectureLink } from "./exporter.js";
@@ -34,9 +35,12 @@ const STATION_TYPE_COLORS = {
   アメダス: "#E8A33D", // --color-amber
 };
 const DEFAULT_MARKER_COLOR = "#5B6672"; // --color-ink-soft
+const DISCONTINUED_MARKER_COLOR = "#9AA1AA"; // --color-border-strong寄りの薄いグレー（フェーズ16）
 
-/** 観測所種別からマーカー色を返す（テスト容易にするため独立関数） */
+/** 観測所種別からマーカー色を返す（テスト容易にするため独立関数）。
+ *  廃止済み観測所は種別に関わらずグレー表示にする（フェーズ16）。 */
 export function getMarkerColor(station) {
+  if (station?.discontinued) return DISCONTINUED_MARKER_COLOR;
   return STATION_TYPE_COLORS[station?.stationType] ?? DEFAULT_MARKER_COLOR;
 }
 
@@ -56,9 +60,21 @@ export function buildPopupHtml(station, { elementLabelMap } = {}) {
     .join("・");
   const jmaLink = buildJmaStationLink(station);
   const prefectureLink = buildJmaPrefectureLink(station);
+  // 廃止済み観測所は、precNo/blockNoが確定していればリンクに加えて観測期間も表示する（フェーズ19）
+  const discontinuedPeriod = station.discontinued
+    ? `<br><span class="map-popup__no-link">廃止済み観測所（観測期間: ${escapeHtml(
+        station.observedFrom ?? "?"
+      )} 〜 ${escapeHtml(station.observedTo ?? "?")}）</span>`
+    : "";
+
   let jmaLinkHtml;
   if (jmaLink) {
-    jmaLinkHtml = `<a href="${jmaLink}" target="_blank" rel="noopener noreferrer">気象庁の観測データを見る ↗</a>`;
+    jmaLinkHtml = `<a href="${jmaLink}" target="_blank" rel="noopener noreferrer">気象庁の観測データを見る ↗</a>${discontinuedPeriod}`;
+  } else if (station.discontinued) {
+    // 廃止済みでprecNo/blockNoが未確定の場合は、リンクの代わりに観測期間だけを表示する
+    jmaLinkHtml = `<span class="map-popup__no-link">廃止済み観測所（観測期間: ${escapeHtml(
+      station.observedFrom ?? "?"
+    )} 〜 ${escapeHtml(station.observedTo ?? "?")}）。地点番号未確定のため気象庁ページへのリンクはありません。</span>`;
   } else if (prefectureLink) {
     jmaLinkHtml = `<a href="${prefectureLink}" target="_blank" rel="noopener noreferrer">都道府県の地点選択ページを開く ↗</a><br><span class="map-popup__no-link">（気象庁側に同名で複数の地点番号${escapeHtml(
       station.blockNoAmbiguousCandidates?.length ? `（${station.blockNoAmbiguousCandidates.join(" / ")}）` : ""
@@ -92,6 +108,23 @@ export function buildPopupHtml(station, { elementLabelMap } = {}) {
  */
 export function isMapGestureModifier(event) {
   return Boolean(event && (event.ctrlKey || event.metaKey));
+}
+
+/**
+ * 地域・観測要素・種別・検索語のいずれかが実際に選択/入力されているか。
+ * 「廃止済み観測所を含める」は既定の状態でありユーザーによる絞り込みではないため、
+ * ここでは判定に使わない（フェーズ22。以前は visibleStations.length と allStations.length
+ * の比較で判定していたが、廃止済み観測所が既定で母集団に加わるようになったことで
+ * 絞り込みなしでも両者が食い違うようになり、初期表示で誤って地図全体を南極まで
+ * fitBoundsしてしまう不具合があった）。
+ */
+export function hasActiveFilters(state) {
+  return Boolean(
+    state.selectedPrefectures?.size > 0 ||
+      state.selectedElements?.size > 0 ||
+      state.selectedStationTypes?.size > 0 ||
+      (state.keyword && state.keyword.trim() !== "")
+  );
 }
 
 /** 実行環境に合わせた修飾キーの表示名を返す（ヒント文言用） */
@@ -221,9 +254,16 @@ function setupGestureHandling({ map, container, showHint }) {
  * @returns {Object|null} Leaflet map インスタンス（Leaflet未読み込み時はnull）
  */
 export function initMapView({ container, store, elementLabelMap }) {
+  const onSelectStation = (id) => {
+    const state = store.getState();
+    const index = state.visibleStations.findIndex((s) => s.id === id);
+    const page = index === -1 ? state.page : Math.floor(index / state.pageSize) + 1;
+    store.setState({ selectedStationId: id, page });
+  };
+
   if (typeof window === "undefined" || !window.L) {
     container.innerHTML =
-      '<p class="map-view__error">地図ライブラリ(Leaflet)の読み込みに失敗しました。ネットワーク接続をご確認のうえ再読み込みしてください。</p>';
+      '<p class="map-view__error">地図ライブラリ(Leaflet)の読み込みに失敗しました。vendor/leaflet/ 配下のファイルが揃っているかご確認のうえ再読み込みしてください。</p>';
     return null;
   }
   const L = window.L;
@@ -253,6 +293,8 @@ export function initMapView({ container, store, elementLabelMap }) {
 
   let lastVisibleStations = null;
   let lastValidStations = []; // 「検索結果に合わせる」ボタン用に、現在描画中の観測所を保持する
+  let markerById = new Map(); // 一覧の行選択との相互連携用（フェーズ15）。render()のたびに作り直す
+  let selectedMarker = null;
 
   /** 現在描画中の観測所がすべて収まるように表示範囲を合わせる */
   function fitToRenderedStations({ maxZoom = 9 } = {}) {
@@ -285,11 +327,15 @@ export function initMapView({ container, store, elementLabelMap }) {
   /**
    * @param {Array} stations - 描画する観測所（絞り込み結果）
    * @param {boolean} isFiltered - 絞り込みが効いているか。効いていないとき（全観測所表示）は
-   *   表示範囲を動かさない。南極まで含めて範囲を合わせると地図が世界全体まで引いてしまい、
-   *   また「絞り込んでいないのに勝手に地図が動く」状態になるため。
+   *   表示範囲を動かさず、初期表示（日本周辺）のままにする。南極（昭和基地）まで含めて範囲を
+   *   合わせると地図が世界全体まで引いてしまうため、既定では日本周辺だけを表示する（フェーズ22）。
+   *   廃止済み観測所は既定で含まれるが、それ自体はユーザーによる「絞り込み」ではないので、
+   *   isFilteredの判定には含めない（地域・観測要素・種別・検索語の実際の選択状態だけで判定する）。
    */
   function render(stations, isFiltered) {
     markerLayer.clearLayers();
+    markerById = new Map();
+    selectedMarker = null;
 
     lastValidStations = stations.filter((s) => typeof s.lat === "number" && typeof s.lon === "number");
 
@@ -302,27 +348,58 @@ export function initMapView({ container, store, elementLabelMap }) {
         fillOpacity: 0.9,
       });
       marker.bindPopup(buildPopupHtml(station, { elementLabelMap }), { maxWidth: 260 });
+      marker.on("click", () => onSelectStation(station.id));
+      markerById.set(station.id, marker);
       markerLayer.addLayer(marker);
     });
 
     if (isFiltered) fitToRenderedStations();
   }
 
+  /**
+   * 一覧の行がクリックされたとき（またはマーカー自身がクリックされたとき）、
+   * 対応するマーカーを目立たせ、地図の表示範囲をそこへ合わせてポップアップを開く。
+   * クラスタ化されているときは zoomToShowLayer でクラスタを解いてから開く。
+   */
+  function focusStation(id) {
+    const marker = markerById.get(id);
+    if (!marker) return; // 絞り込みで現在の地図に表示されていない観測所は何もしない
+
+    if (selectedMarker && selectedMarker !== marker) {
+      selectedMarker.setStyle({ radius: 6, weight: 1 });
+    }
+    marker.setStyle({ radius: 9, weight: 3 });
+    selectedMarker = marker;
+
+    const centerAndOpen = () => {
+      map.panTo(marker.getLatLng());
+      marker.openPopup();
+    };
+    if (hasCluster && typeof markerLayer.zoomToShowLayer === "function") {
+      markerLayer.zoomToShowLayer(marker, centerAndOpen);
+    } else {
+      centerAndOpen();
+    }
+  }
+
+  let lastSelectedStationId = null;
   store.subscribe((state) => {
     if (state.status !== "ready") return;
-    if (state.visibleStations === lastVisibleStations) return; // ページ切り替え等は再描画しない
-    lastVisibleStations = state.visibleStations;
-    render(state.visibleStations, state.visibleStations.length !== state.allStations.length);
+    if (state.visibleStations !== lastVisibleStations) {
+      lastVisibleStations = state.visibleStations;
+      render(state.visibleStations, hasActiveFilters(state));
+    }
+    if (state.selectedStationId !== lastSelectedStationId) {
+      lastSelectedStationId = state.selectedStationId;
+      if (state.selectedStationId != null) focusStation(state.selectedStationId);
+    }
   });
 
   // 購読開始時点で既に ready 状態なら即描画する
   const initialState = store.getState();
   if (initialState.status === "ready") {
     lastVisibleStations = initialState.visibleStations;
-    render(
-      initialState.visibleStations,
-      initialState.visibleStations.length !== initialState.allStations.length
-    );
+    render(initialState.visibleStations, hasActiveFilters(initialState));
   }
 
   return map;
