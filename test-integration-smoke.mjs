@@ -9,6 +9,7 @@
  */
 import { JSDOM } from "jsdom";
 import { readFileSync } from "fs";
+import { regionSelectorKey } from "./js/modules/filterEngine.js";
 
 const html = readFileSync("./index.html", "utf-8");
 const stationsJson = readFileSync("./data/stations.json", "utf-8");
@@ -123,9 +124,16 @@ const elementLabelOf = (id) =>
 
 const tempLabelNationwide = elementLabelOf("temperature");
 
-const hokkaidoCheckbox = doc.querySelector("#region-selector-container #region-hokkaido");
-hokkaidoCheckbox.checked = true;
-hokkaidoCheckbox.dispatchEvent(new win.Event("change"));
+// 北海道は地域選択UI上、宗谷・上川など14地域×2枚のカードに分割されている（フェーズ23）。
+// 北海道全域を選ぶには両方のカードのチェックボックスをONにする必要がある
+const hokkaidoAreaGroups = stationsData.hokkaidoSubAreas;
+const hokkaidoCheckboxA = doc.querySelector(`#region-selector-container #region-${hokkaidoAreaGroups[0].id}`);
+const hokkaidoCheckboxB = doc.querySelector(`#region-selector-container #region-${hokkaidoAreaGroups[1].id}`);
+assert(!!hokkaidoCheckboxA && !!hokkaidoCheckboxB, "北海道の分割カードが2枚とも描画されている");
+hokkaidoCheckboxA.checked = true;
+hokkaidoCheckboxA.dispatchEvent(new win.Event("change"));
+hokkaidoCheckboxB.checked = true;
+hokkaidoCheckboxB.dispatchEvent(new win.Event("change"));
 await wait(50);
 
 const tempLabelHokkaido = elementLabelOf("temperature");
@@ -134,8 +142,10 @@ assert(
   `北海道を選ぶと観測要素の件数表示が変わる (全国: ${tempLabelNationwide} → 北海道: ${tempLabelHokkaido})`
 );
 
+// 両カードとも選択済みなので、regionSelectorKey が地域名（＝北海道かつprecNo確定済み）に
+// 解決される観測所だけが該当する（precNo未確定の廃止済み観測所は選択対象に含まれない）
 const expectedHokkaidoTemp = [...stationsData.stations, ...stationsData.discontinuedStations].filter(
-  (s) => s.prefecture === "北海道" && s.elements.includes("temperature")
+  (s) => s.prefecture === "北海道" && regionSelectorKey(s) !== s.prefecture && s.elements.includes("temperature")
 ).length;
 assert(
   tempLabelHokkaido.includes(`(${expectedHokkaidoTemp})`),
@@ -200,8 +210,10 @@ await wait(50);
 
 // --- 「廃止済みの観測地点を含めない」チェックボックス（フェーズ16・21） ------
 // ここまでのテストで北海道フィルタがオンのままなので、クリーンな状態に戻す
-hokkaidoCheckbox.checked = false;
-hokkaidoCheckbox.dispatchEvent(new win.Event("change"));
+hokkaidoCheckboxA.checked = false;
+hokkaidoCheckboxA.dispatchEvent(new win.Event("change"));
+hokkaidoCheckboxB.checked = false;
+hokkaidoCheckboxB.dispatchEvent(new win.Event("change"));
 await wait(50);
 
 const discontinuedCount = stationsData.discontinuedStations.length;

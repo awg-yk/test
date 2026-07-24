@@ -8,6 +8,7 @@
  *     stationTypes: string[],                 // 例: ["気象官署", "アメダス"]
  *     stationCounts?: Map<stationType, number>,
  *     initialSelected?: Set<string>,          // 初期選択（URLクエリ・プリセット復元用）
+ *     clearButtonSlot?: HTMLElement,          // 「選択をクリア」の描画先（省略時はパネル本文内。フェーズ23）
  *     onChange: (selected: Set<string>) => void,
  *   }) -> { updateCounts(newCounts: Map<stationType, number>): void }
  *
@@ -22,7 +23,7 @@
 
 import { h } from "../utils/helpers.js";
 
-export function initTypeFilter({ container, stationTypes, stationCounts, initialSelected, onChange }) {
+export function initTypeFilter({ container, stationTypes, stationCounts, initialSelected, clearButtonSlot, onChange }) {
   container.innerHTML = "";
 
   const selected = new Set(initialSelected ?? []);
@@ -55,8 +56,13 @@ export function initTypeFilter({ container, stationTypes, stationCounts, initial
     "選択をクリア"
   );
 
-  const controls = h("div", { class: "element-controls" }, [clearButton]);
-  container.append(controls);
+  if (clearButtonSlot) {
+    clearButtonSlot.innerHTML = "";
+    clearButtonSlot.append(clearButton);
+  } else {
+    const controls = h("div", { class: "element-controls" }, [clearButton]);
+    container.append(controls);
+  }
 
   const list = h("div", { class: "element-list" });
 

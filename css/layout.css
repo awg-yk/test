@@ -199,6 +199,20 @@
   pointer-events: auto;
 }
 
+/* パネルタイトル内に埋め込む「選択をクリア」ボタン（観測要素・種別パネル、iアイコンの右隣。
+   フェーズ23）。本来の配置（パネル本文内、margin-left:autoで右寄せ）を打ち消し、
+   見出しの流れの中に収まる小さめのボタンにする。 */
+.panel__header-clear {
+  display: inline-flex;
+  font-weight: 400;
+}
+
+.panel__header-clear .element-controls__clear {
+  margin-left: 0;
+  font-size: 11px;
+  padding: 2px 8px;
+}
+
 .u-visually-hidden {
   position: absolute;
   width: 1px;

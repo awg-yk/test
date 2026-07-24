@@ -15,6 +15,43 @@
 
 import { matchesElementFilter } from "./elementFilter.js";
 
+/**
+ * 北海道は面積が広く、地域選択UI上は都道府県1件だけでは絞り込みの単位として粗すぎるため、
+ * 気象官署のprecNo（府県予報区番号）を使って14地域（振興局相当）に分割して選択できるようにする
+ * （フェーズ23）。station.prefecture/station.regionそのものは変更しない
+ * （CSV出力・気象庁リンク・地方列の表示は従来通り「北海道」のまま）。
+ */
+const HOKKAIDO_AREA_BY_PREC_NO = {
+  11: "宗谷",
+  12: "上川",
+  13: "留萌",
+  14: "石狩",
+  15: "空知",
+  16: "後志",
+  17: "オホーツク",
+  18: "根室",
+  19: "釧路",
+  20: "十勝",
+  21: "胆振",
+  22: "日高",
+  23: "渡島",
+  24: "檜山",
+};
+
+/** 北海道の観測所が属する地域名（宗谷・上川 等）を返す。北海道以外やprecNo未確定の場合はnull */
+export function getHokkaidoArea(station) {
+  if (station.prefecture !== "北海道") return null;
+  return HOKKAIDO_AREA_BY_PREC_NO[Number(station.precNo)] ?? null;
+}
+
+/**
+ * 地域選択の絞り込み・件数集計で使うキー。北海道の観測所は宗谷・上川...の地域名、
+ * それ以外の観測所は都道府県名をそのまま使う（フェーズ23）。
+ */
+export function regionSelectorKey(station) {
+  return getHokkaidoArea(station) ?? station.prefecture;
+}
+
 /** 地点名・かな・英名・都道府県名のいずれかに部分一致すれば true */
 export function matchesKeyword(station, keyword) {
   const trimmed = (keyword ?? "").trim();
@@ -37,7 +74,7 @@ export function computeVisibleStations(allStations, filters) {
     const passesRegion =
       !selectedPrefectures ||
       selectedPrefectures.size === 0 ||
-      selectedPrefectures.has(station.prefecture);
+      selectedPrefectures.has(regionSelectorKey(station));
 
     const passesElements = matchesElementFilter(station, selectedElements ?? new Set(), elementLogic ?? "AND");
 
@@ -49,11 +86,12 @@ export function computeVisibleStations(allStations, filters) {
   });
 }
 
-/** 都道府県ごとの観測所数を集計する（地域選択UIのカウント表示に使う） */
+/** 地域選択UIの各項目（都道府県、または北海道は宗谷・上川...の地域）ごとの観測所数を集計する */
 export function buildPrefectureCounts(allStations) {
   const counts = new Map();
   allStations.forEach((station) => {
-    counts.set(station.prefecture, (counts.get(station.prefecture) ?? 0) + 1);
+    const key = regionSelectorKey(station);
+    counts.set(key, (counts.get(key) ?? 0) + 1);
   });
   return counts;
 }

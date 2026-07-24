@@ -115,4 +115,67 @@ assert(allCheckbox.indeterminate === true, "南極のみ選択時、すべて一
 
 clearButton.dispatchEvent(new dom.window.Event("click"));
 
+// --- 9. hokkaidoSubAreas を渡すと、北海道カードが14地域×2枚に分割される（フェーズ23） -------
+{
+  const container2 = document.createElement("div");
+  let lastSelected2 = null;
+
+  const regionSelector2 = initRegionSelector({
+    container: container2,
+    regions: data.regions,
+    hokkaidoSubAreas: data.hokkaidoSubAreas,
+    stationCounts: counts, // 北海道分のキーは無いが件数0扱いになるだけで問題ない
+    onChange: (selected) => {
+      lastSelected2 = selected;
+    },
+  });
+
+  assert(!container2.querySelector("#region-hokkaido"), "元の「北海道」単体カードは描画されない");
+  const areaAGroup = data.hokkaidoSubAreas[0];
+  const areaBGroup = data.hokkaidoSubAreas[1];
+  assert(!!container2.querySelector(`#region-${areaAGroup.id}`), "北海道の分割カード1枚目が描画される");
+  assert(!!container2.querySelector(`#region-${areaBGroup.id}`), "北海道の分割カード2枚目が描画される");
+  assert(
+    areaAGroup.areas.every((area) => !!container2.querySelector(`#pref-${areaAGroup.id}-${area}`)),
+    "分割カード1枚目に7地域分のチェックボックスがある"
+  );
+  assert(areaAGroup.areas.length === 7 && areaBGroup.areas.length === 7, "北海道は7地域ずつ2枚に分かれる");
+
+  // 分割カード1枚目の地方チェックボックスをONにすると、7地域名が選択される（都道府県名「北海道」ではない）
+  const areaACheckbox = container2.querySelector(`#region-${areaAGroup.id}`);
+  areaACheckbox.checked = true;
+  areaACheckbox.dispatchEvent(new dom.window.Event("change"));
+  assert(lastSelected2.size === 7, `分割カード1枚目ON → 7地域選択 (実際: ${lastSelected2.size})`);
+  assert(areaAGroup.areas.every((area) => lastSelected2.has(area)), "選択された値は地域名（宗谷・上川等）");
+  assert(!lastSelected2.has("北海道"), "都道府県名「北海道」そのものは選択値に含まれない");
+
+  // 沖縄・南極は同じグリッド列に重ねて表示される
+  const okinawaGroup = container2.querySelector("#region-okinawa");
+  const antarcticaGroup = container2.querySelector("#region-antarctica");
+  assert(
+    okinawaGroup.closest(".region-group-stack") &&
+      okinawaGroup.closest(".region-group-stack") === antarcticaGroup.closest(".region-group-stack"),
+    "沖縄・南極は同じ .region-group-stack 内に重ねて表示される"
+  );
+
+  regionSelector2.updateCounts(new Map([["宗谷", 5]]));
+  assert(
+    container2.querySelector(`#pref-${areaAGroup.id}-宗谷 + .prefecture-item__label`).textContent.includes("(5)"),
+    "updateCounts() は北海道の分割地域にも反映される"
+  );
+}
+
+// hokkaidoSubAreas を渡さない場合は、従来通り「北海道」が1枚のカードのまま
+{
+  const container3 = document.createElement("div");
+  initRegionSelector({
+    container: container3,
+    regions: data.regions,
+    stationCounts: counts,
+    onChange: () => {},
+  });
+  assert(!!container3.querySelector("#region-hokkaido"), "hokkaidoSubAreas省略時は従来通り北海道が1枚のカード");
+  assert(!!container3.querySelector("#pref-hokkaido-北海道"), "hokkaidoSubAreas省略時のチェックボックスは都道府県名のまま");
+}
+
 console.log("\nすべてのテストが成功しました。");

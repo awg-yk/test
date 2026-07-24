@@ -107,6 +107,7 @@ function initFilterUIs(data, initialValues) {
   filterUIs.region = initRegionSelector({
     container: regionSelectorContainer,
     regions: data.regions,
+    hokkaidoSubAreas: data.hokkaidoSubAreas,
     stationCounts: facetCounts.prefectureCounts,
     initialSelected: initialValues.prefectures,
     onChange: (selectedPrefectures) => {
@@ -121,6 +122,7 @@ function initFilterUIs(data, initialValues) {
     stationCounts: facetCounts.elementCounts,
     initialSelected: initialValues.elements,
     initialMode: initialValues.elementLogic,
+    clearButtonSlot: document.getElementById("element-filter-clear-container"),
     onChange: (selectedElements, elementLogic) => {
       store.setState({ selectedElements, elementLogic });
       applyFilters();
@@ -134,6 +136,7 @@ function initFilterUIs(data, initialValues) {
     stationTypes: [...buildStationTypeCounts(data.stations).keys()],
     stationCounts: facetCounts.stationTypeCounts,
     initialSelected: initialValues.stationTypes,
+    clearButtonSlot: document.getElementById("type-filter-clear-container"),
     onChange: (selectedStationTypes) => {
       store.setState({ selectedStationTypes });
       applyFilters();

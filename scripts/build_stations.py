@@ -185,7 +185,15 @@ def main():
 
     stations.sort(key=lambda s: s["id"])
 
-    output = {"regions": regions, "elements": existing["elements"], "stations": stations}
+    # フェーズ23: 地域選択UIで北海道を14地域（振興局相当）に分割表示するための補助データ。
+    # station.region/prefectureの判定には使わない（pref_to_regionは従来通り「北海道」を単一の都道府県として扱う）
+    # ため、既存ファイルの値をそのまま引き継ぐだけでよい。
+    output = {
+        "regions": regions,
+        "hokkaidoSubAreas": existing.get("hokkaidoSubAreas", []),
+        "elements": existing["elements"],
+        "stations": stations,
+    }
     with open(args.output, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
 

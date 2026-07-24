@@ -112,4 +112,25 @@ data.elements.forEach((el) => {
   );
 });
 
+// 8. clearButtonSlot を渡すと、そちらに「選択をクリア」ボタンが描画される（フェーズ23）
+{
+  const bodyContainer = document.createElement("div");
+  const headerSlot = document.createElement("span");
+  let slotLastSelected = null;
+  initElementFilter({
+    container: bodyContainer,
+    elements: data.elements,
+    initialSelected: new Set(["temperature"]),
+    clearButtonSlot: headerSlot,
+    onChange: (sel) => {
+      slotLastSelected = sel;
+    },
+  });
+  assert(!bodyContainer.querySelector(".element-controls__clear"), "clearButtonSlot指定時はパネル本文側にクリアボタンが無い");
+  const slotClearButton = headerSlot.querySelector(".element-controls__clear");
+  assert(!!slotClearButton, "clearButtonSlotの中にクリアボタンが描画される");
+  slotClearButton.dispatchEvent(new dom.window.Event("click"));
+  assert(slotLastSelected.size === 0, "スロット内のクリアボタンでも選択解除が機能する");
+}
+
 console.log("\nAll element-filter tests passed.");

@@ -7,7 +7,8 @@
  *   initRegionSelector({
  *     container: HTMLElement,
  *     regions: Region[],                     // stations.json の regions
- *     stationCounts: Map<prefecture, number>, // 都道府県ごとの観測所数
+ *     hokkaidoSubAreas?: HokkaidoSubArea[],   // stations.json の hokkaidoSubAreas（省略時は北海道を1件のまま表示）
+ *     stationCounts: Map<prefecture, number>, // 都道府県（北海道は宗谷・上川等の地域）ごとの観測所数
  *     initialSelected?: Set<string>,          // 初期選択（URLクエリ復元用。省略時は未選択）
  *     onChange: (selectedPrefectures: Set<string>) => void,
  *   }) -> { updateCounts(newCounts: Map<prefecture, number>): void }
@@ -15,31 +16,64 @@
  *   戻り値の updateCounts() で、チェック状態や開閉状態を保ったまま
  *   「(件数)」だけを差し替えられる（他の絞り込み条件に連動して件数を更新するため。フェーズ10）。
  *
- * 選択状態の正は「都道府県名の集合（selected）」。
+ * 選択状態の正は「都道府県名（または北海道の地域名）の集合（selected）」。
  * 地方チェックボックス・「全国」チェックボックスは、
  * この集合から導出される表示上の状態（checked / indeterminate）に過ぎない。
  * 何も選択されていない状態 = 絞り込みなし（全観測所を表示）として扱う。
+ *
+ * 北海道は面積が広く1都道府県のままでは絞り込みの単位として粗いため、hokkaidoSubAreas が
+ * 渡された場合はカード自体を「北海道（道北・道東）」「北海道（道央・道南）」の2枚（各7地域）に
+ * 分割して表示する（フェーズ23。station.prefecture自体は「北海道」のまま変わらず、
+ * filterEngine.js の regionSelectorKey() が北海道の観測所をprecNoから地域名に変換して照合する）。
+ * また沖縄・南極は選択肢が1件ずつしかなく縦に短いため、同じグリッド列内に半分の高さで
+ * 上下に重ねて表示し、地域カード全体の並びを5列×2段に保つ。
  */
 
 import { h } from "../utils/helpers.js";
 
-export function initRegionSelector({ container, regions, stationCounts, initialSelected, onChange }) {
+/** 北海道の地域カードを分割し、沖縄・南極を1列に重ねられるよう並べ替えた表示用リストを作る */
+function buildDisplayRegions(regions, hokkaidoSubAreas) {
+  const expanded = regions.flatMap((region) => {
+    if (region.id === "hokkaido" && hokkaidoSubAreas && hokkaidoSubAreas.length > 0) {
+      return hokkaidoSubAreas.map((sub) => ({ id: sub.id, name: sub.name, prefectures: sub.areas }));
+    }
+    return [region];
+  });
+
+  const items = [];
+  for (let i = 0; i < expanded.length; i++) {
+    const region = expanded[i];
+    const next = expanded[i + 1];
+    if (region.id === "okinawa" && next?.id === "antarctica") {
+      items.push({ type: "stack", regions: [region, next] });
+      i++; // antarcticaは既にstackへ含めたのでスキップ
+    } else {
+      items.push({ type: "single", regions: [region] });
+    }
+  }
+  return items;
+}
+
+export function initRegionSelector({ container, regions, hokkaidoSubAreas, stationCounts, initialSelected, onChange }) {
   container.innerHTML = "";
 
-  const selected = new Set(initialSelected ?? []); // 選択中の都道府県名
+  const displayItems = buildDisplayRegions(regions, hokkaidoSubAreas);
+  const displayRegions = displayItems.flatMap((item) => item.regions); // 一括選択・件数集計はこの単位で行う
+
+  const selected = new Set(initialSelected ?? []); // 選択中の都道府県名（北海道は地域名）
   const prefectureCheckboxes = new Map(); // prefName -> <input>
   const regionCheckboxes = new Map(); // regionId -> <input>
   const prefectureLabels = new Map(); // prefName -> <label>（件数の差し替え用）
   const regionLabels = new Map(); // regionId -> <label>（件数の差し替え用）
   let counts = stationCounts;
   let allCheckbox; // 「すべて一括選択」＝南極（昭和基地）を含む全地域
-  let japanCheckbox; // 「47都道府県一括選択」＝南極を除く47都道府県のみ
+  let japanCheckbox; // 「47都道府県一括選択」＝南極を除く全地域
 
   const countFor = (prefName) => counts.get(prefName) ?? 0;
   const regionCount = (region) => region.prefectures.reduce((sum, p) => sum + countFor(p), 0);
-  const totalPrefectureCount = regions.reduce((sum, r) => sum + r.prefectures.length, 0);
+  const totalPrefectureCount = displayRegions.reduce((sum, r) => sum + r.prefectures.length, 0);
   // 南極（昭和基地）は都道府県ではないため、「47都道府県一括選択」の対象からは除く
-  const japanRegions = regions.filter((r) => r.id !== "antarctica");
+  const japanRegions = displayRegions.filter((r) => r.id !== "antarctica");
   const japanPrefectureCount = japanRegions.reduce((sum, r) => sum + r.prefectures.length, 0);
 
   function emitChange() {
@@ -71,7 +105,7 @@ export function initRegionSelector({ container, regions, stationCounts, initialS
   }
 
   function refreshDerivedStates() {
-    regions.forEach(updateRegionCheckboxState);
+    displayRegions.forEach(updateRegionCheckboxState);
     updateAllCheckboxState();
     updateJapanCheckboxState();
   }
@@ -115,7 +149,7 @@ export function initRegionSelector({ container, regions, stationCounts, initialS
   allCheckbox.className = "region-controls__checkbox";
   allCheckbox.id = "region-select-all";
   allCheckbox.addEventListener("change", () => {
-    regions.forEach((region) => setRegionSelected(region, allCheckbox.checked));
+    displayRegions.forEach((region) => setRegionSelected(region, allCheckbox.checked));
     refreshDerivedStates();
     emitChange();
   });
@@ -150,7 +184,8 @@ export function initRegionSelector({ container, regions, stationCounts, initialS
   // --- 地方ごとのグループ ---------------------------------------------
   const list = h("div", { class: "region-list" });
 
-  regions.forEach((region) => {
+  /** 1地域（地方 / 北海道の分割地域 / 沖縄・南極）分のカードDOMを作る */
+  function buildRegionGroup(region) {
     const groupId = `region-${region.id}`;
     const group = h("div", { class: "region-group" });
 
@@ -222,7 +257,21 @@ export function initRegionSelector({ container, regions, stationCounts, initialS
     });
 
     group.append(header, prefList);
-    list.append(group);
+    return group;
+  }
+
+  // 沖縄・南極は選択肢が1件ずつで縦に短いため、1グリッド列の中に半分の高さで重ねて表示する（フェーズ23）
+  displayItems.forEach((item) => {
+    if (item.type === "stack") {
+      const stack = h(
+        "div",
+        { class: "region-group-stack" },
+        item.regions.map((region) => buildRegionGroup(region))
+      );
+      list.append(stack);
+    } else {
+      list.append(buildRegionGroup(item.regions[0]));
+    }
   });
 
   container.append(list);
@@ -231,7 +280,7 @@ export function initRegionSelector({ container, regions, stationCounts, initialS
   /** 他の絞り込み条件が変わったとき、チェック状態・開閉状態を保ったまま「(件数)」だけ更新する */
   function updateCounts(newCounts) {
     counts = newCounts ?? new Map();
-    regions.forEach((region) => {
+    displayRegions.forEach((region) => {
       const regionLabel = regionLabels.get(region.id);
       if (regionLabel) regionLabel.textContent = `${region.name} (${regionCount(region)})`;
 
