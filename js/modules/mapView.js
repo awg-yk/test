@@ -24,7 +24,8 @@
  *     右上の「検索結果に合わせる」ボタン、地図フォーカス中の矢印キー
  *
  * 前提: Leaflet / Leaflet.markercluster は index.html 側で
- *       CDN から読み込み、window.L としてグローバルに存在すること。
+ *       vendor/leaflet/ から読み込み、window.L としてグローバルに存在すること
+ *       （フェーズ18でCDN依存を解消し、npm配布物をリポジトリに同梱する方式に変更した）。
  */
 
 import { buildJmaStationLink, buildJmaPrefectureLink } from "./exporter.js";
@@ -237,7 +238,7 @@ export function initMapView({ container, store, elementLabelMap }) {
 
   if (typeof window === "undefined" || !window.L) {
     container.innerHTML =
-      '<p class="map-view__error">地図ライブラリ(Leaflet)の読み込みに失敗しました。ネットワーク接続をご確認のうえ再読み込みしてください。</p>';
+      '<p class="map-view__error">地図ライブラリ(Leaflet)の読み込みに失敗しました。vendor/leaflet/ 配下のファイルが揃っているかご確認のうえ再読み込みしてください。</p>';
     return null;
   }
   const L = window.L;
