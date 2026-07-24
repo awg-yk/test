@@ -8,7 +8,7 @@ global.window = dom.window;
 global.document = dom.window.document;
 global.Node = dom.window.Node;
 
-const { getMarkerColor, buildPopupHtml, isMapGestureModifier } = await import("./js/modules/mapView.js");
+const { getMarkerColor, buildPopupHtml, isMapGestureModifier, hasActiveFilters } = await import("./js/modules/mapView.js");
 
 function assert(cond, msg) {
   if (!cond) throw new Error("FAIL: " + msg);
@@ -88,5 +88,62 @@ assert(isMapGestureModifier({ metaKey: true }) === true, "⌘(macOS)押下も地
 assert(isMapGestureModifier({ ctrlKey: false, metaKey: false }) === false, "修飾キー無しの操作は地図に渡さない");
 assert(isMapGestureModifier({ shiftKey: true }) === false, "Shiftは地図操作の修飾キーではない");
 assert(isMapGestureModifier(undefined) === false, "イベントが無くても例外を投げずfalseを返す");
+
+// --- hasActiveFilters（既定表示で地図を南極までfitBoundsしないための判定。フェーズ22） ---
+
+assert(
+  hasActiveFilters({
+    selectedPrefectures: new Set(),
+    selectedElements: new Set(),
+    selectedStationTypes: new Set(),
+    keyword: "",
+  }) === false,
+  "何も絞り込んでいなければfalse（廃止済み観測所が既定で含まれていても絞り込みとは扱わない）"
+);
+assert(
+  hasActiveFilters({
+    selectedPrefectures: new Set(["北海道"]),
+    selectedElements: new Set(),
+    selectedStationTypes: new Set(),
+    keyword: "",
+  }) === true,
+  "地域が選択されていればtrue"
+);
+assert(
+  hasActiveFilters({
+    selectedPrefectures: new Set(),
+    selectedElements: new Set(["temperature"]),
+    selectedStationTypes: new Set(),
+    keyword: "",
+  }) === true,
+  "観測要素が選択されていればtrue"
+);
+assert(
+  hasActiveFilters({
+    selectedPrefectures: new Set(),
+    selectedElements: new Set(),
+    selectedStationTypes: new Set(["気象官署"]),
+    keyword: "",
+  }) === true,
+  "種別が選択されていればtrue"
+);
+assert(
+  hasActiveFilters({
+    selectedPrefectures: new Set(),
+    selectedElements: new Set(),
+    selectedStationTypes: new Set(),
+    keyword: "  ",
+  }) === false,
+  "空白だけのキーワードはfalse扱い"
+);
+assert(
+  hasActiveFilters({
+    selectedPrefectures: new Set(),
+    selectedElements: new Set(),
+    selectedStationTypes: new Set(),
+    keyword: "空港",
+  }) === true,
+  "キーワードが入力されていればtrue"
+);
 
 console.log("\nAll mapView tests passed.");

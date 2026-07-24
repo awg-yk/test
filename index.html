@@ -40,19 +40,31 @@
     <div class="filter-panels">
       <section class="panel">
         <div class="panel__header">
-          <h2 class="panel__title">地域で絞り込む</h2>
-          <p class="panel__note">地方単位・都道府県単位で一括選択できます。何も選択しない場合は全観測所を表示します。南極（昭和基地）もここから選べます。（　）内の件数は、観測要素・種別・検索語による絞り込みを反映した件数です。</p>
+          <h2 class="panel__title">
+            地域で絞り込む
+            <span class="panel__info" tabindex="0">
+              <span class="panel__info-icon" aria-hidden="true">i</span>
+              <span class="u-visually-hidden">説明を表示</span>
+              <p class="panel__note" role="tooltip">地方単位・都道府県単位で一括選択できます。何も選択しない場合は全観測所を表示します。南極（昭和基地）もここから選べます。（　）内の件数は、観測要素・種別・検索語による絞り込みを反映した件数です。</p>
+            </span>
+          </h2>
         </div>
         <div class="panel__body">
           <div id="region-selector-container"></div>
         </div>
       </section>
 
-      <div class="filter-panels__right">
+      <div class="filter-panels__row">
         <section class="panel">
           <div class="panel__header">
-            <h2 class="panel__title">観測要素で絞り込む</h2>
-            <p class="panel__note">気温・降水量・積雪などで絞り込めます。複数選択時は「すべて含む(AND)」「いずれか含む(OR)」を切り替えられます。（　）内の件数は、地域・種別・検索語による絞り込みを反映した件数です（例: 北海道だけを選ぶと北海道内の件数になります）。</p>
+            <h2 class="panel__title">
+              観測要素で絞り込む
+              <span class="panel__info" tabindex="0">
+                <span class="panel__info-icon" aria-hidden="true">i</span>
+                <span class="u-visually-hidden">説明を表示</span>
+                <p class="panel__note" role="tooltip">気温・降水量・積雪などで絞り込めます。複数選択時は「すべて含む(AND)」「いずれか含む(OR)」を切り替えられます。（　）内の件数は、地域・種別・検索語による絞り込みを反映した件数です（例: 北海道だけを選ぶと北海道内の件数になります）。</p>
+              </span>
+            </h2>
           </div>
           <div class="panel__body">
             <div id="element-filter-container"></div>
@@ -61,8 +73,14 @@
 
         <section class="panel">
           <div class="panel__header">
-            <h2 class="panel__title">種別で絞り込む</h2>
-            <p class="panel__note">気象官署・アメダスで絞り込めます。何も選択しない場合は両方を表示します。（　）内の件数は、地域・観測要素・検索語による絞り込みを反映した件数です。</p>
+            <h2 class="panel__title">
+              種別で絞り込む
+              <span class="panel__info" tabindex="0">
+                <span class="panel__info-icon" aria-hidden="true">i</span>
+                <span class="u-visually-hidden">説明を表示</span>
+                <p class="panel__note" role="tooltip">気象官署・アメダスで絞り込めます。何も選択しない場合は両方を表示します。（　）内の件数は、地域・観測要素・検索語による絞り込みを反映した件数です。</p>
+              </span>
+            </h2>
           </div>
           <div class="panel__body">
             <div id="type-filter-container"></div>
@@ -71,8 +89,14 @@
 
         <section class="panel">
           <div class="panel__header">
-            <h2 class="panel__title">廃止済み観測所</h2>
-            <p class="panel__note">現在は運用されていない、過去の観測所です。気象庁の観測所履歴資料をもとに収録しています（緯度経度・観測期間は判明している範囲）。506地点のうち386地点は気象庁ページへの直接リンクも確認済みです（残る120地点は地点番号が未確定のためリンクはありません）。一覧・地図には既定で含まれています。（　）内の件数は、地域・観測要素・種別・検索語による絞り込みを反映した件数です。</p>
+            <h2 class="panel__title">
+              廃止済み観測所
+              <span class="panel__info" tabindex="0">
+                <span class="panel__info-icon" aria-hidden="true">i</span>
+                <span class="u-visually-hidden">説明を表示</span>
+                <p class="panel__note" role="tooltip">現在は運用されていない、過去の観測所です。気象庁の観測所履歴資料をもとに収録しています（緯度経度・観測期間は判明している範囲）。506地点のうち386地点は気象庁ページへの直接リンクも確認済みです（残る120地点は地点番号が未確定のためリンクはありません）。一覧・地図には既定で含まれています。（　）内の件数は、地域・観測要素・種別・検索語による絞り込みを反映した件数です。</p>
+              </span>
+            </h2>
           </div>
           <div class="panel__body">
             <div id="discontinued-filter-container"></div>
@@ -89,13 +113,19 @@
 
     <section class="panel map-panel" style="margin-bottom: var(--space-4);">
       <div class="panel__header">
-        <h2 class="panel__title">地図で見る</h2>
-        <p class="panel__note">
-          現在の絞り込み結果を地図上に表示します。マーカーをクリックすると地点名・観測要素・気象庁リンクを確認できます。
-          ページをスクロールしただけで地図が動かないよう、<strong>拡大縮小・移動には Ctrl（macOSは⌘）キー</strong>が必要です
-          （Ctrl＋ホイールで拡大縮小、Ctrl＋ドラッグで移動。タッチ端末では2本指）。
-          Ctrlなしで使える操作として、左上の ＋／− ボタン、ダブルクリックでの拡大、右上の「検索結果に合わせる」ボタンがあります。
-        </p>
+        <h2 class="panel__title">
+          地図で見る
+          <span class="panel__info" tabindex="0">
+            <span class="panel__info-icon" aria-hidden="true">i</span>
+            <span class="u-visually-hidden">説明を表示</span>
+            <p class="panel__note" role="tooltip">
+              現在の絞り込み結果を地図上に表示します。マーカーをクリックすると地点名・観測要素・気象庁リンクを確認できます。
+              ページをスクロールしただけで地図が動かないよう、<strong>拡大縮小・移動には Ctrl（macOSは⌘）キー</strong>が必要です
+              （Ctrl＋ホイールで拡大縮小、Ctrl＋ドラッグで移動。タッチ端末では2本指）。
+              Ctrlなしで使える操作として、左上の ＋／− ボタン、ダブルクリックでの拡大、右上の「検索結果に合わせる」ボタンがあります。
+            </p>
+          </span>
+        </h2>
       </div>
       <div class="panel__body map-panel__body">
         <div id="map-view-container" class="map-view"></div>
@@ -110,8 +140,14 @@
     <section class="panel">
       <div class="panel__header panel__header--with-actions">
         <div>
-          <h2 class="panel__title">観測所一覧</h2>
-          <p class="panel__note">気象庁「アメダス観測所表」に基づく全国1,286地点（気象官署56地点＋アメダス1,230地点）に、南極・昭和基地を加えた1,287地点を収録しています。<strong>地点名をクリックすると、気象庁「過去の気象データ検索」がその地点を選択した状態で開きます</strong>（年月・データ種別を選ぶと日別値・月別値・平年値などを閲覧できます）。地点名の後ろに「*」が付く7地点は、気象庁側に同名で複数の地点番号があり自動判定を保留しているため、都道府県の地点選択ページへ案内します。観測要素は色分けして表示しています（色の対応は「観測要素で絞り込む」の各項目のドットと同じです）。現在は運用されていない過去の観測所506地点も既定で一覧・地図に含まれています（「廃止」タグと観測期間を表示。うち386地点は気象庁ページへのリンクも確認済みです）。含めたくない場合は「廃止済みの観測地点を含めない」をオンにしてください。</p>
+          <h2 class="panel__title">
+            観測所一覧
+            <span class="panel__info" tabindex="0">
+              <span class="panel__info-icon" aria-hidden="true">i</span>
+              <span class="u-visually-hidden">説明を表示</span>
+              <p class="panel__note" role="tooltip">気象庁「アメダス観測所表」に基づく全国1,286地点（気象官署56地点＋アメダス1,230地点）に、南極・昭和基地を加えた1,287地点を収録しています。<strong>地点名をクリックすると、気象庁「過去の気象データ検索」がその地点を選択した状態で開きます</strong>（年月・データ種別を選ぶと日別値・月別値・平年値などを閲覧できます）。地点名の後ろに「*」が付く7地点は、気象庁側に同名で複数の地点番号があり自動判定を保留しているため、都道府県の地点選択ページへ案内します。観測要素は色分けして表示しています（色の対応は「観測要素で絞り込む」の各項目のドットと同じです）。現在は運用されていない過去の観測所506地点も既定で一覧・地図に含まれています（「廃止」タグと観測期間を表示。うち386地点は気象庁ページへのリンクも確認済みです）。含めたくない場合は「廃止済みの観測地点を含めない」をオンにしてください。</p>
+            </span>
+          </h2>
         </div>
         <div class="panel__actions">
           <button type="button" id="export-csv-btn" class="btn btn--primary">選択結果をCSVでダウンロード</button>

@@ -110,6 +110,23 @@ export function isMapGestureModifier(event) {
   return Boolean(event && (event.ctrlKey || event.metaKey));
 }
 
+/**
+ * 地域・観測要素・種別・検索語のいずれかが実際に選択/入力されているか。
+ * 「廃止済み観測所を含める」は既定の状態でありユーザーによる絞り込みではないため、
+ * ここでは判定に使わない（フェーズ22。以前は visibleStations.length と allStations.length
+ * の比較で判定していたが、廃止済み観測所が既定で母集団に加わるようになったことで
+ * 絞り込みなしでも両者が食い違うようになり、初期表示で誤って地図全体を南極まで
+ * fitBoundsしてしまう不具合があった）。
+ */
+export function hasActiveFilters(state) {
+  return Boolean(
+    state.selectedPrefectures?.size > 0 ||
+      state.selectedElements?.size > 0 ||
+      state.selectedStationTypes?.size > 0 ||
+      (state.keyword && state.keyword.trim() !== "")
+  );
+}
+
 /** 実行環境に合わせた修飾キーの表示名を返す（ヒント文言用） */
 function modifierKeyLabel() {
   const ua = typeof navigator === "undefined" ? "" : navigator.userAgent ?? "";
@@ -310,8 +327,10 @@ export function initMapView({ container, store, elementLabelMap }) {
   /**
    * @param {Array} stations - 描画する観測所（絞り込み結果）
    * @param {boolean} isFiltered - 絞り込みが効いているか。効いていないとき（全観測所表示）は
-   *   表示範囲を動かさない。南極まで含めて範囲を合わせると地図が世界全体まで引いてしまい、
-   *   また「絞り込んでいないのに勝手に地図が動く」状態になるため。
+   *   表示範囲を動かさず、初期表示（日本周辺）のままにする。南極（昭和基地）まで含めて範囲を
+   *   合わせると地図が世界全体まで引いてしまうため、既定では日本周辺だけを表示する（フェーズ22）。
+   *   廃止済み観測所は既定で含まれるが、それ自体はユーザーによる「絞り込み」ではないので、
+   *   isFilteredの判定には含めない（地域・観測要素・種別・検索語の実際の選択状態だけで判定する）。
    */
   function render(stations, isFiltered) {
     markerLayer.clearLayers();
@@ -368,7 +387,7 @@ export function initMapView({ container, store, elementLabelMap }) {
     if (state.status !== "ready") return;
     if (state.visibleStations !== lastVisibleStations) {
       lastVisibleStations = state.visibleStations;
-      render(state.visibleStations, state.visibleStations.length !== state.allStations.length);
+      render(state.visibleStations, hasActiveFilters(state));
     }
     if (state.selectedStationId !== lastSelectedStationId) {
       lastSelectedStationId = state.selectedStationId;
@@ -380,10 +399,7 @@ export function initMapView({ container, store, elementLabelMap }) {
   const initialState = store.getState();
   if (initialState.status === "ready") {
     lastVisibleStations = initialState.visibleStations;
-    render(
-      initialState.visibleStations,
-      initialState.visibleStations.length !== initialState.allStations.length
-    );
+    render(initialState.visibleStations, hasActiveFilters(initialState));
   }
 
   return map;
