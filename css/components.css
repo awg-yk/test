@@ -89,15 +89,18 @@
   white-space: nowrap;
 }
 
+/* 6要素ぶんの枠を固定幅で用意し、観測していない要素は透明なプレースホルダーにすることで
+   どの行でも同じ要素が同じ列（横位置）に揃って見えるようにする */
 .element-tags {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(6, 62px);
   gap: var(--space-1);
 }
 
 .tag {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   padding: 2px 8px;
   border-radius: 999px;
   font-size: 11px;
@@ -106,6 +109,10 @@
   color: var(--color-teal);
   border: 1px solid rgba(28, 124, 140, 0.25);
   white-space: nowrap;
+}
+
+.tag--empty {
+  visibility: hidden;
 }
 
 /* ---------------------------------------------------------
@@ -196,10 +203,18 @@
 .region-controls {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: var(--space-2);
   padding-bottom: var(--space-3);
   margin-bottom: var(--space-3);
   border-bottom: 1px solid var(--color-border);
+}
+
+.region-controls__all-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
 }
 
 .region-controls__label {

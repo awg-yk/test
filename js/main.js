@@ -37,7 +37,7 @@ const copyLinkBtn = document.getElementById("copy-link-btn");
 
 let elementLabelMap = new Map();
 let regionLabelMap = new Map();
-let filterUIs = { region: null, element: null, type: null }; // 各絞り込みUIのハンドル（件数の更新に使う）
+let filterUIs = { region: null, element: null, type: null, discontinued: null }; // 各絞り込みUIのハンドル（件数の更新に使う）
 
 /** store の状態から filterEngine に渡す絞り込み条件を取り出す */
 function filtersFromState(state) {
@@ -50,19 +50,22 @@ function filtersFromState(state) {
   };
 }
 
-/** 絞り込みの母集団。既定では現行の観測所のみ。「廃止済み観測所を含める」がオンのときだけ
- *  discontinuedStations を合流させる（フェーズ16）。 */
+/** 絞り込みの母集団。既定では廃止済み観測所も含む。「廃止済みの観測地点を含めない」を
+ *  チェックしたときだけ discontinuedStations を除外する（フェーズ16・21）。 */
 function effectivePool(state) {
   return state.includeDiscontinued ? [...state.allStations, ...state.discontinuedStations] : state.allStations;
 }
 
 /** 各絞り込みUIの「(件数)」を、他の絞り込み条件を反映した件数に更新する（フェーズ10）。
- *  例: 地域で北海道だけ選ぶと、観測要素・種別の件数が北海道の中での件数になる。 */
-function refreshFacetCounts(allStations, filters) {
+ *  例: 地域で北海道だけ選ぶと、観測要素・種別の件数が北海道の中での件数になる。
+ *  廃止済み観測所の件数は「含める/含めない」自身の状態に関わらず、他の軸と同じ数え方
+ *  （地域・観測要素・種別・検索語だけを反映）にする（フェーズ21）。 */
+function refreshFacetCounts(allStations, filters, discontinuedStations) {
   const { prefectureCounts, elementCounts, stationTypeCounts } = buildFacetCounts(allStations, filters);
   filterUIs.region?.updateCounts(prefectureCounts);
   filterUIs.element?.updateCounts(elementCounts);
   filterUIs.type?.updateCounts(stationTypeCounts);
+  filterUIs.discontinued?.updateCount(computeVisibleStations(discontinuedStations, filters).length);
 }
 
 /** allStations / selectedPrefectures / selectedElements / selectedStationTypes / keyword の現在値から
@@ -74,7 +77,7 @@ function applyFilters({ resetPage = true } = {}) {
   const visibleStations = computeVisibleStations(pool, filters);
   // 絞り込みが変わると選択中の観測所が表示から外れうるので、ページ同様に選択も解除する（フェーズ15）
   store.setState({ visibleStations, ...(resetPage ? { page: 1, selectedStationId: null } : {}) });
-  refreshFacetCounts(pool, filters);
+  refreshFacetCounts(pool, filters, state.discontinuedStations);
 }
 
 /** 一覧の行クリックで呼ばれる選択ハンドラ（地図マーカー側は mapView.js が同じ store.selectedStationId を
@@ -146,12 +149,19 @@ function initFilterUIs(data, initialValues) {
     },
   });
 
-  initDiscontinuedFilter({
+  // チェックボックスは「除外する」向き（checked=true が includeDiscontinued=false に対応）
+  filterUIs.discontinued = initDiscontinuedFilter({
     container: discontinuedFilterContainer,
-    count: data.discontinuedStations.length,
-    initialChecked: initialValues.includeDiscontinued,
-    onChange: (includeDiscontinued) => {
-      store.setState({ includeDiscontinued });
+    count: computeVisibleStations(data.discontinuedStations, {
+      selectedPrefectures: initialValues.prefectures,
+      selectedElements: initialValues.elements,
+      elementLogic: initialValues.elementLogic,
+      selectedStationTypes: initialValues.stationTypes,
+      keyword: initialValues.keyword,
+    }).length,
+    initialChecked: !initialValues.includeDiscontinued,
+    onChange: (excludeDiscontinued) => {
+      store.setState({ includeDiscontinued: !excludeDiscontinued });
       applyFilters();
     },
   });

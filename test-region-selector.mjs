@@ -83,4 +83,36 @@ assert(
 assert(lastSelected.size === totalAreaCount, "updateCounts() は選択状態を変えない");
 assert(container.querySelector("#pref-tohoku-青森県").checked === true, "updateCounts() はチェックボックスの状態も保つ");
 
+// 8. 「47都道府県一括選択」チェックボックス（南極を含まない一括選択。今回追加） ---------------
+clearButton.dispatchEvent(new dom.window.Event("click"));
+assert(lastSelected.size === 0, "テスト8の前提: クリア済み");
+
+const japanCount = data.regions
+  .filter((r) => r.id !== "antarctica")
+  .reduce((sum, r) => sum + r.prefectures.length, 0);
+const japanCheckbox = document.getElementById("region-select-japan");
+assert(!!japanCheckbox, "「47都道府県一括選択」チェックボックスが存在する");
+
+japanCheckbox.checked = true;
+japanCheckbox.dispatchEvent(new dom.window.Event("change"));
+assert(lastSelected.size === japanCount, `47都道府県一括選択ON → ${japanCount}件選択 (実際: ${lastSelected.size})`);
+assert(!lastSelected.has("南極"), "47都道府県一括選択には南極（昭和基地）が含まれない");
+assert(allCheckbox.indeterminate === true, "南極だけ未選択のため「すべて一括選択」はindeterminateになる");
+
+// 「すべて一括選択」をONにすると南極も含めて全地域が選択される
+allCheckbox.checked = true;
+allCheckbox.dispatchEvent(new dom.window.Event("change"));
+assert(lastSelected.has("南極"), "「すべて一括選択」で南極（昭和基地）も選択される");
+assert(japanCheckbox.checked === true, "南極を含む全選択でも47都道府県一括選択はONのまま");
+
+// 南極だけ選ぶと、47都道府県一括選択はOFF（南極は対象外のチェックボックスのため）
+clearButton.dispatchEvent(new dom.window.Event("click"));
+const antarcticaCheckbox = document.getElementById("region-antarctica");
+antarcticaCheckbox.checked = true;
+antarcticaCheckbox.dispatchEvent(new dom.window.Event("change"));
+assert(japanCheckbox.checked === false && japanCheckbox.indeterminate === false, "南極のみ選択時、47都道府県一括選択はOFFのまま");
+assert(allCheckbox.indeterminate === true, "南極のみ選択時、すべて一括選択はindeterminate");
+
+clearButton.dispatchEvent(new dom.window.Event("click"));
+
 console.log("\nすべてのテストが成功しました。");

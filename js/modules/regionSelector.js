@@ -32,11 +32,15 @@ export function initRegionSelector({ container, regions, stationCounts, initialS
   const prefectureLabels = new Map(); // prefName -> <label>（件数の差し替え用）
   const regionLabels = new Map(); // regionId -> <label>（件数の差し替え用）
   let counts = stationCounts;
-  let allCheckbox;
+  let allCheckbox; // 「すべて一括選択」＝南極（昭和基地）を含む全地域
+  let japanCheckbox; // 「47都道府県一括選択」＝南極を除く47都道府県のみ
 
   const countFor = (prefName) => counts.get(prefName) ?? 0;
   const regionCount = (region) => region.prefectures.reduce((sum, p) => sum + countFor(p), 0);
   const totalPrefectureCount = regions.reduce((sum, r) => sum + r.prefectures.length, 0);
+  // 南極（昭和基地）は都道府県ではないため、「47都道府県一括選択」の対象からは除く
+  const japanRegions = regions.filter((r) => r.id !== "antarctica");
+  const japanPrefectureCount = japanRegions.reduce((sum, r) => sum + r.prefectures.length, 0);
 
   function emitChange() {
     onChange(new Set(selected));
@@ -57,9 +61,19 @@ export function initRegionSelector({ container, regions, stationCounts, initialS
     allCheckbox.indeterminate = checkedCount > 0 && checkedCount < totalPrefectureCount;
   }
 
+  function updateJapanCheckboxState() {
+    const checkedCount = japanRegions.reduce(
+      (sum, r) => sum + r.prefectures.filter((p) => selected.has(p)).length,
+      0
+    );
+    japanCheckbox.checked = japanPrefectureCount > 0 && checkedCount === japanPrefectureCount;
+    japanCheckbox.indeterminate = checkedCount > 0 && checkedCount < japanPrefectureCount;
+  }
+
   function refreshDerivedStates() {
     regions.forEach(updateRegionCheckboxState);
     updateAllCheckboxState();
+    updateJapanCheckboxState();
   }
 
   function setPrefectureSelected(prefName, checked) {
@@ -76,8 +90,25 @@ export function initRegionSelector({ container, regions, stationCounts, initialS
     region.prefectures.forEach((prefName) => setPrefectureSelected(prefName, checked));
   }
 
-  // --- 「全国」一括選択 + クリアボタン -----------------------------------
+  // --- 「47都道府県一括選択」「すべて一括選択」+ クリアボタン ---------------
   const controls = h("div", { class: "region-controls" });
+  const allGroup = h("div", { class: "region-controls__all-group" });
+
+  japanCheckbox = document.createElement("input");
+  japanCheckbox.type = "checkbox";
+  japanCheckbox.className = "region-controls__checkbox";
+  japanCheckbox.id = "region-select-japan";
+  japanCheckbox.addEventListener("change", () => {
+    japanRegions.forEach((region) => setRegionSelected(region, japanCheckbox.checked));
+    refreshDerivedStates();
+    emitChange();
+  });
+
+  const japanLabel = h(
+    "label",
+    { for: "region-select-japan", class: "region-controls__label" },
+    `47都道府県一括選択（${japanPrefectureCount}）`
+  );
 
   allCheckbox = document.createElement("input");
   allCheckbox.type = "checkbox";
@@ -96,6 +127,8 @@ export function initRegionSelector({ container, regions, stationCounts, initialS
     `すべて一括選択（全 ${totalPrefectureCount} 地域）`
   );
 
+  allGroup.append(japanCheckbox, japanLabel, allCheckbox, allLabel);
+
   const clearButton = h(
     "button",
     {
@@ -111,7 +144,7 @@ export function initRegionSelector({ container, regions, stationCounts, initialS
     "選択をクリア"
   );
 
-  controls.append(allCheckbox, allLabel, clearButton);
+  controls.append(allGroup, clearButton);
   container.append(controls);
 
   // --- 地方ごとのグループ ---------------------------------------------

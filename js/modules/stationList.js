@@ -10,12 +10,23 @@
 import { h } from "../utils/helpers.js";
 import { buildJmaStationLink, buildJmaPrefectureLink } from "./exporter.js";
 
-/** 観測要素タグは要素ごとに色分けする（CSS側の .tag--<id> と対応。凡例は観測要素フィルタのドット） */
+/**
+ * 観測要素タグは要素ごとに色分けする（CSS側の .tag--<id> と対応。凡例は観測要素フィルタのドット）。
+ * 観測所ごとに観測している要素が異なるため、単純に並べると要素が抜けた分だけ後続のタグが
+ * 詰めて表示され、列が揃って見えない。elementLabelMap の並び順（=観測要素マスタの並び順）で
+ * 6要素ぶんの枠を必ず用意し、観測していない要素は見えないプレースホルダーにすることで
+ * どの行でも同じ要素が同じ横位置に来るようにしている。
+ */
 function renderElementTags(elementIds, elementLabelMap) {
+  const owned = new Set(elementIds);
   const wrap = h("div", { class: "element-tags" });
-  elementIds.forEach((id) => {
-    const label = elementLabelMap.get(id) ?? id;
-    wrap.append(h("span", { class: `tag tag--${id}` }, label));
+  [...elementLabelMap.keys()].forEach((id) => {
+    if (owned.has(id)) {
+      const label = elementLabelMap.get(id) ?? id;
+      wrap.append(h("span", { class: `tag tag--${id}` }, label));
+    } else {
+      wrap.append(h("span", { class: "tag tag--empty", "aria-hidden": "true" }));
+    }
   });
   return wrap;
 }

@@ -73,17 +73,25 @@ initDiscontinuedFilter({
 
 const checkbox = container.querySelector("input[type=checkbox]");
 assert(!!checkbox, "チェックボックスが描画される");
-assert(checkbox.checked === false, "初期状態は未チェック（既定で廃止済みは含めない）");
+assert(checkbox.checked === false, "初期状態は未チェック（既定で廃止済みを含める。フェーズ21）");
 assert(container.textContent.includes("506"), "件数(506件)がラベルに表示される");
+assert(container.textContent.includes("含めない"), "「含めない」＝除外の向きのラベルが表示される（フェーズ21）");
 
 checkbox.checked = true;
 checkbox.dispatchEvent(new dom.window.Event("change"));
-assert(lastChange === true, "チェックすると onChange(true) が呼ばれる");
+assert(lastChange === true, "チェックすると onChange(true)（＝除外する）が呼ばれる");
 
-// initialChecked: true の復元（URLクエリからの復元を想定）
+// initialChecked: true の復元（URLクエリで discontinued=0 だった場合を想定）
 const container2 = document.createElement("div");
 initDiscontinuedFilter({ container: container2, count: 506, initialChecked: true, onChange: () => {} });
-assert(container2.querySelector("input[type=checkbox]").checked === true, "initialChecked:trueで初期状態がチェック済みになる");
+assert(container2.querySelector("input[type=checkbox]").checked === true, "initialChecked:trueで初期状態がチェック済み（除外）になる");
+
+// updateCount() で件数だけ更新できる（フェーズ21: 他の絞り込み条件に連動）
+const container3 = document.createElement("div");
+const handle = initDiscontinuedFilter({ container: container3, count: 506, initialChecked: false, onChange: () => {} });
+handle.updateCount(12);
+assert(container3.textContent.includes("12件"), "updateCount()でラベルの件数だけが更新される");
+assert(container3.querySelector("input[type=checkbox]").checked === false, "updateCount()してもチェック状態は変わらない");
 
 console.log("\nAll discontinuedFilter tests passed.");
 

@@ -92,6 +92,14 @@
   align-items: start;
 }
 
+/* 右カラム: 観測要素・種別・廃止済み観測所を縦に並べる。
+   地域パネル（都道府県一覧で縦に長くなりがち）の余白を埋めるための配置。 */
+.filter-panels__right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
 @media (max-width: 900px) {
   .filter-panels {
     grid-template-columns: 1fr;

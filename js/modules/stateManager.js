@@ -44,8 +44,8 @@ function createStore(initialState) {
 // - pageSize: 1ページあたりの表示件数
 // - status: "loading" | "ready" | "error"
 // - selectedStationId: 一覧の行／地図のマーカーどちらかで選択された観測所のID（未選択はnull。フェーズ15）
-// - discontinuedStations: 廃止済み観測所（現行の観測所網には含まれない歴史的な地点。既定では絞り込み対象外。フェーズ16）
-// - includeDiscontinued: 廃止済み観測所を一覧・地図に含めるかどうか（既定false）
+// - discontinuedStations: 廃止済み観測所（現行の観測所網には含まれない歴史的な地点。フェーズ16）
+// - includeDiscontinued: 廃止済み観測所を一覧・地図に含めるかどうか（既定true。フェーズ21で既定を反転）
 export const store = createStore({
   allStations: [],
   visibleStations: [],
@@ -60,5 +60,5 @@ export const store = createStore({
   errorMessage: "",
   selectedStationId: null,
   discontinuedStations: [],
-  includeDiscontinued: false,
+  includeDiscontinued: true,
 });
